@@ -1,7 +1,14 @@
-import React from 'react';
+import React from "react";
+
+// Custom components imports
+import Header from "./components/Header";
 
 const App = () => {
-  return <h1>Welcome</h1>
-}
+  return (
+    <>
+      <Header />
+    </>
+  );
+};
 
 export default App;

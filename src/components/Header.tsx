@@ -3,7 +3,7 @@ import { Dropdown, Icon, Menu, Segment } from "semantic-ui-react";
 
 const Header = () => (
   <>
-    <Menu attached='top'>
+    <Menu inverted attached='top'>
       <Dropdown item icon='wrench' simple>
         <Dropdown.Menu>
           <Dropdown.Item>

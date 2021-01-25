@@ -8,17 +8,15 @@ const FormsPage: React.FC<RouteComponentProps<MatchParams>> = ({ match }) => {
   const componentId = url.replace("/forms/", "");
 
   const displayForm = (components: ComponentMapping[], id: string) => {
-    let ComponentToRender: React.FC;
-    ComponentToRender = components.filter(
-      (component) => component.id === componentId
-    )[0].name;
-    return <ComponentToRender />;
+    let Component: React.FC;
+    Component = components.filter((component) => component.id === id)[0].name;
+    return <Component />;
   };
 
   return (
     <div>
       <h1>Forms Page</h1>
-      {displayForm(componentMapping, url)}
+      {displayForm(componentMapping, componentId)}
     </div>
   );
 };

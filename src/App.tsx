@@ -12,7 +12,7 @@ const App = () => {
   return (
     <>
       <Header />
-      <Container style={{ marginTop: "4rem" }}>
+      <Container className='main'>
         <Switch>
           <Route path='/forms/:id' component={FormsPage} />
         </Switch>

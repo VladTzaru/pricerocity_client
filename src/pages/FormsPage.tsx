@@ -1,5 +1,6 @@
 import React from "react";
 import { RouteComponentProps } from "react-router";
+import { Header, Icon } from "semantic-ui-react";
 import componentMapping from "../config/componentMapping";
 import { ComponentMapping, MatchParams } from "../types";
 
@@ -14,10 +15,19 @@ const FormsPage: React.FC<RouteComponentProps<MatchParams>> = ({ match }) => {
   };
 
   return (
-    <div>
-      <h1>Forms Page</h1>
+    <>
+      <Header
+        color='blue'
+        className='formPageHeader'
+        as='h1'
+        icon
+        textAlign='center'
+      >
+        <Icon name='file' circular />
+        <Header.Content>Dokument {componentId}</Header.Content>
+      </Header>
       {displayForm(componentMapping, componentId)}
-    </div>
+    </>
   );
 };
 

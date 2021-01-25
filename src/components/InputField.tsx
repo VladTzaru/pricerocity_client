@@ -6,13 +6,14 @@ import { Form } from "semantic-ui-react";
 type InputFieldProps = InputHTMLAttributes<HTMLInputElement> & {
   name: string;
   label: string;
-  size?: any; // Never gonna use size
+  size?: string;
 };
 
 const InputField: React.FC<InputFieldProps> = ({ width: _, ...props }) => {
   const [field, { error }] = useField(props);
   return (
     <Form.Input
+      size='large'
       {...field}
       {...props}
       error={error && { content: error, pointing: "below" }}

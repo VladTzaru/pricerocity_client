@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+import { Container } from "semantic-ui-react";
 
 // Custom components imports
 import Header from "./components/Header";
@@ -11,11 +12,11 @@ const App = () => {
   return (
     <>
       <Header />
-      <main style={{ marginTop: "4rem" }}>
+      <Container style={{ marginTop: "4rem" }}>
         <Switch>
           <Route path='/forms/:id' component={FormsPage} />
         </Switch>
-      </main>
+      </Container>
     </>
   );
 };

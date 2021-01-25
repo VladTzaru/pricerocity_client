@@ -1,5 +1,6 @@
 import DeliveryNote from "../components/forms/DeliveryNote";
 import InvoiceR1 from "../components/forms/InvoiceR1";
+import NewItem from "../components/forms/NewItem";
 import { ComponentMapping } from "../types";
 
 const componentMapping: ComponentMapping[] = [
@@ -10,6 +11,10 @@ const componentMapping: ComponentMapping[] = [
   {
     id: "delivery_note",
     name: DeliveryNote,
+  },
+  {
+    id: "new_item",
+    name: NewItem,
   },
 ];
 

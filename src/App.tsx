@@ -5,12 +5,15 @@ import { Route, Switch } from "react-router-dom";
 import Header from "./components/Header";
 import InvoiceR1 from "./components/forms/InvoiceR1";
 
+// Custom page imports
+import FormsPage from "./pages/FormsPage";
+
 const App = () => {
   return (
     <>
       <Header />
       <Switch>
-        <Route component={InvoiceR1} path='/forms/invoice_r1' />
+        <Route path='/forms/:id' component={FormsPage} />
       </Switch>
     </>
   );

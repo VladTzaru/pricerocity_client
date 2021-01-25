@@ -10,16 +10,19 @@ const Header = () => (
 
       <Dropdown item icon='add' simple>
         <Dropdown.Menu>
+          <Dropdown.Item as={Link} to='/forms/new_item'>
+            Dodaj novu stavku
+          </Dropdown.Item>
           <Dropdown.Item>
             <Icon name='dropdown' />
-            <span className='text'>New Document</span>
+            <span className='text'>Novi Dokument</span>
 
             <Dropdown.Menu>
               <Dropdown.Item as={Link} to='/forms/invoice_r1'>
-                Invoice R1
+                Obrazac R-1
               </Dropdown.Item>
               <Dropdown.Item as={Link} to='/forms/delivery_note'>
-                Delivery Note
+                Otpremnica
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown.Item>

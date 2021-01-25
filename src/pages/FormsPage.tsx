@@ -24,7 +24,7 @@ const FormsPage: React.FC<RouteComponentProps<MatchParams>> = ({ match }) => {
         textAlign='center'
       >
         <Icon name='file' circular />
-        <Header.Content>Dokument {componentId}</Header.Content>
+        <Header.Content>{componentId}</Header.Content>
       </Header>
       {displayForm(componentMapping, componentId)}
     </>

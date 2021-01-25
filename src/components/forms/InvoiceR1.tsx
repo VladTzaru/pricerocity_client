@@ -1,5 +1,3 @@
-import React from "react";
-
 const InvoiceR1 = () => {
   return (
     <div>

@@ -11,9 +11,11 @@ const App = () => {
   return (
     <>
       <Header />
-      <Switch>
-        <Route path='/forms/:id' component={FormsPage} />
-      </Switch>
+      <main style={{ marginTop: "4rem" }}>
+        <Switch>
+          <Route path='/forms/:id' component={FormsPage} />
+        </Switch>
+      </main>
     </>
   );
 };

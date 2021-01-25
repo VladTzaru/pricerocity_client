@@ -1,25 +1,28 @@
-import React from "react";
-import { Dropdown, Icon, Menu, Segment } from "semantic-ui-react";
+import { Link } from "react-router-dom";
+import { Button, Dropdown, Icon, Menu } from "semantic-ui-react";
 
 const Header = () => (
   <>
-    <Menu inverted attached='top'>
-      <Dropdown item icon='wrench' simple>
+    <Menu attached='top' stackable>
+      <Menu.Item as={Link} to='/' name='pricerocity'>
+        Pricerocity
+      </Menu.Item>
+
+      <Dropdown item icon='add' simple>
         <Dropdown.Menu>
           <Dropdown.Item>
             <Icon name='dropdown' />
-            <span className='text'>New</span>
+            <span className='text'>New Document</span>
 
             <Dropdown.Menu>
-              <Dropdown.Item>Document</Dropdown.Item>
+              <Dropdown.Item as={Link} to='/forms/invoice_r1'>
+                Invoice R1
+              </Dropdown.Item>
+              <Dropdown.Item as={Link} to='/forms/delivery_note'>
+                Delivery Note
+              </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown.Item>
-          <Dropdown.Item>Open</Dropdown.Item>
-          <Dropdown.Item>Save...</Dropdown.Item>
-          <Dropdown.Item>Edit Permissions</Dropdown.Item>
-          <Dropdown.Divider />
-          <Dropdown.Header>Export</Dropdown.Header>
-          <Dropdown.Item>Share</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
 
@@ -36,6 +39,14 @@ const Header = () => (
           <div className='results' />
         </div>
       </Menu.Menu>
+
+      <Menu.Item>
+        <Button primary>Sign up</Button>
+      </Menu.Item>
+
+      <Menu.Item>
+        <Button>Log-in</Button>
+      </Menu.Item>
     </Menu>
   </>
 );

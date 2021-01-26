@@ -4,6 +4,7 @@ import { Container } from "semantic-ui-react";
 
 // Custom components imports
 import Header from "./components/Header";
+import ItemListPage from './pages/ItemListPage'
 
 // Custom page imports
 import FormsPage from "./pages/FormsPage";
@@ -15,6 +16,7 @@ const App = () => {
       <Container className='main'>
         <Switch>
           <Route path='/forms/:id' component={FormsPage} />
+          <Route path='/item' component={ItemListPage} />
         </Switch>
       </Container>
     </>

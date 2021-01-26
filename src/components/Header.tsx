@@ -29,6 +29,10 @@ const Header = () => (
         </Dropdown.Menu>
       </Dropdown>
 
+      <Menu.Item as={Link} to='/item' name='pricerocity'>
+        Stavke
+      </Menu.Item>
+
       <Menu.Menu position='right'>
         <div className='ui right aligned category search item'>
           <div className='ui transparent icon input'>

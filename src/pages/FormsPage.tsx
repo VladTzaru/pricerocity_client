@@ -3,10 +3,11 @@ import { RouteComponentProps } from "react-router";
 import { Header, Icon } from "semantic-ui-react";
 import { componentMapping, FormsToCro } from "../config/componentMapping";
 import { ComponentMapping, MatchParams } from "../types";
+import { replaceStringChunk } from "../utility/utils";
 
 const FormsPage: React.FC<RouteComponentProps<MatchParams>> = ({ match }) => {
   const { url } = match;
-  const componentId = url.replace("/forms/", "");
+  const componentId = replaceStringChunk(url, "/forms/");
 
   const displayForm = (components: ComponentMapping[], id: string) => {
     let Component: React.FC;

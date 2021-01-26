@@ -1,7 +1,7 @@
 import React from "react";
 import { RouteComponentProps } from "react-router";
 import { Header, Icon } from "semantic-ui-react";
-import componentMapping from "../config/componentMapping";
+import componentMapping, { FormsToCro } from "../config/componentMapping";
 import { ComponentMapping, MatchParams } from "../types";
 
 const FormsPage: React.FC<RouteComponentProps<MatchParams>> = ({ match }) => {
@@ -24,7 +24,7 @@ const FormsPage: React.FC<RouteComponentProps<MatchParams>> = ({ match }) => {
         textAlign='center'
       >
         <Icon name='file' circular />
-        <Header.Content>{componentId}</Header.Content>
+        <Header.Content>{FormsToCro[componentId]}</Header.Content>
       </Header>
       {displayForm(componentMapping, componentId)}
     </>

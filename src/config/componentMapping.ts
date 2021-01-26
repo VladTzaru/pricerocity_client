@@ -3,6 +3,12 @@ import InvoiceR1 from "../components/forms/InvoiceR1";
 import NewItem from "../components/forms/NewItem";
 import { ComponentMapping } from "../types";
 
+export enum FormsToCro {
+  invoice_r1 = "Obrazac R-1",
+  delivery_note = "Otpremnica",
+  new_item = "Nova stavka",
+}
+
 const componentMapping: ComponentMapping[] = [
   {
     id: "invoice_r1",

@@ -1,7 +1,7 @@
 import React from "react";
 import { RouteComponentProps } from "react-router";
 import { Header, Icon } from "semantic-ui-react";
-import componentMapping, { FormsToCro } from "../config/componentMapping";
+import { componentMapping, FormsToCro } from "../config/componentMapping";
 import { ComponentMapping, MatchParams } from "../types";
 
 const FormsPage: React.FC<RouteComponentProps<MatchParams>> = ({ match }) => {

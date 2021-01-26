@@ -9,7 +9,7 @@ export enum FormsToCro {
   new_item = "Nova stavka",
 }
 
-const componentMapping: ComponentMapping[] = [
+export const componentMapping: ComponentMapping[] = [
   {
     id: "invoice_r1",
     name: InvoiceR1,
@@ -23,5 +23,3 @@ const componentMapping: ComponentMapping[] = [
     name: NewItem,
   },
 ];
-
-export default componentMapping;

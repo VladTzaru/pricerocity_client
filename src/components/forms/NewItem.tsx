@@ -64,6 +64,7 @@ const NewItem = () => {
               label='Naziv Proizvoda (ENG)'
             />
           </FormGroup>
+
           <FormGroup widths={2}>
             <InputField
               disabled={isSubmitting}

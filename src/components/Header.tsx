@@ -35,7 +35,7 @@ const Header = () => (
             <input
               className='prompt'
               type='text'
-              placeholder='Search documents...'
+              placeholder='Pretrazi bazu...'
             />
             <i className='search link icon' />
           </div>
@@ -44,11 +44,7 @@ const Header = () => (
       </Menu.Menu>
 
       <Menu.Item>
-        <Button primary>Sign up</Button>
-      </Menu.Item>
-
-      <Menu.Item>
-        <Button>Log-in</Button>
+        <Button>Uloguj se</Button>
       </Menu.Item>
     </Menu>
   </>

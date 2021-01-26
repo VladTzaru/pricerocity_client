@@ -1,24 +1,27 @@
-import axios from "axios";
-import { useEffect } from "react";
+import axios, { AxiosResponse } from "axios";
+import { useEffect, useState } from "react";
 import { RouteComponentProps } from "react-router-dom";
-import { MatchParams } from "../types";
+import { Item, MatchParams } from "../types";
 import { replaceStringChunk } from "../utility/utils";
 
 const ItemListPage: React.FC<RouteComponentProps<MatchParams>> = ({
   match,
 }) => {
+  const [items, setItems] = useState<AxiosResponse<Item[]> | null>(null);
   const { url } = match;
   const searchTerm = replaceStringChunk(url, "/");
 
   useEffect(() => {
-    const getItems = async () => {
-      const response = await axios.get(
-        `${process.env.REACT_APP_API}/${searchTerm}`
-      );
-      console.log(response);
-    };
-    getItems();
-  }, []);
+    if (!items) {
+      const getItems = async () => {
+        const response = await axios.get<Item[]>(
+          `${process.env.REACT_APP_API}/${searchTerm}`
+        );
+        setItems(response);
+      };
+      getItems();
+    }
+  }, [items, searchTerm]);
   return (
     <div>
       <h1>ITEM LIST</h1>

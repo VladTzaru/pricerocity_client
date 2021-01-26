@@ -4,5 +4,15 @@ export interface MatchParams {
 
 export interface ComponentMapping {
   id: string;
-  name: React.FC
+  name: React.FC;
+}
+
+export interface Item {
+  createdAt: string;
+  id: string;
+  itemNameCro: string;
+  itemNameEng: string;
+  retailPrice: number;
+  updatedAt: string;
+  vat: number;
 }

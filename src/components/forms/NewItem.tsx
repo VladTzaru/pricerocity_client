@@ -4,6 +4,7 @@ import InputField from "../InputField";
 import { Button, FormGroup, Header } from "semantic-ui-react";
 import * as Yup from "yup";
 import axios from "axios";
+import { LOADING } from "../../constants";
 
 interface Values {
   itemNameCro: string;
@@ -85,7 +86,7 @@ const NewItem = () => {
             disabled={isSubmitting || !dirty || !isValid}
             type='submit'
           >
-            Dodaj stavku
+            {isSubmitting ? LOADING : "Dodaj stavku"}
           </Button>
         </Form>
       )}

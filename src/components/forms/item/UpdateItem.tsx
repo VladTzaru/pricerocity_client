@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Formik, Form } from "formik";
 import InputField from "../../InputField";
 import { Button, FormGroup, Header, Icon } from "semantic-ui-react";
-import * as Yup from "yup";
 import { LOADING } from "../../../constants";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { Item, ItemValues } from "../../../types";
+import { itemValidationSchema } from "../../../validation/formValidationSchemas";
 
 const initialValues: ItemValues = {
   itemNameCro: "",
@@ -14,13 +14,6 @@ const initialValues: ItemValues = {
   retailPrice: 0,
   vat: 0,
 };
-
-const validationSchema = Yup.object().shape({
-  itemNameCro: Yup.string().required("Naziv proizvoda (HRV) je obavezno uneti"),
-  itemNameEng: Yup.string().required("Naziv proizvoda (ENG) je obavezno uneti"),
-  retailPrice: Yup.number().required("MPC je obavezno uneti"),
-  vat: Yup.number().required("PDV je obavezno uneti"),
-});
 
 interface UpdateItemProps {
   id: string;
@@ -58,7 +51,7 @@ const UpdateItem: React.FC<UpdateItemProps> = ({ id }) => {
 
     return (
       <Formik
-        validationSchema={validationSchema}
+        validationSchema={itemValidationSchema}
         initialValues={initialValues}
         onSubmit={(values, actions) => {
           updateItem(values);

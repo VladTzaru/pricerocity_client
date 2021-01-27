@@ -2,10 +2,10 @@ import React from "react";
 import { Formik, Form } from "formik";
 import InputField from "../../InputField";
 import { Button, FormGroup, Header } from "semantic-ui-react";
-import * as Yup from "yup";
 import axios from "axios";
 import { LOADING } from "../../../constants";
 import { ItemValues } from "../../../types";
+import { itemValidationSchema } from "../../../validation/formValidationSchemas";
 
 const initialValues: ItemValues = {
   itemNameCro: "",
@@ -13,13 +13,6 @@ const initialValues: ItemValues = {
   retailPrice: 0,
   vat: 0,
 };
-
-const validationSchema = Yup.object().shape({
-  itemNameCro: Yup.string().required("Naziv proizvoda (HRV) je obavezno uneti"),
-  itemNameEng: Yup.string().required("Naziv proizvoda (ENG) je obavezno uneti"),
-  retailPrice: Yup.number().required("MPC je obavezno uneti"),
-  vat: Yup.number().required("PDV je obavezno uneti"),
-});
 
 const NewItem = () => {
   const addNewItem = async (item: ItemValues) => {
@@ -36,7 +29,7 @@ const NewItem = () => {
 
   return (
     <Formik
-      validationSchema={validationSchema}
+      validationSchema={itemValidationSchema}
       initialValues={initialValues}
       onSubmit={(values, actions) => {
         addNewItem(values);

@@ -64,7 +64,7 @@ const ItemListPage: React.FC<RouteComponentProps<MatchParams>> = ({
   }, [searchTerm]);
   return (
     <div>
-      <h1>Sve stavke</h1>
+      <h1>Sve stavke ({items.length})</h1>
       {renderContent()}
     </div>
   );

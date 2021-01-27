@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Formik, Form } from "formik";
 import InputField from "../../InputField";
-import { Button, FormGroup, Header } from "semantic-ui-react";
+import { Button, FormGroup, Header, Icon } from "semantic-ui-react";
 import * as Yup from "yup";
 import { LOADING } from "../../../constants";
 import { useHistory } from "react-router-dom";
@@ -91,10 +91,11 @@ const UpdateItem: React.FC<UpdateItemProps> = ({ id }) => {
             <Button
               type='button'
               onClick={() => history.push("/item")}
-              basic
+              color='red'
               size='large'
             >
-              Natrag na stavke
+              <Icon name='trash' />
+              Obriši stavku
             </Button>
 
             <Button
@@ -124,7 +125,20 @@ const UpdateItem: React.FC<UpdateItemProps> = ({ id }) => {
     getItem();
   }, [id]);
 
-  return renderContent();
+  return (
+    <>
+      <Button
+        className='formPageBackBtn'
+        type='button'
+        onClick={() => history.push("/item")}
+        basic
+        size='large'
+      >
+        Natrag na stavke
+      </Button>
+      {renderContent()}
+    </>
+  );
 };
 
 export default UpdateItem;

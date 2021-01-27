@@ -51,6 +51,7 @@ const UpdateItem: React.FC<UpdateItemProps> = ({ id }) => {
 
     return (
       <Formik
+        enableReinitialize
         validationSchema={itemValidationSchema}
         initialValues={initialValues}
         onSubmit={(values, actions) => {
@@ -112,12 +113,20 @@ const UpdateItem: React.FC<UpdateItemProps> = ({ id }) => {
 
   useEffect(() => {
     const getItem = async () => {
-      setLoading(true);
-      const { data } = await axios.get<Item>(
-        `${process.env.REACT_APP_API}/item/${id}`
-      );
-      setLoading(false);
-      setItem(data);
+      try {
+        setLoading(true);
+        const { data } = await axios.get<Item>(
+          `${process.env.REACT_APP_API}/item/${id}`
+        );
+        setLoading(false);
+        setItem(data);
+        initialValues.itemNameCro = data.itemNameCro;
+        initialValues.itemNameEng = data.itemNameEng;
+        initialValues.retailPrice = data.retailPrice;
+        initialValues.vat = data.vat;
+      } catch (error) {
+        console.log(error);
+      }
     };
     getItem();
   }, [id]);

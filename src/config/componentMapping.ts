@@ -1,6 +1,6 @@
 import DeliveryNote from "../components/forms/DeliveryNote";
 import InvoiceR1 from "../components/forms/InvoiceR1";
-import NewItem from "../components/forms/NewItem";
+import NewItem from "../components/forms/item/NewItem";
 import { ComponentMapping } from "../types";
 
 export enum FormsToCro {

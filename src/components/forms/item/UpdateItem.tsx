@@ -1,10 +1,10 @@
 import React from "react";
 import { Formik, Form } from "formik";
-import InputField from "../InputField";
+import InputField from "../../InputField";
 import { Button, FormGroup, Header } from "semantic-ui-react";
 import * as Yup from "yup";
 import axios from "axios";
-import { LOADING } from "../../constants";
+import { LOADING } from "../../../constants";
 
 interface Values {
   itemNameCro: string;
@@ -28,16 +28,8 @@ const validationSchema = Yup.object().shape({
 });
 
 const NewItem = () => {
-  const addNewItem = async (item: Values) => {
-    try {
-      await axios.post(`${process.env.REACT_APP_API}/item/new`, item, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-    } catch (error) {
-      console.log(error);
-    }
+  const updateItem = async (item: Values) => {
+    console.log(`${item} updated`);
   };
 
   return (
@@ -45,7 +37,7 @@ const NewItem = () => {
       validationSchema={validationSchema}
       initialValues={initialValues}
       onSubmit={(values, actions) => {
-        addNewItem(values);
+        updateItem(values);
         actions.resetForm();
       }}
     >

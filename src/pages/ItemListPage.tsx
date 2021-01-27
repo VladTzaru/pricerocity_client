@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { RouteComponentProps } from "react-router-dom";
-import { List } from "semantic-ui-react";
-import { LOADING } from "../constants";
+import { Link, RouteComponentProps } from "react-router-dom";
+import { Button, List } from "semantic-ui-react";
+import { LOADING, NO_CONTENT } from "../constants";
 import { Item, MatchParams } from "../types";
 import { replaceStringChunk } from "../utility/utils";
 
@@ -10,11 +10,22 @@ const ItemListPage: React.FC<RouteComponentProps<MatchParams>> = ({
   match,
 }) => {
   const [items, setItems] = useState<Item[]>([]);
+  const [loading, setLoading] = useState(false);
   const { url } = match;
   const searchTerm = replaceStringChunk(url, "/");
 
   const renderContent = () => {
-    if (items.length === 0) return <h4>{LOADING}</h4>;
+    if (loading) return <h4>{LOADING}</h4>;
+
+    if (items.length === 0)
+      return (
+        <>
+          <h4>{NO_CONTENT} </h4>
+          <Button as={Link} to='/forms/new_item' primary>
+            Dodaj novu stavku
+          </Button>
+        </>
+      );
 
     return (
       <List divided relaxed>
@@ -32,13 +43,16 @@ const ItemListPage: React.FC<RouteComponentProps<MatchParams>> = ({
 
   useEffect(() => {
     const getItems = async () => {
+      setLoading(true);
       try {
         const { data } = await axios.get<Item[]>(
           `${process.env.REACT_APP_API}/${searchTerm}`
         );
 
+        setLoading(false);
         setItems(data);
       } catch (error) {
+        setLoading(false);
         console.log(error);
       }
     };

@@ -32,8 +32,12 @@ const ItemListPage: React.FC<RouteComponentProps<MatchParams>> = ({
         {items.map((item) => (
           <List.Item key={item.id}>
             <List.Content>
-              <List.Header as='a'>{item.itemNameCro}</List.Header>
-              <List.Description as='a'>{item.createdAt}</List.Description>
+              <List.Header as={Link} to={`/item/${item.id}`}>
+                {item.itemNameCro}
+              </List.Header>
+              <List.Description as={Link} to={`/item/${item.id}`}>
+                {item.createdAt}
+              </List.Description>
             </List.Content>
           </List.Item>
         ))}

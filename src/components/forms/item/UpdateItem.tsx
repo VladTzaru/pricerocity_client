@@ -3,7 +3,6 @@ import { Formik, Form } from "formik";
 import InputField from "../../InputField";
 import { Button, FormGroup, Header } from "semantic-ui-react";
 import * as Yup from "yup";
-import axios from "axios";
 import { LOADING } from "../../../constants";
 
 interface Values {
@@ -43,7 +42,7 @@ const NewItem = () => {
     >
       {({ dirty, isValid, isSubmitting }) => (
         <Form className='ui form'>
-          <Header as='h2'>Opis Stavke</Header>
+          <Header as='h2'>Ažuriraj stavku</Header>
           <FormGroup widths={2}>
             <InputField
               disabled={isSubmitting}
@@ -79,7 +78,7 @@ const NewItem = () => {
             disabled={isSubmitting || !dirty || !isValid}
             type='submit'
           >
-            {isSubmitting ? LOADING : "Dodaj stavku"}
+            {isSubmitting ? LOADING : "Ažuriraj"}
           </Button>
         </Form>
       )}

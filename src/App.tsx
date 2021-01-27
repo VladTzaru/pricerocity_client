@@ -4,10 +4,11 @@ import { Container } from "semantic-ui-react";
 
 // Custom components imports
 import Header from "./components/Header";
-import ItemListPage from './pages/ItemListPage'
+import ItemListPage from "./pages/ItemListPage";
 
 // Custom page imports
 import FormsPage from "./pages/FormsPage";
+import ItemEditPage from "./pages/ItemEditPage";
 
 const App = () => {
   return (
@@ -16,7 +17,8 @@ const App = () => {
       <Container className='main'>
         <Switch>
           <Route path='/forms/:id' component={FormsPage} />
-          <Route path='/item' component={ItemListPage} />
+          <Route exact path='/item' component={ItemListPage} />
+          <Route path='/item/:id' component={ItemEditPage} />
         </Switch>
       </Container>
     </>

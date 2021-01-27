@@ -2,9 +2,9 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, RouteComponentProps } from "react-router-dom";
 import { Button, List } from "semantic-ui-react";
-import { LOADING, NO_CONTENT } from "../constants";
-import { Item, MatchParams } from "../types";
-import { replaceStringChunk } from "../utility/utils";
+import { LOADING, NO_CONTENT } from "../../constants";
+import { Item, MatchParams } from "../../types";
+import { replaceStringChunk } from "../../utility/utils";
 
 const ItemListPage: React.FC<RouteComponentProps<MatchParams>> = ({
   match,

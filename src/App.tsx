@@ -4,11 +4,11 @@ import { Container } from "semantic-ui-react";
 
 // Custom components imports
 import Header from "./components/Header";
-import ItemListPage from "./pages/ItemListPage";
+import ItemListPage from "./pages/item/ItemListPage";
 
 // Custom page imports
 import FormsPage from "./pages/FormsPage";
-import ItemEditPage from "./pages/ItemEditPage";
+import ItemEditPage from "./pages/item/ItemEditPage";
 
 const App = () => {
   return (

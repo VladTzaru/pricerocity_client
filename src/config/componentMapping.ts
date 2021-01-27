@@ -1,3 +1,4 @@
+import NewBuyer from "../components/forms/buyer/NewBuyer";
 import DeliveryNote from "../components/forms/DeliveryNote";
 import InvoiceR1 from "../components/forms/InvoiceR1";
 import NewItem from "../components/forms/item/NewItem";
@@ -7,6 +8,7 @@ export enum FormsToCro {
   invoice_r1 = "Obrazac R-1",
   delivery_note = "Otpremnica",
   new_item = "Nova stavka",
+  new_buyer = "Novi kupac",
 }
 
 export const componentMapping: ComponentMapping[] = [
@@ -21,5 +23,9 @@ export const componentMapping: ComponentMapping[] = [
   {
     id: "new_item",
     name: NewItem,
+  },
+  {
+    id: "new_buyer",
+    name: NewBuyer,
   },
 ];

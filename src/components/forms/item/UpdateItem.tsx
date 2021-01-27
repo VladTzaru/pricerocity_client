@@ -32,7 +32,16 @@ const UpdateItem: React.FC<UpdateItemProps> = ({ id }) => {
   const [loading, setLoading] = useState(false);
 
   const updateItem = async (item: ItemValues) => {
-    console.log(`${item} ${id} updated`);
+    try {
+      await axios.put(`${process.env.REACT_APP_API}/item/${id}`, item, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      history.push("/item");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const renderContent = () => {

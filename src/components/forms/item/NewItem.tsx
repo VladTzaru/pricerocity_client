@@ -5,15 +5,9 @@ import { Button, FormGroup, Header } from "semantic-ui-react";
 import * as Yup from "yup";
 import axios from "axios";
 import { LOADING } from "../../../constants";
+import { ItemValues } from "../../../types";
 
-interface Values {
-  itemNameCro: string;
-  itemNameEng: string;
-  retailPrice: number;
-  vat: number;
-}
-
-const initialValues: Values = {
+const initialValues: ItemValues = {
   itemNameCro: "",
   itemNameEng: "",
   retailPrice: 0,
@@ -28,7 +22,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const NewItem = () => {
-  const addNewItem = async (item: Values) => {
+  const addNewItem = async (item: ItemValues) => {
     try {
       await axios.post(`${process.env.REACT_APP_API}/item/new`, item, {
         headers: {

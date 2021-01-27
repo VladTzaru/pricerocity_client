@@ -6,16 +6,9 @@ import * as Yup from "yup";
 import { LOADING } from "../../../constants";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import { Item } from "../../../types";
+import { Item, ItemValues } from "../../../types";
 
-interface Values {
-  itemNameCro: string;
-  itemNameEng: string;
-  retailPrice: number;
-  vat: number;
-}
-
-const initialValues: Values = {
+const initialValues: ItemValues = {
   itemNameCro: "",
   itemNameEng: "",
   retailPrice: 0,
@@ -38,7 +31,7 @@ const UpdateItem: React.FC<UpdateItemProps> = ({ id }) => {
   const [item, setItem] = useState<Item | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const updateItem = async (item: Values) => {
+  const updateItem = async (item: ItemValues) => {
     console.log(`${item} ${id} updated`);
   };
 

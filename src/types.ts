@@ -16,3 +16,10 @@ export interface Item {
   updatedAt: string;
   vat: number;
 }
+
+export interface ItemValues {
+  itemNameCro: string;
+  itemNameEng: string;
+  retailPrice: number;
+  vat: number;
+}

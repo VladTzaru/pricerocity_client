@@ -9,6 +9,7 @@ import ItemListPage from "./pages/item/ItemListPage";
 // Custom page imports
 import FormsPage from "./pages/FormsPage";
 import ItemEditPage from "./pages/item/ItemEditPage";
+import BuyerPage from "./pages/BuyerPage";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           <Route path='/forms/:id' component={FormsPage} />
           <Route exact path='/item' component={ItemListPage} />
           <Route path='/item/:id' component={ItemEditPage} />
+          <Route path='/buyers' component={BuyerPage} />
         </Switch>
       </Container>
     </>

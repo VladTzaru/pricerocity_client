@@ -33,6 +33,10 @@ const Header = () => (
         Stavke
       </Menu.Item>
 
+      <Menu.Item as={Link} to='/buyers' name='pricerocity'>
+        Kupci
+      </Menu.Item>
+
       <Menu.Menu position='right'>
         <div className='ui right aligned category search item'>
           <div className='ui transparent icon input'>

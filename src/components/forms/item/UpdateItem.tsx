@@ -49,7 +49,7 @@ const UpdateItem: React.FC<UpdateItemProps> = ({ id }) => {
       >
         {({ dirty, isValid, isSubmitting }) => (
           <Form className='ui form'>
-            <Header as='h2'>Ažuriraj stavku: {item[0].itemNameCro} </Header>
+            <Header as='h2'>Ažuriraj stavku: {item.itemNameCro} </Header>
 
             <FormGroup widths={2}>
               <InputField

@@ -44,6 +44,15 @@ const UpdateItem: React.FC<UpdateItemProps> = ({ id }) => {
     }
   };
 
+  const deleteItem = async () => {
+    try {
+      await axios.delete(`${process.env.REACT_APP_API}/item/${id}`);
+      history.push("/item");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const renderContent = () => {
     if (!item || loading) return <h4>{LOADING}</h4>;
 
@@ -88,12 +97,7 @@ const UpdateItem: React.FC<UpdateItemProps> = ({ id }) => {
               />
             </FormGroup>
 
-            <Button
-              type='button'
-              onClick={() => history.push("/item")}
-              color='red'
-              size='large'
-            >
+            <Button type='button' onClick={deleteItem} color='red' size='large'>
               <Icon name='trash' />
               Obriši stavku
             </Button>

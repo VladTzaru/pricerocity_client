@@ -14,19 +14,12 @@ const ItemListPage: React.FC<RouteComponentProps<MatchParams>> = ({
   const searchTerm = replaceStringChunk(url, "/");
 
   const renderContent = () => {
-    if (items.length === 0) {
-      return <h4>{LOADING}</h4>;
-    }
+    if (items.length === 0) return <h4>{LOADING}</h4>;
 
     return (
       <List divided relaxed>
         {items.map((item) => (
           <List.Item key={item.id}>
-            <List.Icon
-              name='product hunt'
-              size='large'
-              verticalAlign='middle'
-            />
             <List.Content>
               <List.Header as='a'>{item.itemNameCro}</List.Header>
               <List.Description as='a'>{item.createdAt}</List.Description>
@@ -39,11 +32,15 @@ const ItemListPage: React.FC<RouteComponentProps<MatchParams>> = ({
 
   useEffect(() => {
     const getItems = async () => {
-      const { data } = await axios.get<Item[]>(
-        `${process.env.REACT_APP_API}/${searchTerm}`
-      );
+      try {
+        const { data } = await axios.get<Item[]>(
+          `${process.env.REACT_APP_API}/${searchTerm}`
+        );
 
-      setItems(data);
+        setItems(data);
+      } catch (error) {
+        console.log(error);
+      }
     };
     getItems();
   }, [searchTerm]);

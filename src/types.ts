@@ -23,3 +23,14 @@ export interface ItemValues {
   retailPrice: number;
   vat: number;
 }
+
+export interface Buyer {
+  name: string;
+  address: string;
+  zipCode: string;
+  city: string;
+  country: string;
+  phoneNumber?: string;
+  type: "Privatno lice" | "Pravno lice";
+  vatNumber?: number;
+}

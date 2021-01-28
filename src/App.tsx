@@ -9,8 +9,8 @@ import ItemListPage from "./pages/item/ItemListPage";
 // Custom page imports
 import FormsPage from "./pages/FormsPage";
 import ItemEditPage from "./pages/item/ItemEditPage";
-import BuyerPage from "./pages/BuyerPage";
-import SideMenu from "./components/forms/SideMenu";
+import BuyerList from "./pages/buyer/BuyerListPage";
+import SideMenu from "./components/SideMenu";
 
 const App = () => {
   return (
@@ -22,7 +22,7 @@ const App = () => {
           <Route path='/forms/:id' component={FormsPage} />
           <Route exact path='/item' component={ItemListPage} />
           <Route path='/item/:id' component={ItemEditPage} />
-          <Route path='/buyers' component={BuyerPage} />
+          <Route path='/buyer' component={BuyerList} />
         </Switch>
       </Container>
     </>

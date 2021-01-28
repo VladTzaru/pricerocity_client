@@ -34,7 +34,7 @@ const SideMenu = () => {
           <Menu.Item
             onClick={handleItemClick}
             active={activeItem === "buyers"}
-            name='buyers'
+            name='buyer'
           >
             Kupci
           </Menu.Item>

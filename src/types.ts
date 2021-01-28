@@ -27,6 +27,7 @@ export interface ItemValues {
 export type BuyerType = "Privatno lice" | "Pravno lice";
 
 export interface Buyer {
+  id?: string;
   name: string;
   address: string;
   zipCode: string;

@@ -9,10 +9,14 @@ const FormsPage: React.FC<RouteComponentProps<MatchParams>> = ({ match }) => {
   const { url } = match;
   const componentId = replaceStringChunk(url, "/forms/");
 
-  const displayForm = (components: ComponentMapping[], id: string) => {
+  const displayForm = (
+    components: ComponentMapping[],
+    id: string,
+    props?: any
+  ) => {
     let Component: React.FC;
     Component = components.filter((component) => component.id === id)[0].name;
-    return <Component />;
+    return <Component {...props} />;
   };
 
   return (

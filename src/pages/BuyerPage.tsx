@@ -1,7 +1,7 @@
 const BuyerPage = () => {
   return (
     <div>
-      <h1>Buyer page</h1>
+      <h1>Svi kupci</h1>
     </div>
   );
 };

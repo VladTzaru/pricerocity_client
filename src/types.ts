@@ -37,7 +37,7 @@ export interface Buyer {
   vatNumber?: number;
 }
 
-export interface SelectionOptions<T extends string | null> {
+export interface SelectionOptions<T extends string> {
   key: T;
   text: T;
   value: T;

@@ -3,7 +3,7 @@ import { Formik, Form } from "formik";
 import InputField from "../../InputField";
 import { Button, FormGroup, Header } from "semantic-ui-react";
 import { LOADING } from "../../../constants";
-import { Buyer } from "../../../types";
+import { Buyer, BuyerType, SelectionOptions } from "../../../types";
 import { buyerValidationSchema } from "../../../validation/formValidationSchemas";
 import SelectInput from "../../SelectInput";
 import axios from "axios";
@@ -18,18 +18,26 @@ const initialValues: Buyer = {
   phoneNumber: "",
 };
 
-const buyerTypes = [
+const buyerTypes: SelectionOptions<BuyerType>[] = [
   {
     key: "Pravno lice",
-    text: "Pravno lice",
     value: "Pravno lice",
-    label: { color: "blue", empty: true, circular: true },
+    text: "Pravno lice",
+    label: {
+      circular: true,
+      color: "blue",
+      empty: true,
+    },
   },
   {
     key: "Privatno lice",
-    text: "Privatno lice",
     value: "Privatno lice",
-    label: { color: "orange", empty: true, circular: true },
+    text: "Privatno lice",
+    label: {
+      circular: true,
+      color: "orange",
+      empty: true,
+    },
   },
 ];
 

@@ -24,6 +24,8 @@ export interface ItemValues {
   vat: number;
 }
 
+export type BuyerType = "Privatno lice" | "Pravno lice";
+
 export interface Buyer {
   name: string;
   address: string;
@@ -31,6 +33,17 @@ export interface Buyer {
   city: string;
   country: string;
   phoneNumber?: string;
-  type: "Privatno lice" | "Pravno lice" | null;
+  type: BuyerType;
   vatNumber?: number;
+}
+
+export interface SelectionOptions<T extends string | null> {
+  key: T;
+  text: T;
+  value: T;
+  label?: {
+    color: string;
+    empty: boolean;
+    circular: boolean;
+  };
 }

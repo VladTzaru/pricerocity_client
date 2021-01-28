@@ -19,4 +19,5 @@ export const buyerValidationSchema = Yup.object().shape({
     .required("Poštanski broj je obavezno uneti")
     .matches(REGX_ONLY_NUMBERS, "Unesi broj"),
   phoneNumber: Yup.string().matches(REGX_ONLY_NUMBERS, "Unesi broj"),
+  vatNumber: Yup.string().matches(REGX_ONLY_NUMBERS, "Unesi OIB"),
 });

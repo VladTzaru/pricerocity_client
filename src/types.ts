@@ -34,7 +34,7 @@ export interface Buyer {
   country: string;
   phoneNumber?: string;
   type: BuyerType;
-  vatNumber?: number;
+  vatNumber?: string;
 }
 
 export interface SelectionOptions<T extends string> {

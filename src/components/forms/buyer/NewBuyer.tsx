@@ -16,6 +16,7 @@ const initialValues: Buyer = {
   type: "Pravno lice",
   zipCode: "",
   phoneNumber: "",
+  vatNumber: "",
 };
 
 const buyerTypes: SelectionOptions<BuyerType>[] = [
@@ -44,7 +45,7 @@ const buyerTypes: SelectionOptions<BuyerType>[] = [
 const NewBuyer = () => {
   const addNewBuyer = async (buyer: Buyer) => {
     try {
-      await axios.post(`${process.env.REACT_APP_API}/item/new`, buyer, {
+      await axios.post(`${process.env.REACT_APP_API}/buyer/new`, buyer, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -63,12 +64,19 @@ const NewBuyer = () => {
         actions.resetForm();
       }}
     >
-      {({ dirty, isValid, isSubmitting }) => (
+      {({ dirty, isValid, isSubmitting, values }) => (
         <Form className='ui form'>
           <Header as='h2'>Podaci o kupcu</Header>
           <FormGroup widths={2}>
             <InputField disabled={isSubmitting} name='name' label='Ime' />
             <InputField disabled={isSubmitting} name='address' label='Adresa' />
+            {values.type === "Pravno lice" && (
+              <InputField
+                disabled={isSubmitting}
+                name='vatNumber'
+                label='OIB'
+              />
+            )}
           </FormGroup>
 
           <FormGroup widths={2}>

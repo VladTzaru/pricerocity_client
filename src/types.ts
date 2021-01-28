@@ -31,6 +31,6 @@ export interface Buyer {
   city: string;
   country: string;
   phoneNumber?: string;
-  type: "Privatno lice" | "Pravno lice";
+  type: "Privatno lice" | "Pravno lice" | null;
   vatNumber?: number;
 }

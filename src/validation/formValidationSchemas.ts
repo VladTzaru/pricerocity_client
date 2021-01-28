@@ -15,6 +15,8 @@ export const buyerValidationSchema = Yup.object().shape({
   city: Yup.string().required("Grad je obavezno uneti"),
   country: Yup.string().required("Zemlju je obavezno uneti"),
   type: Yup.string().required("Tip je obavezno uneti"),
-  zipCode: Yup.string().matches(REGX_ONLY_NUMBERS, "Unesi broj"),
+  zipCode: Yup.string()
+    .required("Poštanski broj je obavezno uneti")
+    .matches(REGX_ONLY_NUMBERS, "Unesi broj"),
   phoneNumber: Yup.string().matches(REGX_ONLY_NUMBERS, "Unesi broj"),
 });

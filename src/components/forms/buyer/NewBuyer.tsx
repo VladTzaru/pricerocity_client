@@ -2,10 +2,11 @@ import React from "react";
 import { Formik, Form } from "formik";
 import InputField from "../../InputField";
 import { Button, FormGroup, Header } from "semantic-ui-react";
-import axios from "axios";
 import { LOADING } from "../../../constants";
 import { Buyer } from "../../../types";
 import { buyerValidationSchema } from "../../../validation/formValidationSchemas";
+import SelectInput from "../../SelectInput";
+import axios from "axios";
 
 const initialValues: Buyer = {
   name: "",
@@ -16,6 +17,21 @@ const initialValues: Buyer = {
   zipCode: "",
   phoneNumber: "",
 };
+
+const buyerTypes = [
+  {
+    key: "Pravno lice",
+    text: "Pravno lice",
+    value: "Pravno lice",
+    label: { color: "blue", empty: true, circular: true },
+  },
+  {
+    key: "Privatno lice",
+    text: "Privatno lice",
+    value: "Privatno lice",
+    label: { color: "orange", empty: true, circular: true },
+  },
+];
 
 const NewBuyer = () => {
   const addNewBuyer = async (buyer: Buyer) => {
@@ -41,7 +57,7 @@ const NewBuyer = () => {
     >
       {({ dirty, isValid, isSubmitting }) => (
         <Form className='ui form'>
-          <Header as='h2'>Novi kupac</Header>
+          <Header as='h2'>Podaci o kupcu</Header>
           <FormGroup widths={2}>
             <InputField disabled={isSubmitting} name='name' label='Ime' />
             <InputField disabled={isSubmitting} name='address' label='Adresa' />
@@ -58,7 +74,7 @@ const NewBuyer = () => {
           </FormGroup>
 
           <FormGroup widths={2}>
-            <InputField disabled={isSubmitting} name='type' label='Tip' />
+            <SelectInput label='Tip' options={buyerTypes} name='type' />
 
             <InputField
               disabled={isSubmitting}

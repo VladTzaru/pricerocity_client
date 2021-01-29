@@ -11,6 +11,7 @@ import {
   PaymentMethods,
   SelectionOptions,
 } from "../../types";
+import { createSelectionOptions } from "../../utility/utils";
 
 interface Values {
   buyer: string;
@@ -67,18 +68,36 @@ const invoiceTypes: SelectionOptions<InvoiceNumberSuffix>[] = [
   },
 ];
 
+const paymentMethods: SelectionOptions<PaymentMethods>[] = [
+  {
+    key: PaymentMethods.TRANSACTION_ACCOUNT,
+    value: PaymentMethods.TRANSACTION_ACCOUNT,
+    text: PaymentMethods.TRANSACTION_ACCOUNT,
+  },
+  {
+    key: PaymentMethods.COMPENSATION,
+    value: PaymentMethods.COMPENSATION,
+    text: PaymentMethods.COMPENSATION,
+  },
+  {
+    key: PaymentMethods.PAYPAL_WEB,
+    value: PaymentMethods.PAYPAL_WEB,
+    text: PaymentMethods.PAYPAL_WEB,
+  },
+  {
+    key: PaymentMethods.CARD_WEB,
+    value: PaymentMethods.CARD_WEB,
+    text: PaymentMethods.CARD_WEB,
+  },
+  {
+    key: PaymentMethods.CASH_ON_DELIVERY,
+    value: PaymentMethods.CASH_ON_DELIVERY,
+    text: PaymentMethods.CASH_ON_DELIVERY,
+  },
+];
+
 const InvoiceR1 = () => {
   const { buyers } = useBuyer();
-
-  const createSelectionOptions = () => {
-    return buyers.map((buyer) => {
-      return {
-        key: buyer.name,
-        value: buyer.name,
-        text: buyer.name,
-      };
-    });
-  };
 
   return (
     <Formik
@@ -92,7 +111,7 @@ const InvoiceR1 = () => {
           <FormGroup widths={2}>
             <SelectInput
               label='Kupac'
-              options={createSelectionOptions()}
+              options={createSelectionOptions(buyers, "name")}
               name='buyer'
             />
 
@@ -120,7 +139,7 @@ const InvoiceR1 = () => {
             />
             <SelectInput
               label='Metod plaćanja'
-              options={createSelectionOptions()}
+              options={paymentMethods}
               name='paymentMethod'
             />
           </FormGroup>

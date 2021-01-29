@@ -3,6 +3,8 @@ import { Formik, Form } from "formik";
 import InputField from "../InputField";
 import { Button, FormGroup, Header } from "semantic-ui-react";
 import * as Yup from "yup";
+import { useBuyer } from "../../store/buyer";
+import SelectInput from "../SelectInput";
 
 interface Values {
   buyer: string;
@@ -36,39 +38,57 @@ const validationSchema = Yup.object().shape({
   paymentDeadline: Yup.number().required("Rok plaćanja je obavezno uneti"),
 });
 
-const InvoiceR1 = () => (
-  <Formik
-    validationSchema={validationSchema}
-    initialValues={initialValues}
-    onSubmit={(values) => console.log(values)}
-  >
-    {({ dirty, isValid }) => (
-      <Form className='ui form'>
-        <Header as='h2'>Podaci o računu</Header>
-        <FormGroup widths={2}>
-          <InputField name='buyer' label='Kupac' />
-          <InputField name='recipient' label='Primaoc' />
-        </FormGroup>
-        <FormGroup widths={2}>
-          <InputField type='date' name='date' label='Datum' />
-          <InputField
-            type='number'
-            name='paymentDeadline'
-            label='Rok plaćanja (u danima)'
-          />
-        </FormGroup>
+const InvoiceR1 = () => {
+  const { buyers } = useBuyer();
 
-        <Button
-          primary
-          size='large'
-          disabled={!dirty || !isValid}
-          type='submit'
-        >
-          Napravi Račun
-        </Button>
-      </Form>
-    )}
-  </Formik>
-);
+  const transformArray = () => {
+    return buyers.map((buyer) => {
+      return {
+        key: buyer.name,
+        value: buyer.name,
+        text: buyer.name,
+      };
+    });
+  };
+  return (
+    <Formik
+      validationSchema={validationSchema}
+      initialValues={initialValues}
+      onSubmit={(values) => console.log(values)}
+    >
+      {({ dirty, isValid }) => (
+        <Form className='ui form'>
+          <Header as='h2'>Podaci o računu</Header>
+          <FormGroup widths={2}>
+            <SelectInput
+              label='Kupac'
+              options={transformArray()}
+              name='buyer'
+            />
+
+            <InputField name='recipient' label='Primaoc' />
+          </FormGroup>
+          <FormGroup widths={2}>
+            <InputField type='date' name='date' label='Datum' />
+            <InputField
+              type='number'
+              name='paymentDeadline'
+              label='Rok plaćanja (u danima)'
+            />
+          </FormGroup>
+
+          <Button
+            primary
+            size='large'
+            disabled={!dirty || !isValid}
+            type='submit'
+          >
+            Napravi Račun
+          </Button>
+        </Form>
+      )}
+    </Formik>
+  );
+};
 
 export default InvoiceR1;

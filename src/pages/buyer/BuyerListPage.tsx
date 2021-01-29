@@ -2,14 +2,15 @@ import React, { useEffect } from "react";
 import { Link, RouteComponentProps } from "react-router-dom";
 import { Button, List } from "semantic-ui-react";
 import { NO_CONTENT } from "../../constants";
-import { useStore } from "../../store/store";
+import { useBuyer } from "../../store/buyer";
+
 import { MatchParams } from "../../types";
 import { replaceStringChunk } from "../../utility/utils";
 
 const BuyerListPage: React.FC<RouteComponentProps<MatchParams>> = ({
   match,
 }) => {
-  const { getBuyers, buyers } = useStore((state) => state);
+  const { getBuyers, buyers } = useBuyer((state) => state);
   const { url } = match;
   const searchTerm = replaceStringChunk(url, "/");
   useEffect(() => {

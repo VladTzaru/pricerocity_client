@@ -6,7 +6,7 @@ import { LOADING } from "../../../constants";
 import { Buyer, BuyerType, SelectionOptions } from "../../../types";
 import { buyerValidationSchema } from "../../../validation/formValidationSchemas";
 import SelectInput from "../../SelectInput";
-import { useStore } from "../../../store/store";
+import { useBuyer } from "../../../store/buyer";
 
 const initialValues: Buyer = {
   name: "",
@@ -43,7 +43,7 @@ const buyerTypes: SelectionOptions<BuyerType>[] = [
 ];
 
 const NewBuyer = () => {
-  const { addNewBuyer } = useStore((state) => state);
+  const { addNewBuyer } = useBuyer((state) => state);
 
   return (
     <Formik

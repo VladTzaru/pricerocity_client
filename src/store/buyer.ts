@@ -2,13 +2,13 @@ import axios from "axios";
 import create from "zustand";
 import { Buyer } from "../types";
 
-type Store = {
+type BuyerStoreType = {
   buyers: Buyer[];
   getBuyers: (searchTerm: string) => Promise<void>;
   addNewBuyer: (buyer: Buyer) => Promise<void>;
 };
 
-export const useStore = create<Store>((set) => ({
+export const useBuyer = create<BuyerStoreType>((set) => ({
   buyers: [],
   getBuyers: async (searchTerm) => {
     try {

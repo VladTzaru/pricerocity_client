@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import { useBuyer } from "../../store/buyer";
 import SelectInput from "../SelectInput";
 import {
+  Buyer,
   InvoiceNumberSuffix,
   InvoiceType,
   PaymentMethods,
@@ -14,7 +15,8 @@ import {
 import { createSelectionOptions } from "../../utility/utils";
 
 interface Values {
-  buyer: string;
+  buyer: Buyer | null;
+  buyerName: string;
   recipient: string;
   date: Date;
   paymentDeadline: number;
@@ -27,7 +29,8 @@ interface Values {
 }
 
 const initialValues: Values = {
-  buyer: "",
+  buyer: null,
+  buyerName: "",
   recipient: "",
   date: new Date(),
   paymentDeadline: 0,
@@ -39,7 +42,7 @@ const initialValues: Values = {
 };
 
 const validationSchema = Yup.object().shape({
-  buyer: Yup.string().required("Kupca je obavezno uneti"),
+  buyerName: Yup.string().required("Kupca je obavezno uneti"),
   recipient: Yup.string().required("Primaoca je obavezno uneti"),
   date: Yup.date().required("Datum je obavezno uneti").nullable(),
   paymentDeadline: Yup.number().required("Rok plaćanja je obavezno uneti"),
@@ -98,12 +101,19 @@ const paymentMethods: SelectionOptions<PaymentMethods>[] = [
 
 const InvoiceR1 = () => {
   const { buyers } = useBuyer();
+  console.log(buyers);
 
   return (
     <Formik
       validationSchema={validationSchema}
       initialValues={initialValues}
-      onSubmit={(values) => console.log(values)}
+      onSubmit={(values) => {
+        const buyerInfo = buyers.filter(
+          (buyer) => buyer.name === values.buyerName
+        );
+        values.buyer = buyerInfo[0];
+        console.log(values);
+      }}
     >
       {({ dirty, isValid }) => (
         <Form className='ui form'>
@@ -112,7 +122,7 @@ const InvoiceR1 = () => {
             <SelectInput
               label='Kupac'
               options={createSelectionOptions(buyers, "name")}
-              name='buyer'
+              name='buyerName'
             />
 
             <InputField name='recipient' label='Primaoc' />

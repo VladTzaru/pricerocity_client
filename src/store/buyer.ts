@@ -1,32 +1,38 @@
 import axios from "axios";
-import create from "zustand";
+import create, { State } from "zustand";
 import { Buyer } from "../types";
 
-type BuyerStoreType = {
+interface BuyerStoreType extends State {
   buyers: Buyer[];
-  getBuyers: (searchTerm: string) => Promise<void>;
-  addNewBuyer: (buyer: Buyer) => Promise<void>;
-};
+  getBuyers: () => Promise<void>;
+  addNewBuyer: (newBuyer: Buyer) => Promise<void>;
+}
 
 export const useBuyer = create<BuyerStoreType>((set) => ({
   buyers: [],
-  getBuyers: async (searchTerm) => {
+  getBuyers: async () => {
     try {
       const { data } = await axios.get<Buyer[]>(
-        `${process.env.REACT_APP_API}/${searchTerm}`
+        `${process.env.REACT_APP_API}/buyer`
       );
       set({ buyers: data });
     } catch (error) {
       console.log(error);
     }
   },
-  addNewBuyer: async (buyer) => {
+  addNewBuyer: async (newBuyer) => {
     try {
-      await axios.post(`${process.env.REACT_APP_API}/buyer/new`, buyer, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const { data } = await axios.post<Buyer>(
+        `${process.env.REACT_APP_API}/buyer/new`,
+        newBuyer,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      set((state) => ({ buyers: [...state.buyers, data] }));
     } catch (error) {
       console.log(error);
     }

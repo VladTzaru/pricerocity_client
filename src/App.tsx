@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import { Container } from "semantic-ui-react";
+
+import { useBuyer } from "./store/buyer";
 
 // Custom components imports
 import Header from "./components/Header";
@@ -13,6 +15,11 @@ import BuyerList from "./pages/buyer/BuyerListPage";
 import SideMenu from "./components/SideMenu";
 
 const App = () => {
+  const { getBuyers } = useBuyer((state) => state);
+  useEffect(() => {
+    getBuyers();
+  }, [getBuyers]);
+
   return (
     <>
       <Header />

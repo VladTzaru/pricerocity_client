@@ -41,7 +41,7 @@ const validationSchema = Yup.object().shape({
 const InvoiceR1 = () => {
   const { buyers } = useBuyer();
 
-  const transformArray = () => {
+  const createSelectionOptions = () => {
     return buyers.map((buyer) => {
       return {
         key: buyer.name,
@@ -50,6 +50,7 @@ const InvoiceR1 = () => {
       };
     });
   };
+
   return (
     <Formik
       validationSchema={validationSchema}
@@ -62,7 +63,7 @@ const InvoiceR1 = () => {
           <FormGroup widths={2}>
             <SelectInput
               label='Kupac'
-              options={transformArray()}
+              options={createSelectionOptions()}
               name='buyer'
             />
 

@@ -25,6 +25,16 @@ export interface ItemValues {
 }
 
 export type BuyerType = "Privatno lice" | "Pravno lice";
+export type InvoiceNumberSuffix = "1/1" | "1/2";
+export type InvoiceType = "OBRAZAC-R1" | "OTPREMNICA" | "PONUDA";
+
+export enum PaymentMethods {
+  TRANSACTION_ACCOUNT = "Transakcijski račun",
+  COMPENSATION = "Kompenzacija",
+  PAYPAL_WEB = "Paypal-web",
+  CARD_WEB = "Kartica-web",
+  CASH_ON_DELIVERY = "Pouzećem",
+}
 
 export interface Buyer {
   id?: string;

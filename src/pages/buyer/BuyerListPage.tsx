@@ -1,22 +1,22 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link, RouteComponentProps } from "react-router-dom";
 import { Button, List } from "semantic-ui-react";
-import { LOADING, NO_CONTENT } from "../../constants";
-import { Buyer, MatchParams } from "../../types";
+import { NO_CONTENT } from "../../constants";
+import { useStore } from "../../store/store";
+import { MatchParams } from "../../types";
 import { replaceStringChunk } from "../../utility/utils";
 
 const BuyerListPage: React.FC<RouteComponentProps<MatchParams>> = ({
   match,
 }) => {
-  const [buyers, setBuyers] = useState<Buyer[]>([]);
-  const [loading, setLoading] = useState(false);
+  const { getBuyers, buyers } = useStore((state) => state);
   const { url } = match;
   const searchTerm = replaceStringChunk(url, "/");
+  useEffect(() => {
+    getBuyers(searchTerm);
+  }, [searchTerm, getBuyers]);
 
   const renderContent = () => {
-    if (loading) return <h4>{LOADING}</h4>;
-
     if (buyers.length === 0)
       return (
         <>
@@ -45,23 +45,6 @@ const BuyerListPage: React.FC<RouteComponentProps<MatchParams>> = ({
     );
   };
 
-  useEffect(() => {
-    const getBuyers = async () => {
-      setLoading(true);
-      try {
-        const { data } = await axios.get<Buyer[]>(
-          `${process.env.REACT_APP_API}/${searchTerm}`
-        );
-
-        setLoading(false);
-        setBuyers(data);
-      } catch (error) {
-        setLoading(false);
-        console.log(error);
-      }
-    };
-    getBuyers();
-  }, [searchTerm]);
   return (
     <div>
       <h1>Svi kupci ({buyers.length})</h1>

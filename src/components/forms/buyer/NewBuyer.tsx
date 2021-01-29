@@ -6,7 +6,7 @@ import { LOADING } from "../../../constants";
 import { Buyer, BuyerType, SelectionOptions } from "../../../types";
 import { buyerValidationSchema } from "../../../validation/formValidationSchemas";
 import SelectInput from "../../SelectInput";
-import axios from "axios";
+import { useStore } from "../../../store/store";
 
 const initialValues: Buyer = {
   name: "",
@@ -43,17 +43,7 @@ const buyerTypes: SelectionOptions<BuyerType>[] = [
 ];
 
 const NewBuyer = () => {
-  const addNewBuyer = async (buyer: Buyer) => {
-    try {
-      await axios.post(`${process.env.REACT_APP_API}/buyer/new`, buyer, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { addNewBuyer } = useStore((state) => state);
 
   return (
     <Formik

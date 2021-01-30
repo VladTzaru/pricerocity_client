@@ -12,7 +12,6 @@ import ItemListPage from "./pages/item/ItemListPage";
 import FormsPage from "./pages/FormsPage";
 import ItemEditPage from "./pages/item/ItemEditPage";
 import BuyerList from "./pages/buyer/BuyerListPage";
-import SideMenu from "./components/SideMenu";
 
 const App = () => {
   const { getBuyers } = useBuyer((state) => state);
@@ -23,7 +22,6 @@ const App = () => {
   return (
     <>
       <Header />
-      <SideMenu />
       <Container className='main'>
         <Switch>
           <Route path='/forms/:id' component={FormsPage} />

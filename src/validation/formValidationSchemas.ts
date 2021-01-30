@@ -21,3 +21,10 @@ export const buyerValidationSchema = Yup.object().shape({
   phoneNumber: Yup.string().matches(REGX_ONLY_NUMBERS, "Unesi broj"),
   vatNumber: Yup.string().matches(REGX_ONLY_NUMBERS, "Unesi OIB"),
 });
+
+export const invoiceR1Schema = Yup.object().shape({
+  buyerName: Yup.string().required("Kupca je obavezno uneti"),
+  recipient: Yup.string().required("Primaoca je obavezno uneti"),
+  date: Yup.date().required("Datum je obavezno uneti").nullable(),
+  paymentDeadline: Yup.number().required("Rok plaćanja je obavezno uneti"),
+});

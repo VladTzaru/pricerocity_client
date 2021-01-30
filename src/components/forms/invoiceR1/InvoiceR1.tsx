@@ -1,21 +1,14 @@
 import React from "react";
 import { Formik, Form } from "formik";
 import InputField from "../../InputField";
-import { Button, FormGroup, Header } from "semantic-ui-react";
-import * as Yup from "yup";
+import { Button, FormGroup, Header, Icon } from "semantic-ui-react";
 import { useBuyer } from "../../../store/buyer";
 import SelectInput from "../../SelectInput";
 import { InvoiceR1 as InvoiceR1Type } from "../../../types";
 import { createSelectionOptions } from "../../../utility/utils";
 import axios from "axios";
 import { paymentMethods, initialValues, invoiceTypes } from "./config";
-
-const validationSchema = Yup.object().shape({
-  buyerName: Yup.string().required("Kupca je obavezno uneti"),
-  recipient: Yup.string().required("Primaoca je obavezno uneti"),
-  date: Yup.date().required("Datum je obavezno uneti").nullable(),
-  paymentDeadline: Yup.number().required("Rok plaćanja je obavezno uneti"),
-});
+import { invoiceR1Schema } from "../../../validation/formValidationSchemas";
 
 const addNewInvoice = async (invoice: InvoiceR1Type) => {
   const { buyerName, ...updatedInvoice } = invoice;
@@ -38,11 +31,10 @@ const addNewInvoice = async (invoice: InvoiceR1Type) => {
 
 const InvoiceR1 = () => {
   const { buyers } = useBuyer();
-  console.log(buyers);
 
   return (
     <Formik
-      validationSchema={validationSchema}
+      validationSchema={invoiceR1Schema}
       initialValues={initialValues}
       onSubmit={(values) => {
         const buyerInfo = buyers.filter(
@@ -52,9 +44,24 @@ const InvoiceR1 = () => {
         addNewInvoice(values);
       }}
     >
-      {({ dirty, isValid }) => (
+      {({ dirty, isValid, values, setFieldValue }) => (
         <Form className='ui form'>
           <Header as='h2'>Podaci o računu</Header>
+
+          <div className='mb-2'>
+            <Button
+              onClick={() => setFieldValue("recipient", values.buyerName)}
+              primary
+              type='button'
+              animated='vertical'
+            >
+              <Button.Content hidden>Kopiraj</Button.Content>
+              <Button.Content visible>
+                <Icon name='copy' />
+              </Button.Content>
+            </Button>
+          </div>
+
           <FormGroup widths={2}>
             <SelectInput
               label='Kupac'

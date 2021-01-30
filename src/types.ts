@@ -48,6 +48,20 @@ export interface Buyer {
   vatNumber?: string;
 }
 
+export interface InvoiceR1 {
+  buyer: Buyer | null;
+  buyerName: string;
+  recipient: string;
+  date: Date;
+  paymentDeadline: number;
+  invoiceNumberPrefix: number; // 1, 2, 3...
+  invoiceNumberSuffix: InvoiceNumberSuffix; // 1/1 and 2/1
+  invoiceType: InvoiceType; // OBRAZAC-R1
+  paymentMethod: PaymentMethods;
+  invoiceIssuedAt: ""; // 12:00
+  notes?: string;
+}
+
 export interface SelectionOptions<T extends string> {
   key: T;
   text: T;

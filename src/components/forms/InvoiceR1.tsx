@@ -6,29 +6,15 @@ import * as Yup from "yup";
 import { useBuyer } from "../../store/buyer";
 import SelectInput from "../SelectInput";
 import {
-  Buyer,
   InvoiceNumberSuffix,
-  InvoiceType,
+  InvoiceR1 as InvoiceR1Type,
   PaymentMethods,
   SelectionOptions,
 } from "../../types";
 import { createSelectionOptions } from "../../utility/utils";
+import axios from "axios";
 
-interface Values {
-  buyer: Buyer | null;
-  buyerName: string;
-  recipient: string;
-  date: Date;
-  paymentDeadline: number;
-  invoiceNumberPrefix: number; // 1, 2, 3...
-  invoiceNumberSuffix: InvoiceNumberSuffix; // 1/1 and 2/1
-  invoiceType: InvoiceType; // OBRAZAC-R1
-  paymentMethod: PaymentMethods;
-  invoiceIssuedAt: ""; // 12:00
-  notes?: string;
-}
-
-const initialValues: Values = {
+const initialValues: InvoiceR1Type = {
   buyer: null,
   buyerName: "",
   recipient: "",
@@ -100,9 +86,25 @@ const paymentMethods: SelectionOptions<PaymentMethods>[] = [
   },
 ];
 
+const addNewInvoice = async (invoice: InvoiceR1Type) => {
+  try {
+    const { data } = await axios.post<InvoiceR1Type>(
+      `${process.env.REACT_APP_API}/invoice/new`,
+      invoice,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const InvoiceR1 = () => {
   const { buyers } = useBuyer();
-  console.log(buyers);
 
   return (
     <Formik
@@ -113,7 +115,7 @@ const InvoiceR1 = () => {
           (buyer) => buyer.name === values.buyerName
         );
         values.buyer = buyerInfo[0];
-        console.log(values);
+        addNewInvoice(values);
       }}
     >
       {({ dirty, isValid }) => (

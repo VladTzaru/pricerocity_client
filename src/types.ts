@@ -49,7 +49,7 @@ export interface Buyer {
 }
 
 export interface InvoiceR1 {
-  buyer: Buyer | null;
+  buyer?: string; // Buyer ID
   buyerName: string;
   recipient: string;
   date: Date;

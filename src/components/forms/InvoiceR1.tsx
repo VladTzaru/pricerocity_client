@@ -15,7 +15,7 @@ import { createSelectionOptions } from "../../utility/utils";
 import axios from "axios";
 
 const initialValues: InvoiceR1Type = {
-  buyer: null,
+  buyer: "",
   buyerName: "",
   recipient: "",
   date: new Date(),
@@ -107,6 +107,7 @@ const addNewInvoice = async (invoice: InvoiceR1Type) => {
 
 const InvoiceR1 = () => {
   const { buyers } = useBuyer();
+  console.log(buyers);
 
   return (
     <Formik
@@ -116,7 +117,7 @@ const InvoiceR1 = () => {
         const buyerInfo = buyers.filter(
           (buyer) => buyer.name === values.buyerName
         );
-        values.buyer = buyerInfo[0];
+        values.buyer = buyerInfo[0].id;
         addNewInvoice(values);
       }}
     >

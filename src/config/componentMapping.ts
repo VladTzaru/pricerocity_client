@@ -1,6 +1,6 @@
 import NewBuyer from "../components/forms/buyer/NewBuyer";
 import DeliveryNote from "../components/forms/DeliveryNote";
-import InvoiceR1 from "../components/forms/InvoiceR1";
+import InvoiceR1 from "../components/forms/invoiceR1/InvoiceR1";
 import NewItem from "../components/forms/item/NewItem";
 import { ComponentMapping } from "../types";
 

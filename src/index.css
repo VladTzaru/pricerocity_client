@@ -13,3 +13,7 @@
 .formPageBackBtn {
   margin-bottom: 24px !important;
 }
+
+.react-datepicker-wrapper {
+  width: 100%;
+}

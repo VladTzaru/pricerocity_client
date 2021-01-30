@@ -73,7 +73,14 @@ const InvoiceR1 = () => {
             <InputField name='recipient' label='Primaoc' />
           </FormGroup>
           <FormGroup widths={2}>
-            <DateInput type='date' name='date' label='Datum' />
+            <DateInput
+              todayButton='Danas'
+              timeFormat='HH:mm'
+              dateFormat='MM/dd/yyyy'
+              onChange={(e) => console.log(e)}
+              name='date'
+              label='Datum'
+            />
             <InputField
               type='number'
               name='paymentDeadline'

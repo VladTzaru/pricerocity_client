@@ -24,7 +24,7 @@ interface Values {
   invoiceNumberSuffix: InvoiceNumberSuffix; // 1/1 and 2/1
   invoiceType: InvoiceType; // OBRAZAC-R1
   paymentMethod: PaymentMethods;
-  invoiceIssuedAt: Date; // 12:00
+  invoiceIssuedAt: ""; // 12:00
   notes?: string;
 }
 
@@ -38,7 +38,8 @@ const initialValues: Values = {
   invoiceNumberSuffix: "1/1",
   invoiceType: "OBRAZAC-R1",
   paymentMethod: PaymentMethods.TRANSACTION_ACCOUNT,
-  invoiceIssuedAt: new Date(),
+  invoiceIssuedAt: "",
+  notes: "",
 };
 
 const validationSchema = Yup.object().shape({
@@ -152,6 +153,14 @@ const InvoiceR1 = () => {
               options={paymentMethods}
               name='paymentMethod'
             />
+          </FormGroup>
+
+          <FormGroup widths={2}>
+            <InputField
+              name='invoiceIssuedAt'
+              label='Vrijeme izdavanja računa'
+            />
+            <InputField name='notes' label='Napomene' />
           </FormGroup>
 
           <Button

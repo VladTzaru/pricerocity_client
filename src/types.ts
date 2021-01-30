@@ -72,3 +72,7 @@ export interface SelectionOptions<T extends string> {
     circular: boolean;
   };
 }
+
+export enum DateFormat {
+  MM_DD_YYYY = "MM/dd/yyyy",
+}

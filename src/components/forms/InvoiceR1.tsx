@@ -87,10 +87,12 @@ const paymentMethods: SelectionOptions<PaymentMethods>[] = [
 ];
 
 const addNewInvoice = async (invoice: InvoiceR1Type) => {
+  const { buyerName, ...updatedInvoice } = invoice;
+  console.log(updatedInvoice);
   try {
     const { data } = await axios.post<InvoiceR1Type>(
       `${process.env.REACT_APP_API}/invoice/new`,
-      invoice,
+      updatedInvoice,
       {
         headers: {
           "Content-Type": "application/json",

@@ -9,6 +9,7 @@ import { createSelectionOptions } from "../../../utility/utils";
 import axios from "axios";
 import { paymentMethods, initialValues, invoiceTypes } from "./config";
 import { invoiceR1Schema } from "../../../validation/formValidationSchemas";
+import DateInput from "../../DateInput";
 
 const addNewInvoice = async (invoice: InvoiceR1Type) => {
   const { buyerName, ...updatedInvoice } = invoice;
@@ -72,7 +73,7 @@ const InvoiceR1 = () => {
             <InputField name='recipient' label='Primaoc' />
           </FormGroup>
           <FormGroup widths={2}>
-            <InputField type='date' name='date' label='Datum' />
+            <DateInput type='date' name='date' label='Datum' />
             <InputField
               type='number'
               name='paymentDeadline'

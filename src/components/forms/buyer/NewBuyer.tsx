@@ -3,44 +3,10 @@ import { Formik, Form } from "formik";
 import InputField from "../../InputField";
 import { Button, FormGroup, Header } from "semantic-ui-react";
 import { LOADING } from "../../../constants";
-import { Buyer, BuyerType, SelectionOptions } from "../../../types";
 import { buyerValidationSchema } from "../../../validation/formValidationSchemas";
 import SelectInput from "../../SelectInput";
 import { useBuyer } from "../../../store/buyer";
-
-const initialValues: Buyer = {
-  name: "",
-  address: "",
-  city: "",
-  country: "",
-  type: "Pravno lice",
-  zipCode: "",
-  phoneNumber: "",
-  vatNumber: "",
-};
-
-const buyerTypes: SelectionOptions<BuyerType>[] = [
-  {
-    key: "Pravno lice",
-    value: "Pravno lice",
-    text: "Pravno lice",
-    label: {
-      circular: true,
-      color: "blue",
-      empty: true,
-    },
-  },
-  {
-    key: "Privatno lice",
-    value: "Privatno lice",
-    text: "Privatno lice",
-    label: {
-      circular: true,
-      color: "orange",
-      empty: true,
-    },
-  },
-];
+import { initialValues, buyerTypes } from "./config";
 
 const NewBuyer = () => {
   const { addNewBuyer } = useBuyer((state) => state);

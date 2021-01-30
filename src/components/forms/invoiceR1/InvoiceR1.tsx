@@ -13,9 +13,8 @@ import DateInput from "../../DateInput";
 
 const addNewInvoice = async (invoice: InvoiceR1Type) => {
   const { buyerName, ...updatedInvoice } = invoice;
-  console.log(updatedInvoice);
   try {
-    const { data } = await axios.post<InvoiceR1Type>(
+    await axios.post<InvoiceR1Type>(
       `${process.env.REACT_APP_API}/invoice/new`,
       updatedInvoice,
       {
@@ -24,7 +23,6 @@ const addNewInvoice = async (invoice: InvoiceR1Type) => {
         },
       }
     );
-    console.log(data);
   } catch (error) {
     console.log(error);
   }
@@ -37,15 +35,16 @@ const InvoiceR1 = () => {
     <Formik
       validationSchema={invoiceR1Schema}
       initialValues={initialValues}
-      onSubmit={(values) => {
+      onSubmit={async (values, actions) => {
         const buyerInfo = buyers.filter(
           (buyer) => buyer.name === values.buyerName
         );
         values.buyer = buyerInfo[0].id;
-        addNewInvoice(values);
+        await addNewInvoice(values);
+        actions.resetForm();
       }}
     >
-      {({ dirty, isValid, values, setFieldValue }) => (
+      {({ dirty, isSubmitting, isValid, values, setFieldValue }) => (
         <Form className='ui form'>
           <Header as='h2'>Podaci o računu</Header>
 
@@ -122,6 +121,7 @@ const InvoiceR1 = () => {
           </FormGroup>
 
           <Button
+            loading={isSubmitting}
             primary
             size='large'
             disabled={!dirty || !isValid}

@@ -58,7 +58,7 @@ export interface InvoiceR1 {
   invoiceNumberSuffix: InvoiceNumberSuffix; // 1/1 and 2/1
   invoiceType: InvoiceType; // OBRAZAC-R1
   paymentMethod: PaymentMethods;
-  invoiceIssuedAt: ""; // 12:00
+  invoiceIssuedAt: Date; // 12:00
   notes?: string;
 }
 

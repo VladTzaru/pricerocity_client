@@ -27,4 +27,9 @@ export const invoiceR1Schema = Yup.object().shape({
   recipient: Yup.string().required("Primaoca je obavezno uneti"),
   date: Yup.date().required("Datum je obavezno uneti").nullable(),
   paymentDeadline: Yup.number().required("Rok plaćanja je obavezno uneti"),
+  invoiceNumberPrefix: Yup.number().required("Obavezno polje"),
+  invoiceNumberSuffix: Yup.string().required("Obavezno polje"),
+  invoiceType: Yup.string().required(),
+  paymentMethod: Yup.string().required("Obavezno polje"),
+  invoiceIssuedAt: Yup.date().required("Obavezno polje").nullable(),
 });

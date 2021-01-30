@@ -43,7 +43,7 @@ export const initialValues: InvoiceR1 = {
   invoiceNumberSuffix: "1/1",
   invoiceType: "OBRAZAC-R1",
   paymentMethod: PaymentMethods.TRANSACTION_ACCOUNT,
-  invoiceIssuedAt: "",
+  invoiceIssuedAt: new Date(),
   notes: "",
 };
 

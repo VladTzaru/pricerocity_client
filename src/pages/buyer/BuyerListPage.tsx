@@ -6,7 +6,6 @@ import { useBuyer } from "../../store/buyer";
 
 const BuyerListPage = () => {
   const { buyers } = useBuyer((state) => state);
-  console.log(buyers);
 
   const renderContent = () => {
     if (buyers.length === 0)

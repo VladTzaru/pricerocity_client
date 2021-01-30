@@ -4,7 +4,7 @@ import InputField from "../../InputField";
 import { Button, FormGroup, Header, Icon } from "semantic-ui-react";
 import { useBuyer } from "../../../store/buyer";
 import SelectInput from "../../SelectInput";
-import { InvoiceR1 as InvoiceR1Type } from "../../../types";
+import { DateFormat, InvoiceR1 as InvoiceR1Type } from "../../../types";
 import { createSelectionOptions } from "../../../utility/utils";
 import axios from "axios";
 import { paymentMethods, initialValues, invoiceTypes } from "./config";
@@ -74,10 +74,11 @@ const InvoiceR1 = () => {
           </FormGroup>
           <FormGroup widths={2}>
             <DateInput
+              withPortal
               todayButton='Danas'
-              timeFormat='HH:mm'
-              dateFormat='MM/dd/yyyy'
-              onChange={(e) => console.log(e)}
+              peekNextMonth
+              showMonthDropdown
+              dateFormat={DateFormat.MM_DD_YYYY}
               name='date'
               label='Datum'
             />
@@ -107,9 +108,15 @@ const InvoiceR1 = () => {
           </FormGroup>
 
           <FormGroup widths={2}>
-            <InputField
+            <DateInput
+              withPortal
+              showTimeSelect
+              showTimeSelectOnly
+              timeIntervals={5}
+              timeCaption='Vrijeme'
+              dateFormat={DateFormat.HH_mm}
               name='invoiceIssuedAt'
-              label='Vrijeme izdavanja računa'
+              label='Vrijeme izdavanja'
             />
             <InputField name='notes' label='Napomene' />
           </FormGroup>

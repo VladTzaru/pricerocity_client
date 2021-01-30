@@ -74,5 +74,6 @@ export interface SelectionOptions<T extends string> {
 }
 
 export enum DateFormat {
-  MM_DD_YYYY = "MM/dd/yyyy",
+  MM_DD_YYYY = "dd/MM/yyyy",
+  HH_mm = "HH:mm",
 }

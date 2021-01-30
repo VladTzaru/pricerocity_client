@@ -6,6 +6,7 @@ import { useBuyer } from "../../store/buyer";
 
 const BuyerListPage = () => {
   const { buyers } = useBuyer((state) => state);
+  console.log(buyers);
 
   const renderContent = () => {
     if (buyers.length === 0)
@@ -27,7 +28,7 @@ const BuyerListPage = () => {
                 {buyer.name}
               </List.Header>
               <List.Description as={Link} to={`/buyer/${buyer.id}`}>
-                {buyer.type}
+                Ukupno računa: {buyer.invoices?.length}
               </List.Description>
             </List.Content>
           </List.Item>

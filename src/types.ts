@@ -45,6 +45,7 @@ export interface Buyer {
   country: string;
   phoneNumber?: string;
   type: BuyerType;
+  invoices?: InvoiceR1[];
   vatNumber?: string;
 }
 

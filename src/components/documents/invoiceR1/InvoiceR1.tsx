@@ -10,6 +10,7 @@ import axios from "axios";
 import { paymentMethods, initialValues, invoiceTypes } from "./config";
 import { invoiceR1Schema } from "../../../validation/formValidationSchemas";
 import DateInput from "../../form/DateInput";
+import MyDependentField from "../../form/MyDependentField";
 
 const addNewInvoice = async (invoice: InvoiceR1Type) => {
   const { buyerName, ...updatedInvoice } = invoice;
@@ -106,7 +107,7 @@ const InvoiceR1 = () => {
             />
           </FormGroup>
 
-          <FormGroup widths={2}>
+          <FormGroup widths={3}>
             <DateInput
               withPortal
               showTimeSelect
@@ -117,6 +118,7 @@ const InvoiceR1 = () => {
               name='invoiceIssuedAt'
               label='Vrijeme izdavanja'
             />
+            <MyDependentField label='Deadline rok' name='paymentDeadlineDate' />
             <InputField name='notes' label='Napomene' />
           </FormGroup>
 

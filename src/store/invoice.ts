@@ -15,7 +15,10 @@ interface InvoiceStoreType extends State {
 }
 
 export const useInvoice = create<InvoiceStoreType>((set) => ({
-  selectedInvoice: getDataFromLocalStorage(LOCAL_STORAGE_SELECTED_INVOICE, {}),
+  selectedInvoice: getDataFromLocalStorage(
+    LOCAL_STORAGE_SELECTED_INVOICE,
+    null
+  ),
   selectInvoice: (invoice) => {
     addDataToLocalStorage(LOCAL_STORAGE_SELECTED_INVOICE, invoice);
     set({ selectedInvoice: invoice });

@@ -26,8 +26,13 @@ export const invoiceR1Schema = Yup.object().shape({
   buyerName: Yup.string().required("Kupca je obavezno uneti"),
   recipient: Yup.string().required("Primaoca je obavezno uneti"),
   date: Yup.date().required("Datum je obavezno uneti").nullable(),
-  paymentDeadline: Yup.number().required("Rok plaćanja je obavezno uneti"),
-  invoiceNumberPrefix: Yup.number().required("Obavezno polje"),
+  paymentDeadline: Yup.number()
+    .min(0, "Negativni brojevi nisu dozovljeni")
+    .required("Rok plaćanja je obavezno uneti"),
+  paymentDeadlineDate: Yup.string().required("Obavezno polje"),
+  invoiceNumberPrefix: Yup.number()
+    .min(1, "Minimalna vrijednost je 1")
+    .required("Obavezno polje"),
   invoiceNumberSuffix: Yup.string().required("Obavezno polje"),
   invoiceType: Yup.string().required(),
   paymentMethod: Yup.string().required("Obavezno polje"),

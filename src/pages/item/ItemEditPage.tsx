@@ -1,5 +1,5 @@
 import { RouteComponentProps } from "react-router-dom";
-import UpdateItem from "../../components/forms/item/UpdateItem";
+import UpdateItem from "../../components/documents/item/UpdateItem";
 import { MatchParams } from "../../types";
 import { replaceStringChunk } from "../../utility/utils";
 

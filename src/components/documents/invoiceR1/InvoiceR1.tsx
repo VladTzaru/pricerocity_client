@@ -1,15 +1,15 @@
 import React from "react";
 import { Formik, Form } from "formik";
-import InputField from "../../InputField";
+import InputField from "../../form/InputField";
 import { Button, FormGroup, Header, Icon } from "semantic-ui-react";
 import { useBuyer } from "../../../store/buyer";
-import SelectInput from "../../SelectInput";
+import SelectInput from "../../form/SelectInput";
 import { DateFormat, InvoiceR1 as InvoiceR1Type } from "../../../types";
 import { createSelectionOptions } from "../../../utility/utils";
 import axios from "axios";
 import { paymentMethods, initialValues, invoiceTypes } from "./config";
 import { invoiceR1Schema } from "../../../validation/formValidationSchemas";
-import DateInput from "../../DateInput";
+import DateInput from "../../form/DateInput";
 
 const addNewInvoice = async (invoice: InvoiceR1Type) => {
   const { buyerName, ...updatedInvoice } = invoice;

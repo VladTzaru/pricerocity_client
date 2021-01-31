@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Formik, Form } from "formik";
-import InputField from "../../InputField";
+import InputField from "../../form/InputField";
 import { Button, FormGroup, Header, Icon } from "semantic-ui-react";
 import { LOADING } from "../../../constants";
 import { useHistory } from "react-router-dom";

@@ -1,6 +1,6 @@
 import React from "react";
 import { Formik, Form } from "formik";
-import InputField from "../../InputField";
+import InputField from "../../form/InputField";
 import { Button, FormGroup, Header } from "semantic-ui-react";
 import axios from "axios";
 import { LOADING } from "../../../constants";

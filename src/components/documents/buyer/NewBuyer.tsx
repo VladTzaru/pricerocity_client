@@ -1,10 +1,10 @@
 import React from "react";
 import { Formik, Form } from "formik";
-import InputField from "../../InputField";
+import InputField from "../../form/InputField";
 import { Button, FormGroup, Header } from "semantic-ui-react";
 import { LOADING } from "../../../constants";
 import { buyerValidationSchema } from "../../../validation/formValidationSchemas";
-import SelectInput from "../../SelectInput";
+import SelectInput from "../../form/SelectInput";
 import { useBuyer } from "../../../store/buyer";
 import { initialValues, buyerTypes } from "./config";
 

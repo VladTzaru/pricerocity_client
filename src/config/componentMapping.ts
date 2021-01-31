@@ -1,7 +1,7 @@
-import NewBuyer from "../components/forms/buyer/NewBuyer";
-import DeliveryNote from "../components/forms/DeliveryNote";
-import InvoiceR1 from "../components/forms/invoiceR1/InvoiceR1";
-import NewItem from "../components/forms/item/NewItem";
+import NewBuyer from "../components/documents/buyer/NewBuyer";
+import DeliveryNote from "../components/documents/DeliveryNote";
+import InvoiceR1 from "../components/documents/invoiceR1/InvoiceR1";
+import NewItem from "../components/documents/item/NewItem";
 import { ComponentMapping } from "../types";
 
 export enum FormsToCro {

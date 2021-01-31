@@ -55,6 +55,7 @@ export interface InvoiceR1 {
   recipient: string;
   date: Date;
   paymentDeadline: number;
+  paymentDeadlineDate: Date;
   invoiceNumberPrefix: number; // 1, 2, 3...
   invoiceNumberSuffix: InvoiceNumberSuffix; // 1/1 and 2/1
   invoiceType: InvoiceType; // OBRAZAC-R1

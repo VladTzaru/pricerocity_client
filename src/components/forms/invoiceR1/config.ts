@@ -39,6 +39,7 @@ export const initialValues: InvoiceR1 = {
   recipient: "",
   date: new Date(),
   paymentDeadline: 0,
+  paymentDeadlineDate: new Date(),
   invoiceNumberPrefix: 1,
   invoiceNumberSuffix: "1/1",
   invoiceType: "OBRAZAC-R1",

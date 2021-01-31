@@ -1,6 +1,12 @@
 import axios from "axios";
 import create, { State } from "zustand";
+import { LOCAL_STORAGE_SELECTED_INVOICE } from "../constants";
 import { InvoiceR1 } from "../types";
+import {
+  addDataToLocalStorage,
+  getDataFromLocalStorage,
+  removeDataFromLocalStorage,
+} from "../utility/utils";
 
 interface InvoiceStoreType extends State {
   selectedInvoice: InvoiceR1 | null;
@@ -9,8 +15,9 @@ interface InvoiceStoreType extends State {
 }
 
 export const useInvoice = create<InvoiceStoreType>((set) => ({
-  selectedInvoice: null,
+  selectedInvoice: getDataFromLocalStorage(LOCAL_STORAGE_SELECTED_INVOICE, {}),
   selectInvoice: (invoice) => {
+    addDataToLocalStorage(LOCAL_STORAGE_SELECTED_INVOICE, invoice);
     set({ selectedInvoice: invoice });
   },
   addNewInvoice: async (invoice: InvoiceR1) => {
@@ -25,6 +32,7 @@ export const useInvoice = create<InvoiceStoreType>((set) => ({
         }
       );
       set({ selectedInvoice: data });
+      removeDataFromLocalStorage(LOCAL_STORAGE_SELECTED_INVOICE);
     } catch (error) {
       console.log(error);
     }

@@ -1,4 +1,5 @@
 export const LOADING = "Učitavanje...";
+export const LOCAL_STORAGE_SELECTED_INVOICE = "selectedInvoice";
 export const NO_CONTENT = "Nema sadržaja.";
 export const PLASINIA_INFORMATION = `T: +385 91 988 9472 | E: info@plasinia.hr | Trgovački sud u
 Zagrebu. Temeljni kapital: 20.000,00 HRK (kuna). Direktorica:

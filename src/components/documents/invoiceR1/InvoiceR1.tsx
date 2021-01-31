@@ -14,8 +14,7 @@ import { useInvoice } from "../../../store/invoice";
 
 const InvoiceR1 = () => {
   const { buyers } = useBuyer();
-  const { selectInvoice, selectedInvoice } = useInvoice();
-  console.log(selectedInvoice);
+  const { selectInvoice } = useInvoice();
   return (
     <Formik
       validationSchema={invoiceR1Schema}

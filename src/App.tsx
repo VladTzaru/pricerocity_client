@@ -12,6 +12,7 @@ import ItemListPage from "./pages/item/ItemListPage";
 import FormsPage from "./pages/FormsPage";
 import ItemEditPage from "./pages/item/ItemEditPage";
 import BuyerList from "./pages/buyer/BuyerListPage";
+import PrintPage from "./pages/PrintPage";
 
 const App = () => {
   const { getBuyers } = useBuyer((state) => state);
@@ -27,6 +28,7 @@ const App = () => {
           <Route path='/forms/:id' component={FormsPage} />
           <Route exact path='/item' component={ItemListPage} />
           <Route path='/item/:id' component={ItemEditPage} />
+          <Route path='/print' component={PrintPage} />
           <Route path='/buyer' component={BuyerList} />
         </Switch>
       </Container>

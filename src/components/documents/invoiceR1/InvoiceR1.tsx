@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Form } from "formik";
 import InputField from "../../form/InputField";
-import { Button, FormGroup, Header, Icon } from "semantic-ui-react";
+import { Button, FormGroup, Header } from "semantic-ui-react";
 import { useBuyer } from "../../../store/buyer";
 import SelectInput from "../../form/SelectInput";
 import { DateFormat, InvoiceR1 as InvoiceR1Type } from "../../../types";
@@ -10,7 +10,7 @@ import axios from "axios";
 import { paymentMethods, initialValues, invoiceTypes } from "./config";
 import { invoiceR1Schema } from "../../../validation/formValidationSchemas";
 import DateInput from "../../form/DateInput";
-import MyDependentField from "../../form/MyDependentField";
+import InvoiceR1DependentField from "./InvoiceR1DependentField";
 
 const addNewInvoice = async (invoice: InvoiceR1Type) => {
   const { buyerName, ...updatedInvoice } = invoice;
@@ -45,23 +45,9 @@ const InvoiceR1 = () => {
         actions.resetForm();
       }}
     >
-      {({ dirty, isSubmitting, isValid, values, setFieldValue }) => (
+      {({ dirty, isSubmitting, isValid }) => (
         <Form className='ui form'>
           <Header as='h2'>Podaci o računu</Header>
-
-          <div className='mb-2'>
-            <Button
-              onClick={() => setFieldValue("recipient", values.buyerName)}
-              primary
-              type='button'
-              animated='vertical'
-            >
-              <Button.Content hidden>Kopiraj</Button.Content>
-              <Button.Content visible>
-                <Icon name='copy' />
-              </Button.Content>
-            </Button>
-          </div>
 
           <FormGroup widths={2}>
             <SelectInput
@@ -69,8 +55,7 @@ const InvoiceR1 = () => {
               options={createSelectionOptions(buyers, "name")}
               name='buyerName'
             />
-
-            <InputField name='recipient' label='Primaoc' />
+            <InvoiceR1DependentField label='Primaoc' name='recipient' />
           </FormGroup>
           <FormGroup widths={2}>
             <DateInput
@@ -118,7 +103,11 @@ const InvoiceR1 = () => {
               name='invoiceIssuedAt'
               label='Vrijeme izdavanja'
             />
-            <MyDependentField label='Deadline rok' name='paymentDeadlineDate' />
+            <InvoiceR1DependentField
+              disabled
+              label='Valuta računa'
+              name='paymentDeadlineDate'
+            />
             <InputField name='notes' label='Napomene' />
           </FormGroup>
 

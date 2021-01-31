@@ -11,21 +11,23 @@ import { invoiceR1Schema } from "../../../validation/formValidationSchemas";
 import DateInput from "../../form/DateInput";
 import InvoiceR1DependentField from "./InvoiceR1DependentField";
 import { useInvoice } from "../../../store/invoice";
+import { useHistory } from "react-router-dom";
 
 const InvoiceR1 = () => {
   const { buyers } = useBuyer();
+  const history = useHistory();
   const { selectInvoice } = useInvoice();
   return (
     <Formik
       validationSchema={invoiceR1Schema}
       initialValues={initialValues}
-      onSubmit={(values, actions) => {
+      onSubmit={(values) => {
         const buyerInfo = buyers.filter(
           (buyer) => buyer.name === values.buyerName
         );
         values.buyer = buyerInfo[0].id;
         selectInvoice(values);
-        actions.resetForm();
+        history.push("/print");
       }}
     >
       {({ dirty, isSubmitting, isValid }) => (

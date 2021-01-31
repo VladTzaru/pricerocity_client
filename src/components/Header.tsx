@@ -4,7 +4,7 @@ import { Button, Dropdown, Icon, Label, Menu } from "semantic-ui-react";
 import { useInvoice } from "../store/invoice";
 
 const Header = () => {
-  const { selectedInvoice } = useInvoice();
+  const { selectedInvoices } = useInvoice();
   return (
     <Menu size='massive' attached='top' stackable fluid>
       <Menu.Item as={Link} to='/' name='pricerocity'>
@@ -46,9 +46,9 @@ const Header = () => {
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
-        {selectedInvoice && (
+        {selectedInvoices.length > 0 && (
           <Menu.Item name='pricerocity'>
-            <Label color='teal'>1</Label> Notifikacije
+            <Label color='teal'>{selectedInvoices.length}</Label> Notifikacije
           </Menu.Item>
         )}
         <Menu.Item>

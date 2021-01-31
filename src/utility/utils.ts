@@ -17,7 +17,7 @@ export const addDataToLocalStorage = <T>(key: string, data: T): void =>
 export const removeDataFromLocalStorage = (key: string): void =>
   localStorage.removeItem(key);
 
-export const getDataFromLocalStorage = (key: string, fallBackValue: any) =>
+export const getDataFromLocalStorage = <T>(key: string, fallBackValue: T) =>
   localStorage.getItem(key)
-    ? JSON.parse(localStorage.getItem(key) || "{}")
+    ? JSON.parse(localStorage.getItem(key) || "[]")
     : fallBackValue;

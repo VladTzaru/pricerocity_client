@@ -4,44 +4,28 @@ import InputField from "../../form/InputField";
 import { Button, FormGroup, Header } from "semantic-ui-react";
 import { useBuyer } from "../../../store/buyer";
 import SelectInput from "../../form/SelectInput";
-import { DateFormat, InvoiceR1 as InvoiceR1Type } from "../../../types";
+import { DateFormat } from "../../../types";
 import { createSelectionOptions } from "../../../utility/utils";
-import axios from "axios";
 import { paymentMethods, initialValues, invoiceTypes } from "./config";
 import { invoiceR1Schema } from "../../../validation/formValidationSchemas";
 import DateInput from "../../form/DateInput";
 import InvoiceR1DependentField from "./InvoiceR1DependentField";
-
-const addNewInvoice = async (invoice: InvoiceR1Type) => {
-  const { buyerName, ...updatedInvoice } = invoice;
-  try {
-    await axios.post<InvoiceR1Type>(
-      `${process.env.REACT_APP_API}/invoice/new`,
-      updatedInvoice,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-  } catch (error) {
-    console.log(error);
-  }
-};
+import { useInvoice } from "../../../store/invoice";
 
 const InvoiceR1 = () => {
   const { buyers } = useBuyer();
-
+  const { selectInvoice, selectedInvoice } = useInvoice();
+  console.log(selectedInvoice);
   return (
     <Formik
       validationSchema={invoiceR1Schema}
       initialValues={initialValues}
-      onSubmit={async (values, actions) => {
+      onSubmit={(values, actions) => {
         const buyerInfo = buyers.filter(
           (buyer) => buyer.name === values.buyerName
         );
         values.buyer = buyerInfo[0].id;
-        await addNewInvoice(values);
+        selectInvoice(values);
         actions.resetForm();
       }}
     >

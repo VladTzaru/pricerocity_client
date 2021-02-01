@@ -1,6 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import { Grid, Header } from "semantic-ui-react";
+import SideMenu from "../components/SideMenu";
 import {
   INVOICE_R1,
   PLASINIA_ADDRESS,
@@ -30,47 +31,50 @@ const PrintPage = () => {
   const selectedInvoice = selectInvoice(invoiceId, selectedInvoices);
   const selectedBuyer = selectBuyer(selectedInvoice.buyerName, buyers);
   return (
-    <div className='page'>
-      <div className='subpage'>
-        <Grid>
-          {/* GENERAL INFO */}
-          <Grid.Row>
-            <Grid.Column width={16}>{PLASINIA_INFORMATION}</Grid.Column>
-          </Grid.Row>
-          <Grid.Row>
-            <Grid.Column floated='left' width={5}>
-              {PLASINIA_ADDRESS}
-            </Grid.Column>
-            <Grid.Column floated='right' width={5}>
-              PLASINIA
-            </Grid.Column>
-          </Grid.Row>
+    <>
+      <SideMenu />
+      <div className='page'>
+        <div className='subpage'>
+          <Grid>
+            {/* GENERAL INFO */}
+            <Grid.Row>
+              <Grid.Column width={16}>{PLASINIA_INFORMATION}</Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+              <Grid.Column floated='left' width={5}>
+                {PLASINIA_ADDRESS}
+              </Grid.Column>
+              <Grid.Column floated='right' width={5}>
+                PLASINIA
+              </Grid.Column>
+            </Grid.Row>
 
-          {/* DOCUMENT NAME */}
-          <Grid.Row>
-            <Grid.Column width={16}>
-              <Header as='h2'>
-                {selectedInvoice?.documentType === DocumentType.INVOICE_R1
-                  ? INVOICE_R1
-                  : selectedInvoice.documentType}
-              </Header>
-            </Grid.Column>
-          </Grid.Row>
+            {/* DOCUMENT NAME */}
+            <Grid.Row>
+              <Grid.Column width={16}>
+                <Header as='h2'>
+                  {selectedInvoice?.documentType === DocumentType.INVOICE_R1
+                    ? INVOICE_R1
+                    : selectedInvoice.documentType}
+                </Header>
+              </Grid.Column>
+            </Grid.Row>
 
-          {/* DOCUMENT INFO */}
-          <Grid.Row>
-            <Grid.Column floated='left' width={16}>
-              DATUM: {formatDate(selectedInvoice.date, DateFormat.MM_DD_YYYY)}
-            </Grid.Column>
-          </Grid.Row>
-          <Grid.Row>
-            <Grid.Column floated='left' width={5}>
-              KUPAC: {selectedBuyer?.name}
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+            {/* DOCUMENT INFO */}
+            <Grid.Row>
+              <Grid.Column floated='left' width={16}>
+                DATUM: {formatDate(selectedInvoice.date, DateFormat.MM_DD_YYYY)}
+              </Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+              <Grid.Column floated='left' width={5}>
+                KUPAC: {selectedBuyer?.name}
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

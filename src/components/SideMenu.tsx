@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Dropdown, Icon, Input, Menu, MenuItemProps } from "semantic-ui-react";
+import { Dropdown, Icon, Menu, MenuItemProps } from "semantic-ui-react";
 
 const SideMenu = () => {
   const [activeItem, setActiveItem] = useState<string | undefined>("");
@@ -16,11 +16,7 @@ const SideMenu = () => {
   };
 
   return (
-    <Menu size='large' vertical fixed='left'>
-      <Menu.Item>
-        <Input placeholder='Search...' />
-      </Menu.Item>
-
+    <Menu style={{ top: "63.9px" }} size='massive' vertical fixed='left'>
       <Menu.Item>
         Prečice
         <Menu.Menu>

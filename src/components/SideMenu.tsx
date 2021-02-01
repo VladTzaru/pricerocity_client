@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
-import { Dropdown, Icon, Menu, MenuItemProps } from "semantic-ui-react";
+import { Link } from "react-router-dom";
+import { Dropdown, Menu, MenuItemProps } from "semantic-ui-react";
 
 const SideMenu = () => {
   const [activeItem, setActiveItem] = useState<string | undefined>("");
-  const history = useHistory();
 
   const handleItemClick = (
     _: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
@@ -12,42 +11,58 @@ const SideMenu = () => {
   ) => {
     const { name } = props;
     setActiveItem(name);
-    history.push(`/${name}`);
   };
 
   return (
-    <Menu style={{ top: "63.9px" }} size='massive' vertical fixed='left'>
+    <Menu size='large' vertical fixed='left'>
       <Menu.Item>
-        Prečice
+        Dodaj
         <Menu.Menu>
           <Menu.Item
+            as={Link}
+            to='/forms/new_item'
             onClick={handleItemClick}
             active={activeItem === "item"}
             name='item'
           >
-            Stavke
+            Stavku
           </Menu.Item>
           <Menu.Item
+            as={Link}
+            to='/forms/new_buyer'
             onClick={handleItemClick}
             active={activeItem === "buyers"}
             name='buyer'
           >
-            Kupci
+            Kupca
+          </Menu.Item>
+          <Menu.Item
+            as={Link}
+            to='/forms/invoice_r1'
+            onClick={handleItemClick}
+            active={activeItem === "invoice_r1"}
+            name='invoice_r1'
+          >
+            R1 račun
+          </Menu.Item>
+          <Menu.Item
+            as={Link}
+            to='/forms/delivery_note'
+            onClick={handleItemClick}
+            active={activeItem === "delivery_note"}
+            name='delivery_note'
+          >
+            Otpremnicu
           </Menu.Item>
         </Menu.Menu>
       </Menu.Item>
 
-      <Menu.Item name='browse'>
-        <Icon name='grid layout' />
-        Browse
-      </Menu.Item>
-      <Menu.Item name='messages'>Messages</Menu.Item>
-
-      <Dropdown item text='More'>
+      <Dropdown item text='Opcije'>
         <Dropdown.Menu>
-          <Dropdown.Item icon='edit' text='Edit Profile' />
-          <Dropdown.Item icon='globe' text='Choose Language' />
-          <Dropdown.Item icon='settings' text='Account Settings' />
+          <Dropdown.Item icon='ordered list' text='Dodaj stavku u dokument' />
+          <Dropdown.Item icon='globe' text='Izaberi jezik' />
+          <Dropdown.Item icon='money' text='Uračunaj PDV' />
+          <Dropdown.Item icon='euro' text='Prikaži EUR' />
         </Dropdown.Menu>
       </Dropdown>
     </Menu>

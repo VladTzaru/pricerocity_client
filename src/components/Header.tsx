@@ -31,7 +31,7 @@ const Header = () => {
   };
 
   return (
-    <Menu style={{ zIndex: 999 }} size='massive' stackable fluid>
+    <Menu size='massive' stackable fluid>
       <Menu.Item as={Link} to='/' name='pricerocity'>
         Pricerocity
       </Menu.Item>

@@ -1,4 +1,5 @@
 export const LOADING = "Učitavanje...";
+export const INVOICE_R1 = "RAČUN/OTPREMNICA";
 export const LOCAL_STORAGE_INVOICES = "selectedInvoices";
 export const NO_CONTENT = "Nema sadržaja.";
 export const PLASINIA_INFORMATION = `T: +385 91 988 9472 | E: info@plasinia.hr | Trgovački sud u

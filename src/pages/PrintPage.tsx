@@ -1,9 +1,13 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import { Grid, Header } from "semantic-ui-react";
-import { PLASINIA_ADDRESS, PLASINIA_INFORMATION } from "../constants";
+import {
+  INVOICE_R1,
+  PLASINIA_ADDRESS,
+  PLASINIA_INFORMATION,
+} from "../constants";
 import { useInvoice } from "../store/invoice";
-import { InvoiceR1 } from "../types";
+import { DocumentType, InvoiceR1 } from "../types";
 import { replaceStringChunk } from "../utility/utils";
 
 const selectInvoice = (id: string, list: InvoiceR1[]): InvoiceR1 => {
@@ -34,7 +38,11 @@ const PrintPage = () => {
           </Grid.Row>
           <Grid.Row>
             <Grid.Column width={16}>
-              <Header as='h2'>{selectedInvoice?.documentType} </Header>
+              <Header as='h2'>
+                {selectedInvoice?.documentType === DocumentType.INVOICE_R1
+                  ? INVOICE_R1
+                  : selectedInvoice.documentType}
+              </Header>
             </Grid.Column>
           </Grid.Row>
         </Grid>

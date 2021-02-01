@@ -47,6 +47,7 @@ export const initialValues: InvoiceR1 = {
   documentType: DocumentType.INVOICE_R1,
   paymentMethod: PaymentMethods.TRANSACTION_ACCOUNT,
   invoiceIssuedAt: new Date(),
+  items: [],
   notes: "",
 };
 

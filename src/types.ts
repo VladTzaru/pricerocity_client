@@ -56,7 +56,7 @@ export interface Buyer {
 
 export interface InvoiceR1 {
   _id: string;
-  buyer?: string; // Buyer ID
+  buyer?: string; // Buyer ID (server-side)
   buyerName: string;
   recipient: string;
   date: Date;
@@ -67,6 +67,7 @@ export interface InvoiceR1 {
   documentType: DocumentType; // OBRAZAC-R1
   paymentMethod: PaymentMethods;
   invoiceIssuedAt: Date; // 12:00
+  items: Item[];
   notes?: string;
 }
 

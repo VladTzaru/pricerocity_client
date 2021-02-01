@@ -31,6 +31,12 @@ const PrintPage = () => {
   const selectedInvoice = selectInvoice(invoiceId, selectedInvoices);
   const selectedBuyer = selectBuyer(selectedInvoice?.buyerName, buyers);
 
+  const formatBuyer = () => {
+    if (!selectedBuyer.vatNumber)
+      return `${selectedBuyer?.name} ${selectedBuyer.address} ${selectedBuyer.zipCode}, ${selectedBuyer.city}`;
+    return `${selectedBuyer?.name} ${selectedBuyer.address} ${selectedBuyer.zipCode}, ${selectedBuyer.city}, OIB: ${selectedBuyer.vatNumber}`;
+  };
+
   if (!selectedInvoice || !selectedBuyer) return <h1>Nemaš dokumenata mala</h1>;
 
   return (
@@ -71,7 +77,13 @@ const PrintPage = () => {
             </Grid.Row>
             <Grid.Row>
               <Grid.Column floated='left' width={5}>
-                KUPAC: {selectedBuyer?.name}
+                KUPAC: {formatBuyer()}
+              </Grid.Column>
+              <Grid.Column floated='right' width={5}>
+                Primaoc: {formatBuyer()}
+              </Grid.Column>
+              <Grid.Column floated='right' width={5}>
+                Ostalo:
               </Grid.Column>
             </Grid.Row>
           </Grid>

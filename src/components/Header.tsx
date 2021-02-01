@@ -20,10 +20,7 @@ const Header = () => {
             to={`/print/${i._id}`}
             key={i._id}
             label={{ color: "orange", empty: true, circular: true }}
-            text={`${i.buyerName} ${formatDate(
-              i.paymentDeadlineDate,
-              DateFormat.MM_DD_YYYY
-            )}`}
+            text={`${i.buyerName} ${formatDate(i.date, DateFormat.MM_DD_YYYY)}`}
           />
         ))}
       </Dropdown.Menu>

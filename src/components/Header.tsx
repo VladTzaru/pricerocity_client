@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, Dropdown, Icon, Label, Menu } from "semantic-ui-react";
+import { Button, Dropdown, Icon, Menu } from "semantic-ui-react";
 import { useInvoice } from "../store/invoice";
 
 const Header = () => {
@@ -47,9 +47,21 @@ const Header = () => {
           </Dropdown.Menu>
         </Dropdown>
         {selectedInvoices.length > 0 && (
-          <Menu.Item name='pricerocity'>
-            <Label color='teal'>{selectedInvoices.length}</Label>
-          </Menu.Item>
+          <Dropdown
+            labeled
+            text={selectedInvoices.length.toString()}
+            icon='mail'
+            item
+          >
+            <Dropdown.Menu>
+              <Dropdown.Header content='Notifikacije' />
+              <Dropdown.Divider />
+              <Dropdown.Item
+                label={{ color: "orange", empty: true, circular: true }}
+                text='Nepotpuni računi'
+              />
+            </Dropdown.Menu>
+          </Dropdown>
         )}
         <Menu.Item>
           <Button>Uloguj se</Button>

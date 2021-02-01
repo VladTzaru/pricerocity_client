@@ -34,7 +34,7 @@ const PrintPage = () => {
           </Grid.Row>
           <Grid.Row>
             <Grid.Column width={16}>
-              <Header as='h2'>{selectedInvoice.buyerName} </Header>
+              <Header as='h2'>{selectedInvoice?.documentType} </Header>
             </Grid.Column>
           </Grid.Row>
         </Grid>

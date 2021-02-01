@@ -26,7 +26,12 @@ export interface ItemValues {
 
 export type BuyerType = "Privatno lice" | "Pravno lice";
 export type InvoiceNumberSuffix = "1/1" | "1/2";
-export type InvoiceType = "OBRAZAC-R1" | "OTPREMNICA" | "PONUDA";
+
+export enum DocumentType {
+  INVOICE_R1 = "OBRAZAC-R1",
+  DELIVERY_NOTE = "OTPREMNICA",
+  PROFORMA_INVOICE = "PONUDA",
+}
 
 export enum PaymentMethods {
   TRANSACTION_ACCOUNT = "Transakcijski račun",
@@ -59,7 +64,7 @@ export interface InvoiceR1 {
   paymentDeadlineDate: Date; // Valuta računa
   invoiceNumberPrefix: number; // 1, 2, 3...
   invoiceNumberSuffix: InvoiceNumberSuffix; // 1/1 and 2/1
-  invoiceType: InvoiceType; // OBRAZAC-R1
+  documentType: DocumentType; // OBRAZAC-R1
   paymentMethod: PaymentMethods;
   invoiceIssuedAt: Date; // 12:00
   notes?: string;

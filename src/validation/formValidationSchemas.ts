@@ -34,7 +34,7 @@ export const invoiceR1Schema = Yup.object().shape({
     .min(1, "Minimalna vrijednost je 1")
     .required("Obavezno polje"),
   invoiceNumberSuffix: Yup.string().required("Obavezno polje"),
-  invoiceType: Yup.string().required(),
+  documentType: Yup.string().required(),
   paymentMethod: Yup.string().required("Obavezno polje"),
   invoiceIssuedAt: Yup.date().required("Obavezno polje").nullable(),
 });

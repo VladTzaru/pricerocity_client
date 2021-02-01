@@ -3,6 +3,7 @@ import {
   PaymentMethods,
   InvoiceR1,
   InvoiceNumberSuffix,
+  DocumentType,
 } from "../../../types";
 
 export const paymentMethods: SelectionOptions<PaymentMethods>[] = [
@@ -43,7 +44,7 @@ export const initialValues: InvoiceR1 = {
   paymentDeadlineDate: new Date(),
   invoiceNumberPrefix: 1,
   invoiceNumberSuffix: "1/1",
-  invoiceType: "OBRAZAC-R1",
+  documentType: DocumentType.INVOICE_R1,
   paymentMethod: PaymentMethods.TRANSACTION_ACCOUNT,
   invoiceIssuedAt: new Date(),
   notes: "",

@@ -4,8 +4,7 @@ import { Link, RouteComponentProps } from "react-router-dom";
 import { Button, List } from "semantic-ui-react";
 import { LOADING, NO_CONTENT } from "../../constants";
 import { DateFormat, Item, MatchParams } from "../../types";
-import { replaceStringChunk } from "../../utility/utils";
-import { format } from "date-fns";
+import { formatDate, replaceStringChunk } from "../../utility/utils";
 
 const ItemListPage: React.FC<RouteComponentProps<MatchParams>> = ({
   match,
@@ -37,7 +36,7 @@ const ItemListPage: React.FC<RouteComponentProps<MatchParams>> = ({
                 {item.itemNameCro}
               </List.Header>
               <List.Description as={Link} to={`/item/${item.id}`}>
-                {format(new Date(item.createdAt), DateFormat.MM_DD_YYYY)}
+                {formatDate(item.createdAt, DateFormat.MM_DD_YYYY)}
               </List.Description>
             </List.Content>
           </List.Item>

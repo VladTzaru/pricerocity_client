@@ -1,3 +1,6 @@
+import { DateFormat } from "../types";
+import { format } from "date-fns";
+
 export const replaceStringChunk = (str: string, chunkToRemove: string) =>
   str.replace(chunkToRemove, "");
 
@@ -10,6 +13,9 @@ export function createSelectionOptions<T>(list: Array<T>, propValue: string) {
     };
   });
 }
+
+export const formatDate = (date: Date | string, dateFormat: DateFormat) =>
+  format(new Date(date), dateFormat);
 
 export const addDataToLocalStorage = <T>(key: string, data: T): void =>
   localStorage.setItem(key, JSON.stringify(data));

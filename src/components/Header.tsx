@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button, Dropdown, Icon, Menu } from "semantic-ui-react";
 import { useInvoice } from "../store/invoice";
-import { InvoiceR1 } from "../types";
+import { DateFormat, InvoiceR1 } from "../types";
+import { formatDate } from "../utility/utils";
 
 const Header = () => {
   const { selectedInvoices } = useInvoice();
@@ -19,7 +20,10 @@ const Header = () => {
             to={`/print/${i._id}`}
             key={i._id}
             label={{ color: "orange", empty: true, circular: true }}
-            text={`${i.buyerName} ${i.paymentDeadlineDate}`}
+            text={`${i.buyerName} ${formatDate(
+              i.paymentDeadlineDate,
+              DateFormat.MM_DD_YYYY
+            )}`}
           />
         ))}
       </Dropdown.Menu>

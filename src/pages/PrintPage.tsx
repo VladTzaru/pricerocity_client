@@ -7,8 +7,8 @@ import {
   PLASINIA_INFORMATION,
 } from "../constants";
 import { useInvoice } from "../store/invoice";
-import { DocumentType, InvoiceR1 } from "../types";
-import { replaceStringChunk } from "../utility/utils";
+import { DateFormat, DocumentType, InvoiceR1 } from "../types";
+import { formatDate, replaceStringChunk } from "../utility/utils";
 
 const selectInvoice = (id: string, list: InvoiceR1[]): InvoiceR1 => {
   const invoice = list.filter((list) => list._id === id);
@@ -25,6 +25,7 @@ const PrintPage = () => {
     <div className='page'>
       <div className='subpage'>
         <Grid>
+          {/* GENERAL INFO */}
           <Grid.Row>
             <Grid.Column width={16}>{PLASINIA_INFORMATION}</Grid.Column>
           </Grid.Row>
@@ -36,6 +37,8 @@ const PrintPage = () => {
               PLASINIA
             </Grid.Column>
           </Grid.Row>
+
+          {/* DOCUMENT NAME */}
           <Grid.Row>
             <Grid.Column width={16}>
               <Header as='h2'>
@@ -43,6 +46,16 @@ const PrintPage = () => {
                   ? INVOICE_R1
                   : selectedInvoice.documentType}
               </Header>
+            </Grid.Column>
+          </Grid.Row>
+
+          {/* DOCUMENT INFO */}
+          <Grid.Row>
+            <Grid.Column floated='left' width={6}>
+              Datum: {formatDate(selectedInvoice.date, DateFormat.MM_DD_YYYY)}
+            </Grid.Column>
+            <Grid.Column floated='right' width={5}>
+              PLASINIA
             </Grid.Column>
           </Grid.Row>
         </Grid>

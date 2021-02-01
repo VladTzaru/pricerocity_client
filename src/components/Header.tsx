@@ -2,9 +2,30 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button, Dropdown, Icon, Menu } from "semantic-ui-react";
 import { useInvoice } from "../store/invoice";
+import { InvoiceR1 } from "../types";
 
 const Header = () => {
   const { selectedInvoices } = useInvoice();
+
+  const renderNotificationsForInvoices = (notifications: InvoiceR1[]) => {
+    if (notifications.length === 0) return;
+    return (
+      <Dropdown.Menu>
+        <Dropdown.Header content='Notifikacije' />
+        <Dropdown.Divider />
+        {notifications.map((i) => (
+          <Dropdown.Item
+            as={Link}
+            to={`/print/${i._id}`}
+            key={i._id}
+            label={{ color: "orange", empty: true, circular: true }}
+            text={`${i.buyerName} ${i.paymentDeadlineDate}`}
+          />
+        ))}
+      </Dropdown.Menu>
+    );
+  };
+
   return (
     <Menu size='massive' attached='top' stackable fluid>
       <Menu.Item as={Link} to='/' name='pricerocity'>
@@ -36,6 +57,17 @@ const Header = () => {
       </Dropdown>
 
       <Menu.Menu position='right'>
+        {selectedInvoices.length > 0 && (
+          <Dropdown
+            labeled
+            text={selectedInvoices.length.toString()}
+            icon='mail'
+            item
+          >
+            {renderNotificationsForInvoices(selectedInvoices)}
+          </Dropdown>
+        )}
+
         <Dropdown item text='Prečice'>
           <Dropdown.Menu>
             <Dropdown.Item as={Link} to='/item'>
@@ -46,23 +78,6 @@ const Header = () => {
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
-        {selectedInvoices.length > 0 && (
-          <Dropdown
-            labeled
-            text={selectedInvoices.length.toString()}
-            icon='mail'
-            item
-          >
-            <Dropdown.Menu>
-              <Dropdown.Header content='Notifikacije' />
-              <Dropdown.Divider />
-              <Dropdown.Item
-                label={{ color: "orange", empty: true, circular: true }}
-                text='Nepotpuni računi'
-              />
-            </Dropdown.Menu>
-          </Dropdown>
-        )}
         <Menu.Item>
           <Button>Uloguj se</Button>
         </Menu.Item>

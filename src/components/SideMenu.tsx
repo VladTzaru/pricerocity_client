@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Dropdown, Menu, MenuItemProps } from "semantic-ui-react";
 
@@ -65,6 +65,8 @@ const SideMenu = () => {
           <Dropdown.Item icon='euro' text='Prikaži EUR' />
         </Dropdown.Menu>
       </Dropdown>
+
+      <Menu.Item onClick={() => window.print()}>Printaj</Menu.Item>
     </Menu>
   );
 };

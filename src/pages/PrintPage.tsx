@@ -29,7 +29,10 @@ const PrintPage = () => {
 
   const invoiceId = replaceStringChunk(pathname, "/print/");
   const selectedInvoice = selectInvoice(invoiceId, selectedInvoices);
-  const selectedBuyer = selectBuyer(selectedInvoice.buyerName, buyers);
+  const selectedBuyer = selectBuyer(selectedInvoice?.buyerName, buyers);
+
+  if (!selectedInvoice || !selectedBuyer) return <h1>Nemaš dokumenata mala</h1>;
+
   return (
     <>
       <SideMenu />
@@ -55,7 +58,7 @@ const PrintPage = () => {
                 <Header as='h2'>
                   {selectedInvoice?.documentType === DocumentType.INVOICE_R1
                     ? INVOICE_R1
-                    : selectedInvoice.documentType}
+                    : selectedInvoice?.documentType}
                 </Header>
               </Grid.Column>
             </Grid.Row>

@@ -24,6 +24,12 @@ export interface ItemValues {
   vat: number;
 }
 
+export interface InvoiceItems extends Item {
+  quantity: number;
+  unit: string;
+  discount: number;
+}
+
 export type BuyerType = "Privatno lice" | "Pravno lice";
 export type InvoiceNumberSuffix = "1/1" | "1/2";
 
@@ -67,7 +73,7 @@ export interface InvoiceR1 {
   documentType: DocumentType; // OBRAZAC-R1
   paymentMethod: PaymentMethods;
   invoiceIssuedAt: Date; // 12:00
-  items: Item[];
+  items: InvoiceItems[];
   notes?: string;
 }
 

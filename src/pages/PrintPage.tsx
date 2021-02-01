@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { Grid, Header } from "semantic-ui-react";
+import { Grid, Header, Table } from "semantic-ui-react";
 import SideMenu from "../components/SideMenu";
 import {
   INVOICE_R1,
@@ -50,10 +50,10 @@ const PrintPage = () => {
               <Grid.Column width={16}>{PLASINIA_INFORMATION}</Grid.Column>
             </Grid.Row>
             <Grid.Row>
-              <Grid.Column floated='left' width={5}>
+              <Grid.Column floated='left' width={10}>
                 {PLASINIA_ADDRESS}
               </Grid.Column>
-              <Grid.Column floated='right' width={5}>
+              <Grid.Column floated='right' width={6}>
                 PLASINIA
               </Grid.Column>
             </Grid.Row>
@@ -84,6 +84,45 @@ const PrintPage = () => {
               </Grid.Column>
               <Grid.Column floated='right' width={5}>
                 Ostalo:
+              </Grid.Column>
+            </Grid.Row>
+
+            {/* ITEM LIST */}
+
+            <Grid.Row>
+              <Grid.Column floated='left' width={16}>
+                <Table striped stackable compact size='small' singleLine>
+                  <Table.Header>
+                    <Table.Row>
+                      <Table.HeaderCell>#</Table.HeaderCell>
+                      <Table.HeaderCell>Naziv proizvoda</Table.HeaderCell>
+                      <Table.HeaderCell>Količina</Table.HeaderCell>
+                      <Table.HeaderCell>PDV</Table.HeaderCell>
+                      <Table.HeaderCell>Cijena</Table.HeaderCell>
+                      <Table.HeaderCell>Popust</Table.HeaderCell>
+                      <Table.HeaderCell>Cijena s popustom</Table.HeaderCell>
+                      <Table.HeaderCell>Ukupno</Table.HeaderCell>
+                    </Table.Row>
+                  </Table.Header>
+
+                  <Table.Body>
+                    <Table.Row>
+                      <Table.Cell>1</Table.Cell>
+                      <Table.Cell>Cell</Table.Cell>
+                      <Table.Cell>Cell</Table.Cell>
+                    </Table.Row>
+                    <Table.Row>
+                      <Table.Cell>2</Table.Cell>
+                      <Table.Cell>Cell</Table.Cell>
+                      <Table.Cell>Cell</Table.Cell>
+                    </Table.Row>
+                    <Table.Row>
+                      <Table.Cell>3</Table.Cell>
+                      <Table.Cell>Cell</Table.Cell>
+                      <Table.Cell>Cell</Table.Cell>
+                    </Table.Row>
+                  </Table.Body>
+                </Table>
               </Grid.Column>
             </Grid.Row>
           </Grid>

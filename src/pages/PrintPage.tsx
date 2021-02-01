@@ -6,8 +6,9 @@ import {
   PLASINIA_ADDRESS,
   PLASINIA_INFORMATION,
 } from "../constants";
+import { useBuyer } from "../store/buyer";
 import { useInvoice } from "../store/invoice";
-import { DateFormat, DocumentType, InvoiceR1 } from "../types";
+import { Buyer, DateFormat, DocumentType, InvoiceR1 } from "../types";
 import { formatDate, replaceStringChunk } from "../utility/utils";
 
 const selectInvoice = (id: string, list: InvoiceR1[]): InvoiceR1 => {
@@ -15,12 +16,19 @@ const selectInvoice = (id: string, list: InvoiceR1[]): InvoiceR1 => {
   return invoice[0];
 };
 
+const selectBuyer = (name: string, list: Buyer[]): Buyer => {
+  const buyer = list.filter((list) => list.name === name);
+  return buyer[0];
+};
+
 const PrintPage = () => {
   const { selectedInvoices } = useInvoice();
+  const { buyers } = useBuyer();
   const { pathname } = useLocation();
+
   const invoiceId = replaceStringChunk(pathname, "/print/");
   const selectedInvoice = selectInvoice(invoiceId, selectedInvoices);
-
+  const selectedBuyer = selectBuyer(selectedInvoice.buyerName, buyers);
   return (
     <div className='page'>
       <div className='subpage'>
@@ -51,11 +59,13 @@ const PrintPage = () => {
 
           {/* DOCUMENT INFO */}
           <Grid.Row>
-            <Grid.Column floated='left' width={6}>
-              Datum: {formatDate(selectedInvoice.date, DateFormat.MM_DD_YYYY)}
+            <Grid.Column floated='left' width={16}>
+              DATUM: {formatDate(selectedInvoice.date, DateFormat.MM_DD_YYYY)}
             </Grid.Column>
-            <Grid.Column floated='right' width={5}>
-              PLASINIA
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column floated='left' width={5}>
+              KUPAC: {selectedBuyer?.name}
             </Grid.Column>
           </Grid.Row>
         </Grid>

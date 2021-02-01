@@ -28,7 +28,7 @@ const App = () => {
           <Route path='/forms/:id' component={FormsPage} />
           <Route exact path='/item' component={ItemListPage} />
           <Route path='/item/:id' component={ItemEditPage} />
-          <Route path='/print' component={PrintPage} />
+          <Route path='/print/:id' component={PrintPage} />
           <Route path='/buyer' component={BuyerList} />
         </Switch>
       </Container>

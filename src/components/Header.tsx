@@ -48,7 +48,7 @@ const Header = () => {
         </Dropdown>
         {selectedInvoices.length > 0 && (
           <Menu.Item name='pricerocity'>
-            <Label color='teal'>{selectedInvoices.length}</Label> Notifikacije
+            <Label color='teal'>{selectedInvoices.length}</Label>
           </Menu.Item>
         )}
         <Menu.Item>

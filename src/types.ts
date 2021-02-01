@@ -50,6 +50,7 @@ export interface Buyer {
 }
 
 export interface InvoiceR1 {
+  _id: string;
   buyer?: string; // Buyer ID
   buyerName: string;
   recipient: string;

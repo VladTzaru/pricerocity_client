@@ -12,6 +12,7 @@ import DateInput from "../../form/DateInput";
 import InvoiceR1DependentField from "./InvoiceR1DependentField";
 import { useInvoice } from "../../../store/invoice";
 import { useHistory } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 const InvoiceR1 = () => {
   const { buyers } = useBuyer();
@@ -26,8 +27,9 @@ const InvoiceR1 = () => {
           (buyer) => buyer.name === values.buyerName
         );
         values.buyer = buyerInfo[0].id;
+        values._id = uuidv4();
         selectInvoice(values);
-        history.push("/print");
+        history.push(`/print/${values._id}`);
       }}
     >
       {({ dirty, isSubmitting, isValid }) => (

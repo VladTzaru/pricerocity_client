@@ -34,6 +34,7 @@ export const paymentMethods: SelectionOptions<PaymentMethods>[] = [
 ];
 
 export const initialValues: InvoiceR1 = {
+  _id: "",
   buyer: "",
   buyerName: "",
   recipient: "",

@@ -91,7 +91,15 @@ const PrintPage = () => {
 
             <Grid.Row>
               <Grid.Column floated='left' width={16}>
-                <Table striped stackable compact size='small' singleLine>
+                <Table
+                  striped
+                  stackable
+                  compact
+                  size='small'
+                  singleLine
+                  collapsing
+                  definition
+                >
                   <Table.Header>
                     <Table.Row>
                       <Table.HeaderCell>#</Table.HeaderCell>
@@ -110,14 +118,29 @@ const PrintPage = () => {
                       <Table.Cell>1</Table.Cell>
                       <Table.Cell>Cell</Table.Cell>
                       <Table.Cell>Cell</Table.Cell>
+                      <Table.Cell>Cell</Table.Cell>
+                      <Table.Cell>Cell</Table.Cell>
+                      <Table.Cell>Cell</Table.Cell>
+                      <Table.Cell>Cell</Table.Cell>
+                      <Table.Cell>Cell</Table.Cell>
                     </Table.Row>
                     <Table.Row>
                       <Table.Cell>2</Table.Cell>
                       <Table.Cell>Cell</Table.Cell>
                       <Table.Cell>Cell</Table.Cell>
+                      <Table.Cell>Cell</Table.Cell>
+                      <Table.Cell>Cell</Table.Cell>
+                      <Table.Cell>Cell</Table.Cell>
+                      <Table.Cell>Cell</Table.Cell>
+                      <Table.Cell>Cell</Table.Cell>
                     </Table.Row>
                     <Table.Row>
                       <Table.Cell>3</Table.Cell>
+                      <Table.Cell>Cell</Table.Cell>
+                      <Table.Cell>Cell</Table.Cell>
+                      <Table.Cell>Cell</Table.Cell>
+                      <Table.Cell>Cell</Table.Cell>
+                      <Table.Cell>Cell</Table.Cell>
                       <Table.Cell>Cell</Table.Cell>
                       <Table.Cell>Cell</Table.Cell>
                     </Table.Row>

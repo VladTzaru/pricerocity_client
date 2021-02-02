@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Dropdown, Menu, MenuItemProps } from "semantic-ui-react";
+import ItemSelection from "./documents/ItemSelection";
 
 const SideMenu = () => {
   const [activeItem, setActiveItem] = useState<string | undefined>("");
@@ -14,7 +15,7 @@ const SideMenu = () => {
   };
 
   return (
-    <Menu size='large' vertical fixed='left'>
+    <Menu size='massive' vertical fixed='left'>
       <Menu.Item>
         Dodaj
         <Menu.Menu>
@@ -57,15 +58,20 @@ const SideMenu = () => {
         </Menu.Menu>
       </Menu.Item>
 
+      {/* ADD ITEMS TO INVOICE */}
+      <Menu.Item>
+        <ItemSelection />
+      </Menu.Item>
+
       <Dropdown item text='Opcije'>
         <Dropdown.Menu>
-          <Dropdown.Item icon='ordered list' text='Dodaj stavku u dokument' />
-          <Dropdown.Item icon='globe' text='Izaberi jezik' />
+          <Dropdown.Item icon='globe' text='Prevedi na ENG' />
           <Dropdown.Item icon='money' text='Uračunaj PDV' />
           <Dropdown.Item icon='euro' text='Prikaži EUR' />
         </Dropdown.Menu>
       </Dropdown>
 
+      {/* PRINT */}
       <Menu.Item onClick={() => window.print()}>Printaj</Menu.Item>
     </Menu>
   );

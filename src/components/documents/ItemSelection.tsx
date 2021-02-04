@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Formik, Form } from "formik";
 import { Button, FormGroup } from "semantic-ui-react";
 import { LOADING } from "../../constants";
@@ -7,6 +7,8 @@ import { itemValidationSchema } from "../../validation/formValidationSchemas";
 import { InvoiceItems } from "../../types";
 import SelectInput from "../form/SelectInput";
 import { invoiceTypes } from "./invoiceR1/config";
+import { useItem } from "../../store/item";
+import { createSelectionOptions } from "../../utility/utils";
 
 const initialValues: InvoiceItems = {
   itemName: "",
@@ -16,6 +18,12 @@ const initialValues: InvoiceItems = {
 };
 
 const ItemSelection = () => {
+  const { items, getItems } = useItem();
+
+  useEffect(() => {
+    getItems();
+  }, [getItems]);
+
   const addItemToDocument = async (item: InvoiceItems) => {
     console.log(item);
   };
@@ -34,8 +42,8 @@ const ItemSelection = () => {
           <FormGroup widths='equal'>
             <SelectInput
               label='Naziv proizvoda'
-              options={invoiceTypes}
-              name='productName'
+              options={createSelectionOptions(items, "itemNameCro")}
+              name='itemName'
             />
             <InputField
               disabled={isSubmitting}

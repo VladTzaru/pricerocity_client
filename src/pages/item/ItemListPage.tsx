@@ -4,13 +4,8 @@ import { Button, List } from "semantic-ui-react";
 import { NO_CONTENT } from "../../constants";
 import { useItem } from "../../store/item";
 import { MatchParams } from "../../types";
-import { replaceStringChunk } from "../../utility/utils";
 
-const ItemListPage: React.FC<RouteComponentProps<MatchParams>> = ({
-  match,
-}) => {
-  const { url } = match;
-  const searchTerm = replaceStringChunk(url, "/");
+const ItemListPage: React.FC<RouteComponentProps<MatchParams>> = () => {
   const { items, getItems } = useItem();
 
   const renderContent = () => {
@@ -40,8 +35,8 @@ const ItemListPage: React.FC<RouteComponentProps<MatchParams>> = ({
   };
 
   useEffect(() => {
-    getItems(searchTerm);
-  }, [searchTerm, getItems]);
+    getItems();
+  }, [getItems]);
   return (
     <div>
       <h1>Sve stavke ({items.length})</h1>

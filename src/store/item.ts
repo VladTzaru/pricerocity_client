@@ -6,7 +6,7 @@ import { Item } from "../types";
 interface ItemStoreType extends State {
   items: ItemValues[];
   addItem: (item: ItemValues) => Promise<void>;
-  getItems: (searchTerm: string) => Promise<void>;
+  getItems: () => Promise<void>;
 }
 
 export const useItem = create<ItemStoreType>((set, get) => ({
@@ -25,10 +25,10 @@ export const useItem = create<ItemStoreType>((set, get) => ({
     }
   },
 
-  getItems: async (searchTerm) => {
+  getItems: async () => {
     try {
       const { data } = await axios.get<Item[]>(
-        `${process.env.REACT_APP_API}/${searchTerm}`
+        `${process.env.REACT_APP_API}/item`
       );
 
       set({ items: data });

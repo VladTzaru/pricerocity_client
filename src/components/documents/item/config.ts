@@ -1,6 +1,6 @@
-import { InvoiceItem, Item, SelectionOptions } from "../../../types";
+import { InvoiceItem, SelectionOptions } from "../../../types";
 
-export interface InvoiceItems extends Item, InvoiceItem {}
+export interface InvoiceItems extends InvoiceItem {}
 
 export const initialValues: InvoiceItems = {
   itemNameCro: "",

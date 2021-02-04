@@ -15,7 +15,7 @@ export interface Item {
   vat: number;
 }
 
-export interface InvoiceItem {
+export interface InvoiceItem extends Item {
   itemName: string;
   quantity: number;
   unit: string;

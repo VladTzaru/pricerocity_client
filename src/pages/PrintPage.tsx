@@ -9,14 +9,8 @@ import {
 } from "../constants";
 import { useBuyer } from "../store/buyer";
 import { useInvoice } from "../store/invoice";
-import { useItem } from "../store/item";
-import { Buyer, DateFormat, DocumentType, InvoiceR1 } from "../types";
+import { Buyer, DateFormat, DocumentType } from "../types";
 import { formatDate, replaceStringChunk } from "../utility/utils";
-
-const selectInvoice = (id: string, list: InvoiceR1[]): InvoiceR1 => {
-  const invoice = list.filter((list) => list._id === id);
-  return invoice[0];
-};
 
 const selectBuyer = (name: string, list: Buyer[]): Buyer => {
   const buyer = list.filter((list) => list.name === name);
@@ -24,13 +18,12 @@ const selectBuyer = (name: string, list: Buyer[]): Buyer => {
 };
 
 const PrintPage = () => {
-  const { draftedInvoices } = useInvoice();
+  const { draftedInvoices, selectDraftedInvoice } = useInvoice();
   const { buyers } = useBuyer();
-  const { invoiceItems } = useItem();
   const { pathname } = useLocation();
 
   const invoiceId = replaceStringChunk(pathname, "/print/");
-  const selectedInvoice = selectInvoice(invoiceId, draftedInvoices);
+  const selectedInvoice = selectDraftedInvoice(invoiceId, draftedInvoices);
   const selectedBuyer = selectBuyer(selectedInvoice?.buyerName, buyers);
 
   const formatBuyer = () => {
@@ -116,7 +109,7 @@ const PrintPage = () => {
                   </Table.Header>
 
                   <Table.Body>
-                    {invoiceItems.map((item) => {
+                    {selectedInvoice.items.map((item) => {
                       return (
                         <Table.Row key={item.id}>
                           <Table.Cell></Table.Cell>

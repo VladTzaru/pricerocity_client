@@ -9,6 +9,7 @@ import {
 } from "../constants";
 import { useBuyer } from "../store/buyer";
 import { useInvoice } from "../store/invoice";
+import { useItem } from "../store/item";
 import { Buyer, DateFormat, DocumentType, InvoiceR1 } from "../types";
 import { formatDate, replaceStringChunk } from "../utility/utils";
 
@@ -25,6 +26,7 @@ const selectBuyer = (name: string, list: Buyer[]): Buyer => {
 const PrintPage = () => {
   const { selectedInvoices } = useInvoice();
   const { buyers } = useBuyer();
+  const { getInvoiceItems } = useItem();
   const { pathname } = useLocation();
 
   const invoiceId = replaceStringChunk(pathname, "/print/");
@@ -38,6 +40,8 @@ const PrintPage = () => {
   };
 
   if (!selectedInvoice || !selectedBuyer) return <h1>Nemaš dokumenata mala</h1>;
+
+  console.log(getInvoiceItems());
 
   return (
     <>

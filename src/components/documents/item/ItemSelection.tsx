@@ -18,22 +18,18 @@ const initialValues: InvoiceItems = {
 };
 
 const ItemSelection = () => {
-  const { items, getItems } = useItem();
+  const { items, getItems, addItemToInvoice } = useItem();
 
   useEffect(() => {
     getItems();
   }, [getItems]);
-
-  const addItemToDocument = async (item: InvoiceItems) => {
-    console.log(item);
-  };
 
   return (
     <Formik
       validationSchema={ItemSelectionSchema}
       initialValues={initialValues}
       onSubmit={(values, actions) => {
-        addItemToDocument(values);
+        addItemToInvoice(values);
         actions.resetForm();
       }}
     >

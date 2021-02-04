@@ -1,16 +1,20 @@
 import axios from "axios";
 import create, { State } from "zustand";
 import { ItemValues } from "../components/documents/item/NewItem";
-import { Item } from "../types";
+import { InvoiceItems, Item } from "../types";
 
 interface ItemStoreType extends State {
   items: ItemValues[];
+  invoiceItems: InvoiceItems[];
   addItem: (item: ItemValues) => Promise<void>;
   getItems: () => Promise<void>;
+  addItemToInvoice: (item: InvoiceItems) => void;
+  getInvoiceItems: () => InvoiceItems[];
 }
 
 export const useItem = create<ItemStoreType>((set, get) => ({
   items: [],
+  invoiceItems: [],
   addItem: async (item) => {
     const { items } = get();
     try {
@@ -35,5 +39,15 @@ export const useItem = create<ItemStoreType>((set, get) => ({
     } catch (error) {
       console.log(error);
     }
+  },
+
+  addItemToInvoice: (item: InvoiceItems) => {
+    const { invoiceItems } = get();
+    set({ invoiceItems: [...invoiceItems, item] });
+  },
+
+  getInvoiceItems: () => {
+    const { invoiceItems } = get();
+    return invoiceItems;
   },
 }));

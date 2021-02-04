@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Dropdown, Menu, MenuItemProps } from "semantic-ui-react";
-import ItemSelection from "./documents/ItemSelection";
+import ItemSelection from "./documents/item/ItemSelection";
 
 const SideMenu = () => {
   const [activeItem, setActiveItem] = useState<string | undefined>("");

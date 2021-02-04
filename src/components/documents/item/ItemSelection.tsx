@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { Formik, Form } from "formik";
 import { Button, FormGroup } from "semantic-ui-react";
-import { LOADING } from "../../constants";
-import InputField from "../form/InputField";
-import { itemValidationSchema } from "../../validation/formValidationSchemas";
-import { InvoiceItems } from "../../types";
-import SelectInput from "../form/SelectInput";
-import { invoiceTypes } from "./invoiceR1/config";
-import { useItem } from "../../store/item";
-import { createSelectionOptions } from "../../utility/utils";
+import { LOADING } from "../../../constants";
+import InputField from "../../form/InputField";
+import { itemValidationSchema } from "../../../validation/formValidationSchemas";
+import { InvoiceItems } from "../../../types";
+import SelectInput from "../../form/SelectInput";
+import { useItem } from "../../../store/item";
+import { createSelectionOptions } from "../../../utility/utils";
+import { UMList } from "./config";
 
 const initialValues: InvoiceItems = {
   itemName: "",
@@ -54,11 +54,7 @@ const ItemSelection = () => {
           </FormGroup>
 
           <FormGroup widths={2}>
-            <SelectInput
-              label='Jedinica mjere'
-              options={invoiceTypes}
-              name='unit'
-            />
+            <SelectInput label='Jedinica mjere' options={UMList} name='unit' />
             <InputField
               disabled={isSubmitting}
               type='number'

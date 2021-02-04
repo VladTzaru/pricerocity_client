@@ -53,8 +53,15 @@ const ItemSelection = () => {
         // Push the item into local storage invoice items list
         invoice.items.push(updatedItem);
 
+        // Check are we updating an existing invoice
+        for (let i = 0; i < LSInvoices.length; i++) {
+          if (LSInvoices[i]._id === invoice._id) {
+            LSInvoices[i] = invoice;
+          }
+        }
+
         // Push updated invoice to new localStorage state
-        updatedLocalStorage.push(invoice);
+        updatedLocalStorage = [...LSInvoices];
 
         // Save to localStorage
         addDataToLocalStorage(LOCAL_STORAGE_INVOICES, updatedLocalStorage);

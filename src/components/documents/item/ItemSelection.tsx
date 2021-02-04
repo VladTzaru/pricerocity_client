@@ -38,29 +38,31 @@ const ItemSelection = () => {
           LOCAL_STORAGE_INVOICES,
           []
         );
-        // Find the correct invoice
+
+        // Get the correct invoice
         const invoice = LSInvoices.filter((i) => i._id === invoiceId)[0];
 
-        // Select the correct item
+        // Get the correct item
         const item = items.filter((i) => i.itemNameCro === values.itemName)[0];
 
-        // Merge items and form list
+        // Merge items (values from invoice r1 form) and form values
         const updatedItem = {
           ...values,
           ...item,
         };
 
-        // Push the item into local storage invoice items list
+        // Push the item into LS invoice item list
         invoice.items.push(updatedItem);
 
-        // Check are we updating an existing invoice
+        // Check if we are updating an existing invoice
+        // Update if it exists
         for (let i = 0; i < LSInvoices.length; i++) {
           if (LSInvoices[i]._id === invoice._id) {
             LSInvoices[i] = invoice;
           }
         }
 
-        // Push updated invoice to new localStorage state
+        // Update the invoice list
         updatedLocalStorage = [...LSInvoices];
 
         // Save to localStorage

@@ -4,8 +4,14 @@ import InputField from "../../form/InputField";
 import { Button, FormGroup, Header } from "semantic-ui-react";
 import axios from "axios";
 import { LOADING } from "../../../constants";
-import { ItemValues } from "../../../types";
 import { itemValidationSchema } from "../../../validation/formValidationSchemas";
+
+export interface ItemValues {
+  itemNameCro: string;
+  itemNameEng: string;
+  retailPrice: number;
+  vat: number;
+}
 
 const initialValues: ItemValues = {
   itemNameCro: "",

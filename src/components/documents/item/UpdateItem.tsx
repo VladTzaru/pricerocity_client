@@ -5,8 +5,9 @@ import { Button, FormGroup, Header, Icon } from "semantic-ui-react";
 import { LOADING } from "../../../constants";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import { Item, ItemValues } from "../../../types";
+import { Item } from "../../../types";
 import { itemValidationSchema } from "../../../validation/formValidationSchemas";
+import { ItemValues } from "./NewItem";
 
 const initialValues: ItemValues = {
   itemNameCro: "",

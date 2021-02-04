@@ -23,7 +23,13 @@ export const addDataToLocalStorage = <T>(key: string, data: T): void =>
 export const removeDataFromLocalStorage = (key: string): void =>
   localStorage.removeItem(key);
 
-export const getDataFromLocalStorage = <T>(key: string, fallBackValue: T) =>
+export const getDataFromLocalStorage = <T>(
+  key: string,
+  fallBackValue: T
+): T => {
+  let data;
   localStorage.getItem(key)
-    ? JSON.parse(localStorage.getItem(key) || "[]")
-    : fallBackValue;
+    ? (data = JSON.parse(localStorage.getItem(key) || "[]"))
+    : (data = fallBackValue);
+  return data;
+};

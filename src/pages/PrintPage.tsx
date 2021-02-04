@@ -109,10 +109,10 @@ const PrintPage = () => {
                   </Table.Header>
 
                   <Table.Body>
-                    {selectedInvoice.items.map((item) => {
+                    {selectedInvoice.items.map((item, i) => {
                       return (
                         <Table.Row key={item.id}>
-                          <Table.Cell></Table.Cell>
+                          <Table.Cell>{i + 1}</Table.Cell>
                           <Table.Cell>{item.itemName}</Table.Cell>
                           <Table.Cell>{item.quantity}</Table.Cell>
                           <Table.Cell>{item.vat}</Table.Cell>

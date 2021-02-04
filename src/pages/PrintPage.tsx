@@ -118,14 +118,17 @@ const PrintPage = () => {
                         <Table.Row key={item.id}>
                           <Table.Cell>{i + 1}</Table.Cell>
                           <Table.Cell>{item.itemName}</Table.Cell>
-                          <Table.Cell>{item.quantity}</Table.Cell>
+                          <Table.Cell>
+                            {item.quantity} {item.unit}
+                          </Table.Cell>
                           <Table.Cell>{item.vat}%</Table.Cell>
-                          <Table.Cell>{item.retailPrice}</Table.Cell>
+                          <Table.Cell>{item.retailPrice} kn</Table.Cell>
                           <Table.Cell>{item.discount}%</Table.Cell>
                           <Table.Cell>
                             {roundTo2Digits(
                               item.retailPrice * ((100 - item.discount) / 100)
-                            )}
+                            )}{" "}
+                            kn
                           </Table.Cell>
                           <Table.Cell>
                             {roundTo2Digits(

@@ -26,7 +26,7 @@ const selectBuyer = (name: string, list: Buyer[]): Buyer => {
 const PrintPage = () => {
   const { selectedInvoices } = useInvoice();
   const { buyers } = useBuyer();
-  const { getInvoiceItems } = useItem();
+  const { invoiceItems } = useItem();
   const { pathname } = useLocation();
 
   const invoiceId = replaceStringChunk(pathname, "/print/");
@@ -40,8 +40,6 @@ const PrintPage = () => {
   };
 
   if (!selectedInvoice || !selectedBuyer) return <h1>Nemaš dokumenata mala</h1>;
-
-  console.log(getInvoiceItems());
 
   return (
     <>
@@ -118,36 +116,18 @@ const PrintPage = () => {
                   </Table.Header>
 
                   <Table.Body>
-                    <Table.Row>
-                      <Table.Cell>1</Table.Cell>
-                      <Table.Cell>Cell</Table.Cell>
-                      <Table.Cell>Cell</Table.Cell>
-                      <Table.Cell>Cell</Table.Cell>
-                      <Table.Cell>Cell</Table.Cell>
-                      <Table.Cell>Cell</Table.Cell>
-                      <Table.Cell>Cell</Table.Cell>
-                      <Table.Cell>Cell</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                      <Table.Cell>2</Table.Cell>
-                      <Table.Cell>Cell</Table.Cell>
-                      <Table.Cell>Cell</Table.Cell>
-                      <Table.Cell>Cell</Table.Cell>
-                      <Table.Cell>Cell</Table.Cell>
-                      <Table.Cell>Cell</Table.Cell>
-                      <Table.Cell>Cell</Table.Cell>
-                      <Table.Cell>Cell</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                      <Table.Cell>3</Table.Cell>
-                      <Table.Cell>Cell</Table.Cell>
-                      <Table.Cell>Cell</Table.Cell>
-                      <Table.Cell>Cell</Table.Cell>
-                      <Table.Cell>Cell</Table.Cell>
-                      <Table.Cell>Cell</Table.Cell>
-                      <Table.Cell>Cell</Table.Cell>
-                      <Table.Cell>Cell</Table.Cell>
-                    </Table.Row>
+                    {invoiceItems.map((item) => {
+                      return (
+                        <Table.Row key={item.id}>
+                          <Table.Cell></Table.Cell>
+                          <Table.Cell>{item.itemName}</Table.Cell>
+                          <Table.Cell>{item.quantity}</Table.Cell>
+                          <Table.Cell>{item.vat}</Table.Cell>
+                          <Table.Cell>{item.retailPrice}</Table.Cell>
+                          <Table.Cell>{item.discount}</Table.Cell>
+                        </Table.Row>
+                      );
+                    })}
                   </Table.Body>
                 </Table>
               </Grid.Column>

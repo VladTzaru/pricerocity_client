@@ -15,7 +15,7 @@ export interface Item {
   vat: number;
 }
 
-export interface InvoiceItems {
+export interface InvoiceItem {
   itemName: string;
   quantity: number;
   unit: string;
@@ -65,7 +65,7 @@ export interface InvoiceR1 {
   documentType: DocumentType; // OBRAZAC-R1
   paymentMethod: PaymentMethods;
   invoiceIssuedAt: Date; // 12:00
-  items: InvoiceItems[];
+  items: InvoiceItem[];
   notes?: string;
 }
 

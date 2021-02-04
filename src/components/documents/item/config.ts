@@ -1,4 +1,17 @@
-import { SelectionOptions } from "../../../types";
+import { InvoiceItem, Item, SelectionOptions } from "../../../types";
+
+export interface InvoiceItems extends Item, InvoiceItem {}
+
+export const initialValues: InvoiceItems = {
+  itemNameCro: "",
+  itemNameEng: "",
+  retailPrice: 0,
+  vat: 0,
+  itemName: "",
+  quantity: 0,
+  unit: "",
+  discount: 0,
+};
 
 export const UMList: SelectionOptions<string>[] = [
   {

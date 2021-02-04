@@ -4,18 +4,11 @@ import { Button, FormGroup } from "semantic-ui-react";
 import { LOADING } from "../../../constants";
 import InputField from "../../form/InputField";
 import { ItemSelectionSchema } from "../../../validation/formValidationSchemas";
-import { InvoiceItems } from "../../../types";
 import SelectInput from "../../form/SelectInput";
 import { useItem } from "../../../store/item";
 import { createSelectionOptions } from "../../../utility/utils";
 import { UMList } from "./config";
-
-const initialValues: InvoiceItems = {
-  itemName: "",
-  quantity: 0,
-  unit: "",
-  discount: 0,
-};
+import { initialValues } from "./config";
 
 const ItemSelection = () => {
   const { items, getItems, addItemToInvoice } = useItem();
@@ -29,7 +22,13 @@ const ItemSelection = () => {
       validationSchema={ItemSelectionSchema}
       initialValues={initialValues}
       onSubmit={(values, actions) => {
-        addItemToInvoice(values);
+        const item = items.filter((i) => i.itemNameCro === values.itemName)[0];
+        const updatedItem = {
+          ...values,
+          ...item,
+        };
+
+        addItemToInvoice(updatedItem);
         actions.resetForm();
       }}
     >

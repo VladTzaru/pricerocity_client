@@ -3,7 +3,7 @@ import { Formik, Form } from "formik";
 import { Button, FormGroup } from "semantic-ui-react";
 import { LOADING } from "../../../constants";
 import InputField from "../../form/InputField";
-import { itemValidationSchema } from "../../../validation/formValidationSchemas";
+import { ItemSelectionSchema } from "../../../validation/formValidationSchemas";
 import { InvoiceItems } from "../../../types";
 import SelectInput from "../../form/SelectInput";
 import { useItem } from "../../../store/item";
@@ -30,7 +30,7 @@ const ItemSelection = () => {
 
   return (
     <Formik
-      validationSchema={itemValidationSchema}
+      validationSchema={ItemSelectionSchema}
       initialValues={initialValues}
       onSubmit={(values, actions) => {
         addItemToDocument(values);

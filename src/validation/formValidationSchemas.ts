@@ -38,3 +38,14 @@ export const invoiceR1Schema = Yup.object().shape({
   paymentMethod: Yup.string().required("Obavezno polje"),
   invoiceIssuedAt: Yup.date().required("Obavezno polje").nullable(),
 });
+
+export const ItemSelectionSchema = Yup.object().shape({
+  itemName: Yup.string().required("Obavezno polje"),
+  quantity: Yup.number()
+    .min(0, "Negativni brojevi nisu dozovljeni")
+    .required("Obavezno polje"),
+  unit: Yup.string().required("Obavezno polje"),
+  discount: Yup.number()
+    .min(0, "Negativni brojevi nisu dozovljeni")
+    .required("Obavezno polje"),
+});

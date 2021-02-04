@@ -33,3 +33,5 @@ export const getDataFromLocalStorage = <T>(
     : (data = fallBackValue);
   return data;
 };
+
+export const roundTo2Digits = (num: number) => Math.floor(num * 100) / 100;

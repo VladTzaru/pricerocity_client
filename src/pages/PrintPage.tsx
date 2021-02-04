@@ -10,7 +10,11 @@ import {
 import { useBuyer } from "../store/buyer";
 import { useInvoice } from "../store/invoice";
 import { Buyer, DateFormat, DocumentType } from "../types";
-import { formatDate, replaceStringChunk } from "../utility/utils";
+import {
+  formatDate,
+  replaceStringChunk,
+  roundTo2Digits,
+} from "../utility/utils";
 
 const selectBuyer = (name: string, list: Buyer[]): Buyer => {
   const buyer = list.filter((list) => list.name === name);
@@ -115,9 +119,21 @@ const PrintPage = () => {
                           <Table.Cell>{i + 1}</Table.Cell>
                           <Table.Cell>{item.itemName}</Table.Cell>
                           <Table.Cell>{item.quantity}</Table.Cell>
-                          <Table.Cell>{item.vat}</Table.Cell>
+                          <Table.Cell>{item.vat}%</Table.Cell>
                           <Table.Cell>{item.retailPrice}</Table.Cell>
-                          <Table.Cell>{item.discount}</Table.Cell>
+                          <Table.Cell>{item.discount}%</Table.Cell>
+                          <Table.Cell>
+                            {roundTo2Digits(
+                              item.retailPrice * ((100 - item.discount) / 100)
+                            )}
+                          </Table.Cell>
+                          <Table.Cell>
+                            {roundTo2Digits(
+                              item.quantity *
+                                (item.retailPrice *
+                                  ((100 - item.discount) / 100))
+                            )}
+                          </Table.Cell>
                         </Table.Row>
                       );
                     })}

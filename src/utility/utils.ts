@@ -17,10 +17,10 @@ export function createSelectionOptions<T>(list: Array<T>, propValue: string) {
 export const formatDate = (date: Date | string, dateFormat: DateFormat) =>
   format(new Date(date), dateFormat);
 
-export const addDataToLocalStorage = <T>(key: string, data: T): void =>
+export const addDataToLocalStorage = <T>(key: string, data: T) =>
   localStorage.setItem(key, JSON.stringify(data));
 
-export const removeDataFromLocalStorage = (key: string): void =>
+export const removeDataFromLocalStorage = (key: string) =>
   localStorage.removeItem(key);
 
 export const getDataFromLocalStorage = <T>(

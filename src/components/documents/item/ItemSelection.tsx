@@ -31,6 +31,8 @@ const ItemSelection = () => {
       validationSchema={ItemSelectionSchema}
       initialValues={initialValues}
       onSubmit={(values, actions) => {
+        let updatedLocalStorage = [];
+
         // Get invoices from localStorage
         const LSInvoices = getDataFromLocalStorage<InvoiceR1[]>(
           LOCAL_STORAGE_INVOICES,
@@ -51,8 +53,11 @@ const ItemSelection = () => {
         // Push the item into local storage invoice items list
         invoice.items.push(updatedItem);
 
+        // Push updated invoice to new localStorage state
+        updatedLocalStorage.push(invoice);
+
         // Save to localStorage
-        addDataToLocalStorage(LOCAL_STORAGE_INVOICES, invoice);
+        addDataToLocalStorage(LOCAL_STORAGE_INVOICES, updatedLocalStorage);
 
         addItemToInvoice(updatedItem);
         actions.resetForm();

@@ -5,13 +5,9 @@ import { Button, FormGroup, Header } from "semantic-ui-react";
 import { LOADING } from "../../../constants";
 import { itemValidationSchema } from "../../../validation/formValidationSchemas";
 import { useItem } from "../../../store/item";
+import { Item } from "../../../types";
 
-export interface ItemValues {
-  itemNameCro: string;
-  itemNameEng: string;
-  retailPrice: number;
-  vat: number;
-}
+export interface ItemValues extends Item {}
 
 const initialValues: ItemValues = {
   itemNameCro: "",

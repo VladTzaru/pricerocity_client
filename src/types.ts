@@ -8,17 +8,15 @@ export interface ComponentMapping {
 }
 
 export interface Item {
-  createdAt: string;
-  id: string;
+  id?: string;
   itemNameCro: string;
   itemNameEng: string;
   retailPrice: number;
-  updatedAt: string;
   vat: number;
 }
 
 export interface InvoiceItems {
-  productName: string;
+  itemName: string;
   quantity: number;
   unit: string;
   discount: number;

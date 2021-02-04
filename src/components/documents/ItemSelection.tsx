@@ -9,7 +9,7 @@ import SelectInput from "../form/SelectInput";
 import { invoiceTypes } from "./invoiceR1/config";
 
 const initialValues: InvoiceItems = {
-  productName: "",
+  itemName: "",
   quantity: 0,
   unit: "",
   discount: 0,

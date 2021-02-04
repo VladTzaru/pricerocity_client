@@ -17,7 +17,7 @@ import { v4 as uuidv4 } from "uuid";
 const InvoiceR1 = () => {
   const { buyers } = useBuyer();
   const history = useHistory();
-  const { selectInvoice } = useInvoice();
+  const { draftInvoice } = useInvoice();
   return (
     <Formik
       validationSchema={invoiceR1Schema}
@@ -28,7 +28,7 @@ const InvoiceR1 = () => {
         );
         values.buyer = buyerInfo[0].id;
         values._id = uuidv4();
-        selectInvoice(values);
+        draftInvoice(values);
         history.push(`/print/${values._id}`);
       }}
     >

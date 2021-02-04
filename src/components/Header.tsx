@@ -6,7 +6,7 @@ import { DateFormat, InvoiceR1 } from "../types";
 import { formatDate } from "../utility/utils";
 
 const Header = () => {
-  const { selectedInvoices } = useInvoice();
+  const { draftedInvoices } = useInvoice();
 
   const renderNotificationsForInvoices = (notifications: InvoiceR1[]) => {
     if (notifications.length === 0) return;
@@ -58,14 +58,14 @@ const Header = () => {
       </Dropdown>
 
       <Menu.Menu position='right'>
-        {selectedInvoices.length > 0 && (
+        {draftedInvoices.length > 0 && (
           <Dropdown
             labeled
-            text={selectedInvoices.length.toString()}
+            text={draftedInvoices.length.toString()}
             icon='mail'
             item
           >
-            {renderNotificationsForInvoices(selectedInvoices)}
+            {renderNotificationsForInvoices(draftedInvoices)}
           </Dropdown>
         )}
 

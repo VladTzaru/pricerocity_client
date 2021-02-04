@@ -24,13 +24,13 @@ const selectBuyer = (name: string, list: Buyer[]): Buyer => {
 };
 
 const PrintPage = () => {
-  const { selectedInvoices } = useInvoice();
+  const { draftedInvoices } = useInvoice();
   const { buyers } = useBuyer();
   const { invoiceItems } = useItem();
   const { pathname } = useLocation();
 
   const invoiceId = replaceStringChunk(pathname, "/print/");
-  const selectedInvoice = selectInvoice(invoiceId, selectedInvoices);
+  const selectedInvoice = selectInvoice(invoiceId, draftedInvoices);
   const selectedBuyer = selectBuyer(selectedInvoice?.buyerName, buyers);
 
   const formatBuyer = () => {

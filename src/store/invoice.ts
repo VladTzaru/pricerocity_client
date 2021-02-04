@@ -9,24 +9,30 @@ import {
 } from "../utility/utils";
 
 interface InvoiceStoreType extends State {
-  selectedInvoices: InvoiceR1[];
-  selectInvoice: (document: InvoiceR1) => void;
-  addNewInvoice: (newDocument: InvoiceR1) => Promise<void>;
+  draftedInvoices: InvoiceR1[];
+  draftInvoice: (document: InvoiceR1) => void;
+  selectDraftedInvoice: (id: string, list: InvoiceR1[]) => InvoiceR1;
+  addNewInvoiceToDB: (newInvoice: InvoiceR1) => Promise<void>;
 }
 
 export const useInvoice = create<InvoiceStoreType>((set, get) => ({
-  selectedInvoices: getDataFromLocalStorage<[]>(LOCAL_STORAGE_INVOICES, []),
+  draftedInvoices: getDataFromLocalStorage<[]>(LOCAL_STORAGE_INVOICES, []),
 
-  selectInvoice: (invoice) => {
-    const { selectedInvoices } = get();
-    set({ selectedInvoices: [...selectedInvoices, invoice] });
+  draftInvoice: (invoice) => {
+    const { draftedInvoices } = get();
+    set({ selectedInvoices: [...draftedInvoices, invoice] });
     addDataToLocalStorage<InvoiceR1[]>(LOCAL_STORAGE_INVOICES, [
-      ...selectedInvoices,
+      ...draftedInvoices,
       invoice,
     ]);
   },
 
-  addNewInvoice: async (invoice: InvoiceR1) => {
+  selectDraftedInvoice: (id, list) => {
+    const invoice = list.filter((list) => list._id === id);
+    return invoice[0];
+  },
+
+  addNewInvoiceToDB: async (invoice) => {
     try {
       await axios.post<InvoiceR1>(
         `${process.env.REACT_APP_API}/invoice/new`,

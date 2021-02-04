@@ -2,9 +2,9 @@ import React from "react";
 import { Formik, Form } from "formik";
 import InputField from "../../form/InputField";
 import { Button, FormGroup, Header } from "semantic-ui-react";
-import axios from "axios";
 import { LOADING } from "../../../constants";
 import { itemValidationSchema } from "../../../validation/formValidationSchemas";
+import { useItem } from "../../../store/item";
 
 export interface ItemValues {
   itemNameCro: string;
@@ -21,24 +21,14 @@ const initialValues: ItemValues = {
 };
 
 const NewItem = () => {
-  const addNewItem = async (item: ItemValues) => {
-    try {
-      await axios.post(`${process.env.REACT_APP_API}/item/new`, item, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { addItem } = useItem();
 
   return (
     <Formik
       validationSchema={itemValidationSchema}
       initialValues={initialValues}
       onSubmit={(values, actions) => {
-        addNewItem(values);
+        addItem(values);
         actions.resetForm();
       }}
     >

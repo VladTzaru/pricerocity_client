@@ -9,7 +9,7 @@ import {
 } from "../utility/utils";
 
 interface InvoiceStoreType extends State {
-  selectedInvoices: InvoiceR1[] | [];
+  selectedInvoices: InvoiceR1[];
   selectInvoice: (document: InvoiceR1) => void;
   addNewInvoice: (newDocument: InvoiceR1) => Promise<void>;
 }

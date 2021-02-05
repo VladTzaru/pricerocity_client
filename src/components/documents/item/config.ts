@@ -11,7 +11,8 @@ export const initialValues: InvoiceItems = {
   quantity: 0,
   unit: "",
   discount: 0,
-  shipping: 0,
+  discountedPrice: 0,
+  total: 0,
 };
 
 export const UMList: SelectionOptions<string>[] = [

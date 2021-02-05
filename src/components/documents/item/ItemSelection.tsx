@@ -42,12 +42,12 @@ const ItemSelection = () => {
 
         // Get the correct invoice
         const invoice = LSInvoices.filter((i) => i._id === invoiceId)[0];
-        invoice.shipping = values.shipping;
 
         // Get the correct item
         const item = items.filter((i) => i.itemNameCro === values.itemName)[0];
 
         item.id = uuidv4(); // Update id so we can have multiple identical items and safe mapping (list key)
+
         // Merge items (values from invoice r1 form) and form values
         const updatedItem = {
           ...values,

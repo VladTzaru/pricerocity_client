@@ -175,11 +175,17 @@ const PrintPage = () => {
               </Grid.Column>
               <Grid.Column width={6}>
                 <p className='small-text'>
-                  DOSTAVA: {selectedInvoice.shipping}
+                  DOSTAVA: {selectedInvoice.summary.shipping}
                 </p>
-                <p className='small-text'>UKUPNO: 0</p>
-                <p className='small-text'>PDV: 0</p>
-                <p className='small-text'>UKUPNO S PDV-om: 0</p>
+                <p className='small-text'>
+                  UKUPNO: {selectedInvoice.summary.totalWithoutVat}
+                </p>
+                <p className='small-text'>
+                  PDV: {selectedInvoice.summary.totalVat}
+                </p>
+                <p className='small-text'>
+                  UKUPNO S PDV-om: {selectedInvoice.summary.totalWithVAT}
+                </p>
               </Grid.Column>
             </Grid.Row>
 

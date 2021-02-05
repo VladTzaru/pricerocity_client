@@ -20,6 +20,14 @@ export interface InvoiceItem extends Item {
   quantity: number;
   unit: string;
   discount: number;
+  discountedPrice: number;
+  total: number;
+}
+
+export interface InvoiceSummary {
+  totalWithoutVat: number;
+  totalVat: number;
+  totalWithVAT: number;
   shipping: number;
 }
 
@@ -67,7 +75,7 @@ export interface InvoiceR1 {
   paymentMethod: PaymentMethods;
   invoiceIssuedAt: Date; // 12:00
   items: InvoiceItem[];
-  shipping: number;
+  summary: InvoiceSummary;
   notes?: string;
 }
 

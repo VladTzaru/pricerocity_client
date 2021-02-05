@@ -16,6 +16,7 @@ import { UMList } from "./config";
 import { initialValues } from "./config";
 import { InvoiceR1 } from "../../../types";
 import { useLocation } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 const ItemSelection = () => {
   const { items, getItemsFromDB, addItemToInvoice } = useItem();
@@ -46,6 +47,7 @@ const ItemSelection = () => {
         // Get the correct item
         const item = items.filter((i) => i.itemNameCro === values.itemName)[0];
 
+        item.id = uuidv4(); // Update id so we can have multiple identical items and safe mapping (list key)
         // Merge items (values from invoice r1 form) and form values
         const updatedItem = {
           ...values,

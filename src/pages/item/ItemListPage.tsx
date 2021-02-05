@@ -6,7 +6,7 @@ import { useItem } from "../../store/item";
 import { MatchParams } from "../../types";
 
 const ItemListPage: React.FC<RouteComponentProps<MatchParams>> = () => {
-  const { items, getItems } = useItem();
+  const { items, getItemsFromDB } = useItem();
 
   const renderContent = () => {
     if (items.length === 0)
@@ -35,8 +35,8 @@ const ItemListPage: React.FC<RouteComponentProps<MatchParams>> = () => {
   };
 
   useEffect(() => {
-    getItems();
-  }, [getItems]);
+    getItemsFromDB();
+  }, [getItemsFromDB]);
   return (
     <div>
       <h1>Sve stavke ({items.length})</h1>

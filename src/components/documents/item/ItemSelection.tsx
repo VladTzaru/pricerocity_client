@@ -18,13 +18,13 @@ import { InvoiceR1 } from "../../../types";
 import { useLocation } from "react-router-dom";
 
 const ItemSelection = () => {
-  const { items, getItems, addItemToInvoice } = useItem();
+  const { items, getItemsFromDB, addItemToInvoice } = useItem();
   const { pathname } = useLocation();
   const invoiceId = replaceStringChunk(pathname, "/print/");
 
   useEffect(() => {
-    getItems();
-  }, [getItems]);
+    getItemsFromDB();
+  }, [getItemsFromDB]);
 
   return (
     <Formik

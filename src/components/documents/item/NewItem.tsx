@@ -17,14 +17,14 @@ const initialValues: ItemValues = {
 };
 
 const NewItem = () => {
-  const { addItem } = useItem();
+  const { addItemToDB } = useItem();
 
   return (
     <Formik
       validationSchema={itemValidationSchema}
       initialValues={initialValues}
       onSubmit={(values, actions) => {
-        addItem(values);
+        addItemToDB(values);
         actions.resetForm();
       }}
     >

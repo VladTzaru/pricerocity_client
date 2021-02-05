@@ -6,8 +6,8 @@ import { InvoiceItem, Item } from "../types";
 interface ItemStoreType extends State {
   items: ItemValues[];
   invoiceItems: InvoiceItem[];
-  addItem: (item: ItemValues) => Promise<void>;
-  getItems: () => Promise<void>;
+  addItemToDB: (item: ItemValues) => Promise<void>;
+  getItemsFromDB: () => Promise<void>;
   addItemToInvoice: (item: InvoiceItem) => void;
   getInvoiceItems: () => InvoiceItem[];
 }
@@ -15,7 +15,7 @@ interface ItemStoreType extends State {
 export const useItem = create<ItemStoreType>((set, get) => ({
   items: [],
   invoiceItems: [],
-  addItem: async (item) => {
+  addItemToDB: async (item) => {
     const { items } = get();
     try {
       await axios.post<Item[]>(`${process.env.REACT_APP_API}/item/new`, item, {
@@ -29,7 +29,7 @@ export const useItem = create<ItemStoreType>((set, get) => ({
     }
   },
 
-  getItems: async () => {
+  getItemsFromDB: async () => {
     try {
       const { data } = await axios.get<Item[]>(
         `${process.env.REACT_APP_API}/item`

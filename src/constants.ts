@@ -16,3 +16,7 @@ Ovo nije fiskalni račun.
 Odgovorna za izdavanje: Ivanka Đelilović
 Kontrolor: Ivanka Đelilović
 `;
+export const PLASINIA_FOR_PAYMENT = `
+Opis plaćanja: Račun /2/1								
+IBAN: HR9723400091110950153								
+Swift: PBZGHR2X`;

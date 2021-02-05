@@ -5,6 +5,7 @@ import SideMenu from "../components/SideMenu";
 import {
   INVOICE_R1,
   PLASINIA_ADDRESS,
+  PLASINIA_FOR_PAYMENT,
   PLASINIA_INFORMATION,
   PLASINIA_TAX_REGULATIONS,
 } from "../constants";
@@ -167,12 +168,34 @@ const PrintPage = () => {
               </Grid.Column>
             </Grid.Row>
 
-            {/* Info about invoice and responsible person */}
+            {/* Info about invoice and responsible person and totals */}
             <Grid.Row>
-              <Grid.Column width={8}>
+              <Grid.Column width={10}>
                 <p className='small-text'>{PLASINIA_TAX_REGULATIONS}</p>
               </Grid.Column>
+              <Grid.Column width={6}>
+                <p className='small-text'>DOSTAVA: 0</p>
+                <p className='small-text'>UKUPNO: 0</p>
+                <p className='small-text'>PDV: 0</p>
+                <p className='small-text'>UKUPNO S PDV-om: 0</p>
+              </Grid.Column>
             </Grid.Row>
+
+            {/* FOOTER */}
+            <Grid.Row>
+              <Grid.Column width={10}>
+                <p className='small-text'>ZA PLAĆANJE</p>
+                <p className='small-text'>{PLASINIA_FOR_PAYMENT}</p>
+              </Grid.Column>
+            </Grid.Row>
+            {selectedInvoice.notes && (
+              <Grid.Row>
+                <Grid.Column width={16}>
+                  <p className='small-text'>NAPOMENE</p>
+                  <p className='small-text'>{selectedInvoice.notes}</p>
+                </Grid.Column>
+              </Grid.Row>
+            )}
           </Grid>
         </div>
       </div>

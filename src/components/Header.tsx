@@ -15,13 +15,19 @@ const Header = () => {
         <Dropdown.Header content='Notifikacije' />
         <Dropdown.Divider />
         {notifications.map((i) => (
-          <Dropdown.Item
-            as={Link}
-            to={`/print/${i._id}`}
-            key={i._id}
-            label={{ color: "orange", empty: true, circular: true }}
-            text={`${i.buyerName} ${formatDate(i.date, DateFormat.MM_DD_YYYY)}`}
-          />
+          <div key={i._id}>
+            <Dropdown.Item
+              as={Link}
+              to={`/print/${i._id}`}
+              text={`${i.buyerName} ${formatDate(
+                i.date,
+                DateFormat.MM_DD_YYYY
+              )}`}
+            />
+            <Button key={i.buyer} onClick={() => console.log(i._id)} basic>
+              Ukloni
+            </Button>
+          </div>
         ))}
       </Dropdown.Menu>
     );

@@ -20,7 +20,7 @@ export const useInvoice = create<InvoiceStoreType>((set, get) => ({
 
   draftInvoice: (invoice) => {
     const { draftedInvoices } = get();
-    set({ selectedInvoices: [...draftedInvoices, invoice] });
+    set({ draftedInvoices: [...draftedInvoices, invoice] });
     addDataToLocalStorage<InvoiceR1[]>(LOCAL_STORAGE_INVOICES, [
       ...draftedInvoices,
       invoice,

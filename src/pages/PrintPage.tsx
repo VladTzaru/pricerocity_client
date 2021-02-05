@@ -78,13 +78,13 @@ const PrintPage = () => {
               </Grid.Column>
             </Grid.Row>
             <Grid.Row>
-              <Grid.Column floated='left' width={4}>
+              <Grid.Column floated='left' width={5}>
                 <p className='small-text'>KUPAC: {formatBuyer()}</p>
               </Grid.Column>
-              <Grid.Column floated='right' width={4}>
+              <Grid.Column floated='right' width={5}>
                 <p className='small-text'>PRIMAOC: {formatBuyer()}</p>
               </Grid.Column>
-              <Grid.Column floated='right' width={7}>
+              <Grid.Column floated='right' width={6}>
                 <p className='small-text'>
                   TIP RAČUNA: {selectedInvoice.documentType}
                 </p>
@@ -99,10 +99,10 @@ const PrintPage = () => {
                   NAČIN PLAĆANJA: {selectedInvoice.paymentMethod}
                 </p>
                 <p className='small-text'>
-                  VRIJEME IZDAVANJA RAČUNA:{" "}
+                  RAČUN IZDAT:{" "}
                   {formatDate(
                     selectedInvoice.invoiceIssuedAt,
-                    DateFormat.MM_DD_YYYY
+                    DateFormat.HH_mm
                   )}
                 </p>
               </Grid.Column>

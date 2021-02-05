@@ -174,7 +174,9 @@ const PrintPage = () => {
                 <p className='small-text'>{PLASINIA_TAX_REGULATIONS}</p>
               </Grid.Column>
               <Grid.Column width={6}>
-                <p className='small-text'>DOSTAVA: 0</p>
+                <p className='small-text'>
+                  DOSTAVA: {selectedInvoice.shipping}
+                </p>
                 <p className='small-text'>UKUPNO: 0</p>
                 <p className='small-text'>PDV: 0</p>
                 <p className='small-text'>UKUPNO S PDV-om: 0</p>

@@ -45,7 +45,6 @@ export const ItemSelectionSchema = Yup.object().shape({
     .min(0, "Negativni brojevi nisu dozovljeni")
     .required("Obavezno polje"),
   unit: Yup.string().required("Obavezno polje"),
-  discount: Yup.number()
-    .min(0, "Negativni brojevi nisu dozovljeni")
-    .required("Obavezno polje"),
+  discount: Yup.number().min(0, "Negativni brojevi nisu dozovljeni"),
+  shipping: Yup.number().min(0, "Negativni brojevi nisu dozovljeni"),
 });

@@ -41,6 +41,7 @@ const ItemSelection = () => {
 
         // Get the correct invoice
         const invoice = LSInvoices.filter((i) => i._id === invoiceId)[0];
+        invoice.shipping = values.shipping;
 
         // Get the correct item
         const item = items.filter((i) => i.itemNameCro === values.itemName)[0];
@@ -98,15 +99,23 @@ const ItemSelection = () => {
             />
           </FormGroup>
 
-          <Button
-            loading={isSubmitting}
-            primary
-            size='large'
-            disabled={isSubmitting || !dirty || !isValid}
-            type='submit'
-          >
-            {isSubmitting ? LOADING : "Dodaj stavku"}
-          </Button>
+          <FormGroup widths={2}>
+            <InputField
+              disabled={isSubmitting}
+              type='number'
+              name='shipping'
+              label='Dostava'
+            />
+            <Button
+              loading={isSubmitting}
+              secondary
+              size='large'
+              disabled={isSubmitting || !dirty || !isValid}
+              type='submit'
+            >
+              {isSubmitting ? LOADING : "Dodaj stavku"}
+            </Button>
+          </FormGroup>
         </Form>
       )}
     </Formik>

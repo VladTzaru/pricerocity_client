@@ -20,6 +20,7 @@ export interface InvoiceItem extends Item {
   quantity: number;
   unit: string;
   discount: number;
+  shipping: number;
 }
 
 export type BuyerType = "Privatno lice" | "Pravno lice";
@@ -66,6 +67,7 @@ export interface InvoiceR1 {
   paymentMethod: PaymentMethods;
   invoiceIssuedAt: Date; // 12:00
   items: InvoiceItem[];
+  shipping: number;
   notes?: string;
 }
 

@@ -22,6 +22,10 @@ body {
   width: 100%;
 }
 
+.small-text {
+  font-size: 11px;
+}
+
 .page {
   width: 210mm;
   min-height: 297mm;

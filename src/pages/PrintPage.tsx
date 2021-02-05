@@ -6,6 +6,7 @@ import {
   INVOICE_R1,
   PLASINIA_ADDRESS,
   PLASINIA_INFORMATION,
+  PLASINIA_TAX_REGULATIONS,
 } from "../constants";
 import { useBuyer } from "../store/buyer";
 import { useInvoice } from "../store/invoice";
@@ -46,11 +47,13 @@ const PrintPage = () => {
           <Grid>
             {/* GENERAL INFO */}
             <Grid.Row>
-              <Grid.Column width={16}>{PLASINIA_INFORMATION}</Grid.Column>
+              <Grid.Column width={16}>
+                <p className='small-text'>{PLASINIA_INFORMATION}</p>
+              </Grid.Column>
             </Grid.Row>
             <Grid.Row>
               <Grid.Column floated='left' width={10}>
-                {PLASINIA_ADDRESS}
+                <p className='small-text'>{PLASINIA_ADDRESS}</p>
               </Grid.Column>
               <Grid.Column floated='right' width={6}>
                 PLASINIA
@@ -60,7 +63,7 @@ const PrintPage = () => {
             {/* DOCUMENT NAME */}
             <Grid.Row>
               <Grid.Column width={16}>
-                <Header as='h2'>
+                <Header as='h3'>
                   {selectedInvoice?.documentType === DocumentType.INVOICE_R1
                     ? INVOICE_R1
                     : selectedInvoice?.documentType}
@@ -75,14 +78,33 @@ const PrintPage = () => {
               </Grid.Column>
             </Grid.Row>
             <Grid.Row>
-              <Grid.Column floated='left' width={5}>
-                KUPAC: {formatBuyer()}
+              <Grid.Column floated='left' width={4}>
+                <p className='small-text'>KUPAC: {formatBuyer()}</p>
               </Grid.Column>
-              <Grid.Column floated='right' width={5}>
-                Primaoc: {formatBuyer()}
+              <Grid.Column floated='right' width={4}>
+                <p className='small-text'>PRIMAOC: {formatBuyer()}</p>
               </Grid.Column>
-              <Grid.Column floated='right' width={5}>
-                Ostalo:
+              <Grid.Column floated='right' width={7}>
+                <p className='small-text'>
+                  TIP RAČUNA: {selectedInvoice.documentType}
+                </p>
+                <p className='small-text'>
+                  BROJ RAČUNA:{" "}
+                  {`${selectedInvoice.invoiceNumberPrefix}/${selectedInvoice.invoiceNumberSuffix}`}
+                </p>
+                <p className='small-text'>
+                  VALUTA RAČUNA: {selectedInvoice.paymentDeadlineDate}
+                </p>
+                <p className='small-text'>
+                  NAČIN PLAĆANJA: {selectedInvoice.paymentMethod}
+                </p>
+                <p className='small-text'>
+                  VRIJEME IZDAVANJA RAČUNA:{" "}
+                  {formatDate(
+                    selectedInvoice.invoiceIssuedAt,
+                    DateFormat.MM_DD_YYYY
+                  )}
+                </p>
               </Grid.Column>
             </Grid.Row>
 
@@ -142,6 +164,13 @@ const PrintPage = () => {
                     })}
                   </Table.Body>
                 </Table>
+              </Grid.Column>
+            </Grid.Row>
+
+            {/* Info about invoice and responsible person */}
+            <Grid.Row>
+              <Grid.Column width={8}>
+                <p className='small-text'>{PLASINIA_TAX_REGULATIONS}</p>
               </Grid.Column>
             </Grid.Row>
           </Grid>

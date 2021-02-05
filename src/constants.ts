@@ -8,3 +8,11 @@ Ivanka Đelilović | MBS: 080863167 | IBAN: HR9723400091110950153
 PLASINIA`;
 export const PLASINIA_ADDRESS =
   "PLASINIA d.o.o. Vratnička 6 Zagreb, 10 040, Hrvatska OIB: 95470441689";
+export const PLASINIA_TAX_REGULATIONS = `
+Račun je sastavljen na način koji uređuju porezni propisi te prema Zakonu
+o računovodstvu (NN 75/15, NN 134/15) čl. 9, st.3 ne mora biti potpisan.
+Ovo nije fiskalni račun.
+
+Odgovorna za izdavanje: Ivanka Đelilović
+Kontrolor: Ivanka Đelilović
+`;

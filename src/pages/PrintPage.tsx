@@ -12,11 +12,7 @@ import {
 import { useBuyer } from "../store/buyer";
 import { useInvoice } from "../store/invoice";
 import { Buyer, DateFormat, DocumentType } from "../types";
-import {
-  formatDate,
-  replaceStringChunk,
-  roundTo2Digits,
-} from "../utility/utils";
+import { formatDate, replaceStringChunk } from "../utility/utils";
 
 const selectBuyer = (name: string, list: Buyer[]): Buyer => {
   const buyer = list.filter((list) => list.name === name);
@@ -37,6 +33,15 @@ const PrintPage = () => {
       return `${selectedBuyer?.name} ${selectedBuyer.address} ${selectedBuyer.zipCode}, ${selectedBuyer.city}`;
     return `${selectedBuyer?.name} ${selectedBuyer.address} ${selectedBuyer.zipCode}, ${selectedBuyer.city}, OIB: ${selectedBuyer.vatNumber}`;
   };
+
+  // const calculateTotals = () => {
+  //   if (!selectedInvoice) return;
+  //   let total = 0;
+  //   for (const i in selectedInvoice.items) {
+  //     console.log((total += selectedInvoice.items[i].total));
+  //   }
+  //   return total;
+  // };
 
   if (!selectedInvoice || !selectedBuyer) return <h1>Nemaš dokumenata mala</h1>;
 
@@ -142,18 +147,8 @@ const PrintPage = () => {
                         <Table.Cell>{item.vat}%</Table.Cell>
                         <Table.Cell>{item.retailPrice} kn</Table.Cell>
                         <Table.Cell>{item.discount}%</Table.Cell>
-                        <Table.Cell>
-                          {roundTo2Digits(
-                            item.retailPrice * ((100 - item.discount) / 100)
-                          )}{" "}
-                          kn
-                        </Table.Cell>
-                        <Table.Cell>
-                          {roundTo2Digits(
-                            item.quantity *
-                              (item.retailPrice * ((100 - item.discount) / 100))
-                          )}
-                        </Table.Cell>
+                        <Table.Cell>{item.discountedPrice} kn</Table.Cell>
+                        <Table.Cell>{item.total} kn</Table.Cell>
                       </Table.Row>
                     );
                   })}

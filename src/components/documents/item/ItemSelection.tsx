@@ -11,6 +11,7 @@ import {
   getDataFromLocalStorage,
   addDataToLocalStorage,
   replaceStringChunk,
+  roundTo2Digits,
 } from "../../../utility/utils";
 import { UMList } from "./config";
 import { initialValues } from "./config";
@@ -46,14 +47,25 @@ const ItemSelection = () => {
         // Get the correct item
         const item = items.filter((i) => i.itemNameCro === values.itemName)[0];
 
-        item.id = uuidv4(); // Update id so we can have multiple identical items and safe mapping (list key)
-        console.log(invoice.summary.totalWithoutVat);
+        // Update id so we can have multiple identical items and safe mapping (list key)
+        item.id = uuidv4();
 
         // Merge items (values from invoice r1 form) and form values
         const updatedItem = {
           ...values,
           ...item,
         };
+
+        // Calculate totals for each added item
+        updatedItem.total = roundTo2Digits(
+          updatedItem.quantity *
+            (updatedItem.retailPrice * ((100 - updatedItem.discount) / 100))
+        );
+
+        // Calculate discounted price
+        updatedItem.discountedPrice = roundTo2Digits(
+          updatedItem.retailPrice * ((100 - updatedItem.discount) / 100)
+        );
 
         // Push the item into LS invoice item list
         invoice.items.push(updatedItem);

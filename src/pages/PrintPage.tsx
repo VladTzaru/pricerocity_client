@@ -48,14 +48,21 @@ const PrintPage = () => {
     return total;
   };
 
-  const calculateVat = () => {
+  const calculateVat = (vat: number) => {
     if (!selectedInvoice) return;
     let total = 0;
     for (const i in selectedInvoice.items) {
-      total += selectedInvoice.items[i].total;
+      if (selectedInvoice.items[i].vat === vat)
+        total += selectedInvoice.items[i].total;
+    }
+    let totalVat = 0;
+    if (vat === 25) {
+      totalVat = total * 0.25;
     }
 
-    const totalVat = total * 0.25;
+    if (vat === 13) {
+      totalVat = total * 0.13;
+    }
     selectedInvoice.summary.totalVat = totalVat;
     return totalVat;
   };
@@ -187,13 +194,16 @@ const PrintPage = () => {
                 DOSTAVA: {selectedInvoice.summary.shipping}
               </p>
               <p className='small-text'>UKUPNO: {calculateTotals()} kn</p>
-              <p className='small-text'>PDV: {calculateVat()} kn</p>
               <p className='small-text'>
-                UKUPNO S PDV-om: {calculateTotalWithVAT()} kn
+                PDV: {calculateVat(25)! + calculateVat(13)!} kn
+              </p>
+              <p className='small-text'>
+                UKUPNO S PDV-om: {roundTo2Digits(calculateTotalWithVAT())} kn
               </p>
               <div className='big-totals'>
-                <p>{calculateTotalWithVAT()} kn</p>
+                <p>{roundTo2Digits(calculateTotalWithVAT())} kn</p>
                 <p>{roundTo2Digits(calculateTotalWithVAT() / 7.5)} €</p>
+                {calculateVat(25)}
               </div>
             </Grid.Column>
           </Grid.Row>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button, Dropdown, Icon, Menu } from "semantic-ui-react";
 import { useInvoice } from "../store/invoice";
 import { DateFormat, InvoiceR1 } from "../types";
-import { formatDate } from "../utility/utils";
+import { formatDate, removeInvoiceFromLocalStorage } from "../utility/utils";
 
 const Header = () => {
   const { draftedInvoices } = useInvoice();
@@ -24,7 +24,11 @@ const Header = () => {
                 DateFormat.MM_DD_YYYY
               )}`}
             />
-            <Button key={i.buyer} onClick={() => console.log(i._id)} basic>
+            <Button
+              key={i.buyer}
+              onClick={() => removeInvoiceFromLocalStorage(i._id)}
+              basic
+            >
               Ukloni
             </Button>
           </div>

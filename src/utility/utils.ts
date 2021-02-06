@@ -1,5 +1,6 @@
-import { DateFormat } from "../types";
+import { DateFormat, InvoiceR1 } from "../types";
 import { format } from "date-fns";
+import { LOCAL_STORAGE_INVOICES } from "../constants";
 
 export const replaceStringChunk = (str: string, chunkToRemove: string) =>
   str.replace(chunkToRemove, "");
@@ -19,6 +20,14 @@ export const formatDate = (date: Date | string, dateFormat: DateFormat) =>
 
 export const addDataToLocalStorage = <T>(key: string, data: T) =>
   localStorage.setItem(key, JSON.stringify(data));
+
+export const removeInvoiceFromLocalStorage = (id: string) => {
+  const updated = getDataFromLocalStorage<InvoiceR1[]>(
+    LOCAL_STORAGE_INVOICES,
+    []
+  ).filter((i) => i._id !== id);
+  addDataToLocalStorage(LOCAL_STORAGE_INVOICES, updated);
+};
 
 export const removeDataFromLocalStorage = (key: string) =>
   localStorage.removeItem(key);

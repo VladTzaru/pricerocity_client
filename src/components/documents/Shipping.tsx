@@ -38,7 +38,7 @@ const Shipping = () => {
 
         // Get the correct invoice
         const invoice = LSInvoices.filter((i) => i._id === invoiceId)[0];
-        invoice.summary.shipping = values.shipping;
+        invoice.summary.shipping = Number(values.shipping);
         actions.resetForm();
 
         // Check if we are updating an existing invoice

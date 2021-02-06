@@ -53,9 +53,11 @@ const PrintPage = () => {
 
     const totalVat = total * 0.25;
     selectedInvoice.summary.totalVat = totalVat;
-    console.log(selectedInvoice);
     return totalVat;
   };
+
+  const calculateTotalWithVAT = () =>
+    selectedInvoice.summary.totalVat + selectedInvoice.summary.totalWithoutVat;
 
   if (!selectedInvoice || !selectedBuyer) return <h1>Nemaš dokumenata mala</h1>;
 
@@ -183,7 +185,7 @@ const PrintPage = () => {
               <p className='small-text'>UKUPNO: {calculateTotals()} kn</p>
               <p className='small-text'>PDV: {calculateVat()} kn</p>
               <p className='small-text'>
-                UKUPNO S PDV-om: {selectedInvoice.summary.totalWithVAT}
+                UKUPNO S PDV-om: {calculateTotalWithVAT()} kn
               </p>
             </Grid.Column>
           </Grid.Row>

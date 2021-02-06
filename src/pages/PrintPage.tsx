@@ -57,7 +57,7 @@ const PrintPage = () => {
     }
     let totalVat = 0;
     if (vat === 25) {
-      totalVat = total * 0.25;
+      totalVat = (total + selectedInvoice.summary.shipping) * 0.25;
     }
 
     if (vat === 13) {
@@ -203,22 +203,26 @@ const PrintPage = () => {
                 </Table.Header>
                 <Table.Header>
                   <Table.Row>
-                    <Table.HeaderCell content='OSNOVICA' />
-                    <Table.HeaderCell content='STOPA' />
-                    <Table.HeaderCell content='PDV' />
+                    <Table.HeaderCell textAlign='center' content='OSNOVICA' />
+                    <Table.HeaderCell textAlign='center' content='STOPA' />
+                    <Table.HeaderCell textAlign='center' content='PDV' />
                   </Table.Row>
                 </Table.Header>
 
                 <Table.Body>
                   <Table.Row>
-                    <Table.Cell>node_modules</Table.Cell>
-                    <Table.Cell>Initial commit</Table.Cell>
-                    <Table.Cell>10 hours ago</Table.Cell>
+                    <Table.Cell textAlign='center'>node_modules</Table.Cell>
+                    <Table.Cell textAlign='center'>13%</Table.Cell>
+                    <Table.Cell textAlign='center'>
+                      {calculateVat(13)} kn
+                    </Table.Cell>
                   </Table.Row>
                   <Table.Row>
-                    <Table.Cell>node_modules</Table.Cell>
-                    <Table.Cell>Initial commit</Table.Cell>
-                    <Table.Cell>10 hours ago</Table.Cell>
+                    <Table.Cell textAlign='center'>node_modules</Table.Cell>
+                    <Table.Cell textAlign='center'>25%</Table.Cell>
+                    <Table.Cell textAlign='center'>
+                      {calculateVat(25)} kn
+                    </Table.Cell>
                   </Table.Row>
                 </Table.Body>
               </Table>

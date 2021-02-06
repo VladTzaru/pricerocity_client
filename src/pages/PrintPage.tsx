@@ -45,7 +45,7 @@ const PrintPage = () => {
       total += selectedInvoice.items[i].total;
     }
     selectedInvoice.summary.totalWithoutVat = total;
-    return total;
+    return roundTo2Digits(total);
   };
 
   const calculateVat = (vat: number) => {
@@ -64,11 +64,13 @@ const PrintPage = () => {
       totalVat = total * 0.13;
     }
     selectedInvoice.summary.totalVat = totalVat;
-    return totalVat;
+    return roundTo2Digits(totalVat);
   };
 
   const calculateTotalWithVAT = () =>
-    selectedInvoice.summary.totalVat + selectedInvoice.summary.totalWithoutVat;
+    selectedInvoice.summary.totalWithoutVat +
+    calculateVat(13)! +
+    calculateVat(25)!;
 
   if (!selectedInvoice || !selectedBuyer) return <h1>Nemaš dokumenata mala</h1>;
 
@@ -198,12 +200,11 @@ const PrintPage = () => {
                 PDV: {calculateVat(25)! + calculateVat(13)!} kn
               </p>
               <p className='small-text'>
-                UKUPNO S PDV-om: {roundTo2Digits(calculateTotalWithVAT())} kn
+                UKUPNO S PDV-om: {calculateTotalWithVAT()} kn
               </p>
               <div className='big-totals'>
-                <p>{roundTo2Digits(calculateTotalWithVAT())} kn</p>
+                <p>{calculateTotalWithVAT()} kn</p>
                 <p>{roundTo2Digits(calculateTotalWithVAT() / 7.5)} €</p>
-                {calculateVat(25)}
               </div>
             </Grid.Column>
           </Grid.Row>

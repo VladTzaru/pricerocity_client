@@ -1,12 +1,11 @@
 import axios from "axios";
 import create, { State } from "zustand";
-import { ItemValues } from "../components/documents/item/NewItem";
 import { InvoiceItem, Item } from "../types";
 
 interface ItemStoreType extends State {
-  items: ItemValues[];
+  items: InvoiceItem[];
   invoiceItems: InvoiceItem[];
-  addItemToDB: (item: ItemValues) => Promise<void>;
+  addItemToDB: (item: Item) => Promise<void>;
   getItemsFromDB: () => Promise<void>;
   addItemToInvoice: (item: InvoiceItem) => void;
   getInvoiceItems: () => InvoiceItem[];
@@ -16,14 +15,12 @@ export const useItem = create<ItemStoreType>((set, get) => ({
   items: [],
   invoiceItems: [],
   addItemToDB: async (item) => {
-    const { items } = get();
     try {
       await axios.post<Item[]>(`${process.env.REACT_APP_API}/item/new`, item, {
         headers: {
           "Content-Type": "application/json",
         },
       });
-      set({ items: [...items, item] });
     } catch (error) {
       console.log(error);
     }
@@ -31,7 +28,7 @@ export const useItem = create<ItemStoreType>((set, get) => ({
 
   getItemsFromDB: async () => {
     try {
-      const { data } = await axios.get<Item[]>(
+      const { data } = await axios.get<InvoiceItem[]>(
         `${process.env.REACT_APP_API}/item`
       );
 

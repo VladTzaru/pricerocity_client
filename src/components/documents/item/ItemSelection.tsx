@@ -47,6 +47,7 @@ const ItemSelection = () => {
         const item = items.filter((i) => i.itemNameCro === values.itemName)[0];
 
         item.id = uuidv4(); // Update id so we can have multiple identical items and safe mapping (list key)
+        console.log(invoice.summary.totalWithoutVat);
 
         // Merge items (values from invoice r1 form) and form values
         const updatedItem = {

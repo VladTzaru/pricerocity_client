@@ -34,14 +34,15 @@ const PrintPage = () => {
     return `${selectedBuyer?.name} ${selectedBuyer.address} ${selectedBuyer.zipCode}, ${selectedBuyer.city}, OIB: ${selectedBuyer.vatNumber}`;
   };
 
-  // const calculateTotals = () => {
-  //   if (!selectedInvoice) return;
-  //   let total = 0;
-  //   for (const i in selectedInvoice.items) {
-  //     console.log((total += selectedInvoice.items[i].total));
-  //   }
-  //   return total;
-  // };
+  const calculateTotals = () => {
+    if (!selectedInvoice) return;
+    let total = 0;
+    for (const i in selectedInvoice.items) {
+      total += selectedInvoice.items[i].total;
+    }
+    selectedInvoice.summary.totalWithoutVat = total;
+    return total;
+  };
 
   if (!selectedInvoice || !selectedBuyer) return <h1>Nemaš dokumenata mala</h1>;
 
@@ -166,9 +167,7 @@ const PrintPage = () => {
               <p className='small-text'>
                 DOSTAVA: {selectedInvoice.summary.shipping}
               </p>
-              <p className='small-text'>
-                UKUPNO: {selectedInvoice.summary.totalWithoutVat}
-              </p>
+              <p className='small-text'>UKUPNO: {calculateTotals()} kn</p>
               <p className='small-text'>
                 PDV: {selectedInvoice.summary.totalVat}
               </p>

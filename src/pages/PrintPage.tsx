@@ -243,7 +243,7 @@ const PrintPage = () => {
 
             <Grid.Column width={6}>
               <p className='small-text'>
-                DOSTAVA: {formatNumber(selectedInvoice.summary.shipping)}
+                DOSTAVA: {selectedInvoice.summary.shipping}
               </p>
               <p className='small-text'>UKUPNO: {calculateTotals()} kn</p>
               <p className='small-text'>

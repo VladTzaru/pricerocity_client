@@ -112,16 +112,11 @@ const ItemSelection = () => {
             />
           </FormGroup>
 
-          <FormGroup widths={2}>
-            <InputField
-              disabled={isSubmitting}
-              type='number'
-              name='shipping'
-              label='Dostava'
-            />
+          <FormGroup widths={16}>
             <Button
               loading={isSubmitting}
-              secondary
+              compact
+              basic
               size='large'
               disabled={isSubmitting || !dirty || !isValid}
               type='submit'

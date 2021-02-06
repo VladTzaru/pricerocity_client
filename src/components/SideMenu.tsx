@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Dropdown, Menu, MenuItemProps } from "semantic-ui-react";
 import ItemSelection from "./documents/item/ItemSelection";
+import Shipping from "./documents/Shipping";
 
 const SideMenu = () => {
   const [activeItem, setActiveItem] = useState<string | undefined>("");
@@ -61,6 +62,10 @@ const SideMenu = () => {
       {/* ADD ITEMS TO INVOICE */}
       <Menu.Item>
         <ItemSelection />
+      </Menu.Item>
+
+      <Menu.Item>
+        <Shipping />
       </Menu.Item>
 
       <Dropdown item text='Opcije'>

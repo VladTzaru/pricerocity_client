@@ -203,7 +203,7 @@ const PrintPage = () => {
 
               {/* Razrada PDV-a po stopama */}
 
-              <Table celled fixed striped compact size='small'>
+              <Table celled fixed compact size='small'>
                 <Table.Header>
                   <Table.Row>
                     <Table.HeaderCell colSpan='3'>
@@ -248,7 +248,7 @@ const PrintPage = () => {
               </p>
               <p className='small-text'>UKUPNO: {calculateTotals()} kn</p>
               <p className='small-text'>
-                PDV: {calculateVat(25)! + calculateVat(13)!} kn
+                PDV: {roundTo2Digits(calculateVat(25)! + calculateVat(13)!)} kn
               </p>
               <p className='small-text'>
                 UKUPNO S PDV-om: {calculateTotalWithVAT()} kn

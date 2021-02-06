@@ -27,6 +27,16 @@ body {
   margin-bottom: 2px;
 }
 
+.big-totals {
+  margin-top: 12px;
+  text-align: right;
+}
+
+div.big-totals p {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
 .print {
   width: 210mm;
   min-height: 297mm;

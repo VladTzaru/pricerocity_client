@@ -12,7 +12,11 @@ import {
 import { useBuyer } from "../store/buyer";
 import { useInvoice } from "../store/invoice";
 import { Buyer, DateFormat, DocumentType } from "../types";
-import { formatDate, replaceStringChunk } from "../utility/utils";
+import {
+  formatDate,
+  replaceStringChunk,
+  roundTo2Digits,
+} from "../utility/utils";
 
 const selectBuyer = (name: string, list: Buyer[]): Buyer => {
   const buyer = list.filter((list) => list.name === name);
@@ -187,6 +191,10 @@ const PrintPage = () => {
               <p className='small-text'>
                 UKUPNO S PDV-om: {calculateTotalWithVAT()} kn
               </p>
+              <div className='big-totals'>
+                <p>{calculateTotalWithVAT()} kn</p>
+                <p>{roundTo2Digits(calculateTotalWithVAT() / 7.5)} €</p>
+              </div>
             </Grid.Column>
           </Grid.Row>
 

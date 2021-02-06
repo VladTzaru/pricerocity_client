@@ -209,7 +209,7 @@ const PrintPage = () => {
               <Table celled fixed compact size='small'>
                 <Table.Header>
                   <Table.Row>
-                    <Table.HeaderCell colSpan='3'>
+                    <Table.HeaderCell textAlign='center' colSpan='3'>
                       Razrada PDV-a po stopama:
                     </Table.HeaderCell>
                   </Table.Row>

@@ -5,18 +5,13 @@ import SideMenu from "../components/SideMenu";
 import {
   INVOICE_R1,
   PLASINIA_ADDRESS,
-  PLASINIA_FOR_PAYMENT,
   PLASINIA_INFORMATION,
   PLASINIA_TAX_REGULATIONS,
 } from "../constants";
 import { useBuyer } from "../store/buyer";
 import { useInvoice } from "../store/invoice";
 import { Buyer, DateFormat, DocumentType } from "../types";
-import {
-  formatDate,
-  replaceStringChunk,
-  roundTo2Digits,
-} from "../utility/utils";
+import { formatDate, formatNumber, replaceStringChunk } from "../utility/utils";
 
 const selectBuyer = (name: string, list: Buyer[]): Buyer => {
   const buyer = list.filter((list) => list.name === name);
@@ -45,7 +40,7 @@ const PrintPage = () => {
       total += selectedInvoice.items[i].total;
     }
     selectedInvoice.summary.totalWithoutVat = total;
-    return roundTo2Digits(total);
+    return formatNumber(total);
   };
 
   const calculateBasePrice = (taxRate: number) => {
@@ -55,7 +50,7 @@ const PrintPage = () => {
       if (selectedInvoice.items[i].vat === taxRate)
         total += selectedInvoice.items[i].total;
     }
-    return roundTo2Digits(total);
+    return formatNumber(total);
   };
 
   const calculateVat = (vat: number) => {
@@ -74,7 +69,7 @@ const PrintPage = () => {
       totalVat = total * 0.13;
     }
     selectedInvoice.summary.totalVat = totalVat;
-    return roundTo2Digits(totalVat);
+    return totalVat;
   };
 
   const calculateTotalWithVAT = () =>
@@ -184,10 +179,14 @@ const PrintPage = () => {
                           {item.quantity} {item.unit}
                         </Table.Cell>
                         <Table.Cell>{item.vat}%</Table.Cell>
-                        <Table.Cell>{item.retailPrice} kn</Table.Cell>
+                        <Table.Cell>
+                          {formatNumber(item.retailPrice)} kn
+                        </Table.Cell>
                         <Table.Cell>{item.discount}%</Table.Cell>
-                        <Table.Cell>{item.discountedPrice} kn</Table.Cell>
-                        <Table.Cell>{item.total} kn</Table.Cell>
+                        <Table.Cell>
+                          {formatNumber(item.discountedPrice)} kn
+                        </Table.Cell>
+                        <Table.Cell>{formatNumber(item.total)} kn</Table.Cell>
                       </Table.Row>
                     );
                   })}
@@ -226,7 +225,7 @@ const PrintPage = () => {
                     </Table.Cell>
                     <Table.Cell textAlign='center'>13%</Table.Cell>
                     <Table.Cell textAlign='center'>
-                      {calculateVat(13)} kn
+                      {formatNumber(calculateVat(13)!)} kn
                     </Table.Cell>
                   </Table.Row>
                   <Table.Row>
@@ -235,7 +234,7 @@ const PrintPage = () => {
                     </Table.Cell>
                     <Table.Cell textAlign='center'>25%</Table.Cell>
                     <Table.Cell textAlign='center'>
-                      {calculateVat(25)} kn
+                      {formatNumber(calculateVat(25)!)} kn
                     </Table.Cell>
                   </Table.Row>
                 </Table.Body>
@@ -244,18 +243,18 @@ const PrintPage = () => {
 
             <Grid.Column width={6}>
               <p className='small-text'>
-                DOSTAVA: {selectedInvoice.summary.shipping}
+                DOSTAVA: {formatNumber(selectedInvoice.summary.shipping)}
               </p>
               <p className='small-text'>UKUPNO: {calculateTotals()} kn</p>
               <p className='small-text'>
-                PDV: {roundTo2Digits(calculateVat(25)! + calculateVat(13)!)} kn
+                PDV: {formatNumber(calculateVat(25)! + calculateVat(13)!)} kn
               </p>
               <p className='small-text'>
-                UKUPNO S PDV-om: {calculateTotalWithVAT()} kn
+                UKUPNO S PDV-om: {formatNumber(calculateTotalWithVAT())} kn
               </p>
               <div className='big-totals'>
-                <p>{calculateTotalWithVAT()} kn</p>
-                <p>{roundTo2Digits(calculateTotalWithVAT() / 7.5)} €</p>
+                <p>{formatNumber(calculateTotalWithVAT())} kn</p>
+                <p>{formatNumber(calculateTotalWithVAT() / 7.5)} €</p>
               </div>
             </Grid.Column>
           </Grid.Row>
@@ -264,7 +263,9 @@ const PrintPage = () => {
           <Grid.Row>
             <Grid.Column width={10}>
               <p className='small-text'>ZA PLAĆANJE</p>
-              <p className='small-text'>{PLASINIA_FOR_PAYMENT}</p>
+              <p className='small-text'>
+                {`Opis plaćanja: Račun ${selectedInvoice.invoiceNumberPrefix}/2/1 IBAN: HR9723400091110950153 Swift: PBZGHR2X`}
+              </p>
             </Grid.Column>
           </Grid.Row>
           {selectedInvoice.notes && (

@@ -11,7 +11,6 @@ import {
   getDataFromLocalStorage,
   addDataToLocalStorage,
   replaceStringChunk,
-  roundTo2Digits,
 } from "../../../utility/utils";
 import { UMList } from "./config";
 import { initialValues } from "./config";
@@ -58,15 +57,13 @@ const ItemSelection = () => {
         };
 
         // Calculate totals for each added item
-        updatedItem.total = roundTo2Digits(
+        updatedItem.total =
           updatedItem.quantity *
-            (updatedItem.retailPrice * ((100 - updatedItem.discount) / 100))
-        );
+          (updatedItem.retailPrice * ((100 - updatedItem.discount) / 100));
 
         // Calculate discounted price
-        updatedItem.discountedPrice = roundTo2Digits(
-          updatedItem.retailPrice * ((100 - updatedItem.discount) / 100)
-        );
+        updatedItem.discountedPrice =
+          updatedItem.retailPrice * ((100 - updatedItem.discount) / 100);
 
         // Push the item into LS invoice item list
         invoice.items.push(updatedItem);

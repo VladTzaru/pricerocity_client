@@ -43,4 +43,5 @@ export const getDataFromLocalStorage = <T>(
   return data;
 };
 
-export const roundTo2Digits = (num: number) => Math.floor(num * 100) / 100;
+export const formatNumber = (num: number) =>
+  num.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");

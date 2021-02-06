@@ -10,6 +10,7 @@ import {
   replaceStringChunk,
 } from "../../utility/utils";
 import { useLocation } from "react-router-dom";
+import { ShippingSchema } from "../../validation/formValidationSchemas";
 
 type ShippingType = {
   shipping: number;
@@ -25,6 +26,7 @@ const Shipping = () => {
   return (
     <Formik
       initialValues={initialValues}
+      validationSchema={ShippingSchema}
       onSubmit={(values, actions) => {
         let updatedLocalStorage;
 

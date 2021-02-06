@@ -44,4 +44,6 @@ export const getDataFromLocalStorage = <T>(
 };
 
 export const formatNumber = (num: number) =>
-  num.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
+  Number(num)
+    .toFixed(2)
+    .replace(/\d(?=(\d{3})+\.)/g, "$&,");

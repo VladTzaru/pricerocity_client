@@ -46,6 +46,10 @@ const PrintPage = () => {
   const calculateBasePrice = (taxRate: number) => {
     if (!selectedInvoice) return;
     let total = 0;
+
+    if (taxRate === 25) {
+      total += selectedInvoice.summary.shipping;
+    }
     for (const i in selectedInvoice.items) {
       if (selectedInvoice.items[i].vat === taxRate)
         total += selectedInvoice.items[i].total;

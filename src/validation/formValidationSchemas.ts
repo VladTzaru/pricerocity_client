@@ -48,3 +48,9 @@ export const ItemSelectionSchema = Yup.object().shape({
   discount: Yup.number().min(0, "Negativni brojevi nisu dozovljeni"),
   shipping: Yup.number().min(0, "Negativni brojevi nisu dozovljeni"),
 });
+
+export const ShippingSchema = Yup.object().shape({
+  shipping: Yup.number()
+    .min(0, "Negativni brojevi nisu dozovljeni")
+    .required("Obavezno polje"),
+});

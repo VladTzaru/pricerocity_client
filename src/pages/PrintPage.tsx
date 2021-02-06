@@ -190,7 +190,40 @@ const PrintPage = () => {
           <Grid.Row>
             <Grid.Column width={10}>
               <p className='small-text'>{PLASINIA_TAX_REGULATIONS}</p>
+
+              {/* Razrada PDV-a po stopama */}
+
+              <Table celled fixed striped compact size='small'>
+                <Table.Header>
+                  <Table.Row>
+                    <Table.HeaderCell colSpan='3'>
+                      Razrada PDV-a po stopama:
+                    </Table.HeaderCell>
+                  </Table.Row>
+                </Table.Header>
+                <Table.Header>
+                  <Table.Row>
+                    <Table.HeaderCell content='OSNOVICA' />
+                    <Table.HeaderCell content='STOPA' />
+                    <Table.HeaderCell content='PDV' />
+                  </Table.Row>
+                </Table.Header>
+
+                <Table.Body>
+                  <Table.Row>
+                    <Table.Cell>node_modules</Table.Cell>
+                    <Table.Cell>Initial commit</Table.Cell>
+                    <Table.Cell>10 hours ago</Table.Cell>
+                  </Table.Row>
+                  <Table.Row>
+                    <Table.Cell>node_modules</Table.Cell>
+                    <Table.Cell>Initial commit</Table.Cell>
+                    <Table.Cell>10 hours ago</Table.Cell>
+                  </Table.Row>
+                </Table.Body>
+              </Table>
             </Grid.Column>
+
             <Grid.Column width={6}>
               <p className='small-text'>
                 DOSTAVA: {selectedInvoice.summary.shipping}

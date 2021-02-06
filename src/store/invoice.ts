@@ -11,7 +11,7 @@ import {
 interface InvoiceStoreType extends State {
   draftedInvoices: InvoiceR1[];
   draftInvoice: (document: InvoiceR1) => void;
-  selectDraftedInvoice: (id: string, list: InvoiceR1[]) => InvoiceR1;
+  selectDraftedInvoice: (id: string) => InvoiceR1;
   addNewInvoiceToDB: (newInvoice: InvoiceR1) => Promise<void>;
 }
 
@@ -27,8 +27,9 @@ export const useInvoice = create<InvoiceStoreType>((set, get) => ({
     ]);
   },
 
-  selectDraftedInvoice: (id, list) => {
-    const invoice = list.filter((list) => list._id === id);
+  selectDraftedInvoice: (id) => {
+    const { draftedInvoices } = get();
+    const invoice = draftedInvoices.filter((i) => i._id === id);
     return invoice[0];
   },
 

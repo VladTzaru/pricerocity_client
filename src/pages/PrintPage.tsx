@@ -102,7 +102,7 @@ const PrintPage = () => {
           {/* DOCUMENT NAME */}
           <Grid.Row>
             <Grid.Column width={16}>
-              <Header as='h3'>
+              <Header className='purple' as='h2'>
                 {selectedInvoice?.documentType === DocumentType.INVOICE_R1
                   ? INVOICE_R1
                   : selectedInvoice?.documentType}
@@ -252,7 +252,7 @@ const PrintPage = () => {
               <p className='small-text'>
                 UKUPNO S PDV-om: {formatNumber(calculateTotalWithVAT())} kn
               </p>
-              <div className='big-totals'>
+              <div className='big-totals purple'>
                 <p>{formatNumber(calculateTotalWithVAT())} kn</p>
                 <p>{formatNumber(calculateTotalWithVAT() / 7.5)} €</p>
               </div>
@@ -262,7 +262,7 @@ const PrintPage = () => {
           {/* FOOTER */}
           <Grid.Row>
             <Grid.Column width={10}>
-              <p className='small-text'>ZA PLAĆANJE</p>
+              <p className='small-text purple'>ZA PLAĆANJE</p>
               <p className='small-text'>
                 {`Opis plaćanja: Račun ${selectedInvoice.invoiceNumberPrefix}/2/1 IBAN: HR9723400091110950153 Swift: PBZGHR2X`}
               </p>

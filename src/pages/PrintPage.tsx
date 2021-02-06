@@ -48,6 +48,16 @@ const PrintPage = () => {
     return roundTo2Digits(total);
   };
 
+  const calculateBasePrice = (taxRate: number) => {
+    if (!selectedInvoice) return;
+    let total = 0;
+    for (const i in selectedInvoice.items) {
+      if (selectedInvoice.items[i].vat === taxRate)
+        total += selectedInvoice.items[i].total;
+    }
+    return roundTo2Digits(total);
+  };
+
   const calculateVat = (vat: number) => {
     if (!selectedInvoice) return;
     let total = 0;
@@ -211,14 +221,18 @@ const PrintPage = () => {
 
                 <Table.Body>
                   <Table.Row>
-                    <Table.Cell textAlign='center'>node_modules</Table.Cell>
+                    <Table.Cell textAlign='center'>
+                      {calculateBasePrice(13)} kn
+                    </Table.Cell>
                     <Table.Cell textAlign='center'>13%</Table.Cell>
                     <Table.Cell textAlign='center'>
                       {calculateVat(13)} kn
                     </Table.Cell>
                   </Table.Row>
                   <Table.Row>
-                    <Table.Cell textAlign='center'>node_modules</Table.Cell>
+                    <Table.Cell textAlign='center'>
+                      {calculateBasePrice(25)} kn
+                    </Table.Cell>
                     <Table.Cell textAlign='center'>25%</Table.Cell>
                     <Table.Cell textAlign='center'>
                       {calculateVat(25)} kn

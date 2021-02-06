@@ -44,6 +44,19 @@ const PrintPage = () => {
     return total;
   };
 
+  const calculateVat = () => {
+    if (!selectedInvoice) return;
+    let total = 0;
+    for (const i in selectedInvoice.items) {
+      total += selectedInvoice.items[i].total;
+    }
+
+    const totalVat = total * 0.25;
+    selectedInvoice.summary.totalVat = totalVat;
+    console.log(selectedInvoice);
+    return totalVat;
+  };
+
   if (!selectedInvoice || !selectedBuyer) return <h1>Nemaš dokumenata mala</h1>;
 
   return (
@@ -168,9 +181,7 @@ const PrintPage = () => {
                 DOSTAVA: {selectedInvoice.summary.shipping}
               </p>
               <p className='small-text'>UKUPNO: {calculateTotals()} kn</p>
-              <p className='small-text'>
-                PDV: {selectedInvoice.summary.totalVat}
-              </p>
+              <p className='small-text'>PDV: {calculateVat()} kn</p>
               <p className='small-text'>
                 UKUPNO S PDV-om: {selectedInvoice.summary.totalWithVAT}
               </p>

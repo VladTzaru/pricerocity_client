@@ -19,33 +19,34 @@ import { useInvoice } from "../../../store/invoice";
 import { useHistory } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
-const initialValues: InvoiceR1Type = {
-  _id: "",
-  buyer: "",
-  buyerName: "",
-  recipient: "",
-  date: new Date(),
-  paymentDeadline: 0,
-  paymentDeadlineDate: new Date(),
-  invoiceNumberPrefix: 1,
-  invoiceNumberSuffix: "1/1",
-  documentType: DocumentType.INVOICE_R1,
-  paymentMethod: PaymentMethods.TRANSACTION_ACCOUNT,
-  invoiceIssuedAt: new Date(),
-  summary: {
-    totalWithoutVat: 0,
-    totalVat: 0,
-    totalWithVAT: 0,
-    shipping: 0,
-  },
-  items: [],
-  notes: "",
-};
-
 const InvoiceR1 = () => {
   const { buyers } = useBuyer();
   const history = useHistory();
-  const { draftInvoice } = useInvoice();
+  const { draftInvoice, issuedInvoices } = useInvoice();
+
+  const initialValues: InvoiceR1Type = {
+    _id: "",
+    buyer: "",
+    buyerName: "",
+    recipient: "",
+    date: new Date(),
+    paymentDeadline: 0,
+    paymentDeadlineDate: new Date(),
+    invoiceNumberPrefix: issuedInvoices.length + 1,
+    invoiceNumberSuffix: "1/1",
+    documentType: DocumentType.INVOICE_R1,
+    paymentMethod: PaymentMethods.TRANSACTION_ACCOUNT,
+    invoiceIssuedAt: new Date(),
+    summary: {
+      totalWithoutVat: 0,
+      totalVat: 0,
+      totalWithVAT: 0,
+      shipping: 0,
+    },
+    items: [],
+    notes: "",
+  };
+
   return (
     <Formik
       validationSchema={invoiceR1Schema}

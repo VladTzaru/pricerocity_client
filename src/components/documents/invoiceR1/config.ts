@@ -1,9 +1,7 @@
 import {
   SelectionOptions,
   PaymentMethods,
-  InvoiceR1,
   InvoiceNumberSuffix,
-  DocumentType,
 } from "../../../types";
 
 export const paymentMethods: SelectionOptions<PaymentMethods>[] = [
@@ -33,29 +31,6 @@ export const paymentMethods: SelectionOptions<PaymentMethods>[] = [
     text: PaymentMethods.CASH_ON_DELIVERY,
   },
 ];
-
-export const initialValues: InvoiceR1 = {
-  _id: "",
-  buyer: "",
-  buyerName: "",
-  recipient: "",
-  date: new Date(),
-  paymentDeadline: 0,
-  paymentDeadlineDate: new Date(),
-  invoiceNumberPrefix: 1,
-  invoiceNumberSuffix: "1/1",
-  documentType: DocumentType.INVOICE_R1,
-  paymentMethod: PaymentMethods.TRANSACTION_ACCOUNT,
-  invoiceIssuedAt: new Date(),
-  summary: {
-    totalWithoutVat: 0,
-    totalVat: 0,
-    totalWithVAT: 0,
-    shipping: 0,
-  },
-  items: [],
-  notes: "",
-};
 
 export const invoiceTypes: SelectionOptions<InvoiceNumberSuffix>[] = [
   {

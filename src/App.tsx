@@ -13,12 +13,15 @@ import FormsPage from "./pages/FormsPage";
 import ItemEditPage from "./pages/item/ItemEditPage";
 import BuyerList from "./pages/buyer/BuyerListPage";
 import PrintPage from "./pages/PrintPage";
+import { useInvoice } from "./store/invoice";
 
 const App = () => {
-  const { getBuyers } = useBuyer((state) => state);
+  const { getBuyers } = useBuyer();
+  const { getIssuedInvoices } = useInvoice();
   useEffect(() => {
     getBuyers();
-  }, [getBuyers]);
+    getIssuedInvoices();
+  }, [getBuyers, getIssuedInvoices]);
 
   return (
     <>

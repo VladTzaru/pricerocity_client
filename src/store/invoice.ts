@@ -10,7 +10,9 @@ import {
 
 interface InvoiceStoreType extends State {
   draftedInvoices: InvoiceR1[];
+  issuedInvoices: InvoiceR1[];
   getDraftedInvoices: () => InvoiceR1[];
+  getIssuedInvoices: () => Promise<void>;
   draftInvoice: (document: InvoiceR1) => void;
   selectDraftedInvoice: (id: string) => InvoiceR1;
   addNewInvoiceToDB: (newInvoice: InvoiceR1) => Promise<void>;
@@ -19,9 +21,22 @@ interface InvoiceStoreType extends State {
 export const useInvoice = create<InvoiceStoreType>((set, get) => ({
   draftedInvoices: getDataFromLocalStorage<[]>(LOCAL_STORAGE_INVOICES, []),
 
+  issuedInvoices: [],
+
   getDraftedInvoices: () => {
     const { draftedInvoices } = get();
     return draftedInvoices;
+  },
+
+  getIssuedInvoices: async () => {
+    try {
+      const { data } = await axios.get<InvoiceR1[]>(
+        `${process.env.REACT_APP_API}/invoice`
+      );
+      set({ issuedInvoices: data });
+    } catch (error) {
+      console.log(error);
+    }
   },
 
   draftInvoice: (invoice) => {

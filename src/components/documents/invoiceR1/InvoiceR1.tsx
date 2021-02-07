@@ -4,15 +4,43 @@ import InputField from "../../form/InputField";
 import { Button, FormGroup, Header } from "semantic-ui-react";
 import { useBuyer } from "../../../store/buyer";
 import SelectInput from "../../form/SelectInput";
-import { DateFormat } from "../../../types";
+import {
+  DateFormat,
+  InvoiceR1 as InvoiceR1Type,
+  DocumentType,
+  PaymentMethods,
+} from "../../../types";
 import { createSelectionOptions } from "../../../utility/utils";
-import { paymentMethods, initialValues, invoiceTypes } from "./config";
+import { paymentMethods, invoiceTypes } from "./config";
 import { invoiceR1Schema } from "../../../validation/formValidationSchemas";
 import DateInput from "../../form/DateInput";
 import InvoiceR1DependentField from "./InvoiceR1DependentField";
 import { useInvoice } from "../../../store/invoice";
 import { useHistory } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+
+const initialValues: InvoiceR1Type = {
+  _id: "",
+  buyer: "",
+  buyerName: "",
+  recipient: "",
+  date: new Date(),
+  paymentDeadline: 0,
+  paymentDeadlineDate: new Date(),
+  invoiceNumberPrefix: 1,
+  invoiceNumberSuffix: "1/1",
+  documentType: DocumentType.INVOICE_R1,
+  paymentMethod: PaymentMethods.TRANSACTION_ACCOUNT,
+  invoiceIssuedAt: new Date(),
+  summary: {
+    totalWithoutVat: 0,
+    totalVat: 0,
+    totalWithVAT: 0,
+    shipping: 0,
+  },
+  items: [],
+  notes: "",
+};
 
 const InvoiceR1 = () => {
   const { buyers } = useBuyer();

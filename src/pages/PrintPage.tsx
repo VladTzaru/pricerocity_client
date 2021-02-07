@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Grid, Header, Table } from "semantic-ui-react";
 import SideMenu from "../components/SideMenu";
@@ -76,10 +76,18 @@ const PrintPage = () => {
     return totalVat;
   };
 
-  const calculateTotalWithVAT = () =>
-    selectedInvoice.summary.totalWithoutVat +
-    calculateVat(13)! +
-    calculateVat(25)!;
+  const calculateTotalWithVAT = () => {
+    const result =
+      selectedInvoice.summary.totalWithoutVat +
+      calculateVat(13)! +
+      calculateVat(25)!;
+    selectedInvoice.summary.totalWithVAT = result;
+    return result;
+  };
+
+  useEffect(() => {
+    console.log(selectedInvoice);
+  }, [selectedInvoice]);
 
   if (!selectedInvoice || !selectedBuyer) return <h1>Nemaš dokumenata mala</h1>;
 

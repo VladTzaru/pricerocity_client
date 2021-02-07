@@ -56,14 +56,14 @@ const ItemSelection = () => {
           ...item,
         };
 
-        // Calculate totals for each added item
-        updatedItem.total =
-          updatedItem.quantity *
-          (updatedItem.retailPrice * ((100 - updatedItem.discount) / 100));
-
         // Calculate discounted price
-        updatedItem.discountedPrice =
-          updatedItem.retailPrice * ((100 - updatedItem.discount) / 100);
+        updatedItem.discountedPrice = +(
+          updatedItem.retailPrice *
+          ((100 - updatedItem.discount) / 100)
+        ).toFixed(2);
+
+        // Calculate totals for each added item
+        updatedItem.total = updatedItem.quantity * updatedItem.discountedPrice;
 
         // Push the item into LS invoice item list
         invoice.items.push(updatedItem);

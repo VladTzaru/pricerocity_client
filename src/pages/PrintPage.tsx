@@ -39,7 +39,7 @@ const PrintPage = () => {
     for (const i in selectedInvoice.items) {
       total += selectedInvoice.items[i].total;
     }
-    selectedInvoice.summary.totalWithoutVat = total;
+    selectedInvoice.summary.totalWithoutVat = +total.toFixed(2);
     return formatNumber(total);
   };
 
@@ -142,7 +142,7 @@ const PrintPage = () => {
                 NAČIN PLAĆANJA: {selectedInvoice.paymentMethod}
               </p>
               <p className='small-text'>
-                RAČUN IZDAT:{" "}
+                RAČUN IZDAT U:{" "}
                 {formatDate(selectedInvoice.invoiceIssuedAt, DateFormat.HH_mm)}
               </p>
             </Grid.Column>
@@ -152,24 +152,21 @@ const PrintPage = () => {
 
           <Grid.Row>
             <Grid.Column floated='left' width={16}>
-              <Table
-                striped
-                stackable
-                compact
-                size='small'
-                singleLine
-                definition
-              >
+              <Table striped stackable compact size='small' definition>
                 <Table.Header>
                   <Table.Row>
-                    <Table.HeaderCell>#</Table.HeaderCell>
-                    <Table.HeaderCell>Naziv proizvoda</Table.HeaderCell>
-                    <Table.HeaderCell>Količina</Table.HeaderCell>
-                    <Table.HeaderCell>PDV</Table.HeaderCell>
-                    <Table.HeaderCell>Cijena</Table.HeaderCell>
-                    <Table.HeaderCell>Popust</Table.HeaderCell>
-                    <Table.HeaderCell>Cijena s popustom</Table.HeaderCell>
-                    <Table.HeaderCell>Ukupno</Table.HeaderCell>
+                    <Table.HeaderCell singleLine>#</Table.HeaderCell>
+                    <Table.HeaderCell singleLine>
+                      Naziv proizvoda
+                    </Table.HeaderCell>
+                    <Table.HeaderCell singleLine>Količina</Table.HeaderCell>
+                    <Table.HeaderCell singleLine>PDV</Table.HeaderCell>
+                    <Table.HeaderCell singleLine>Cijena</Table.HeaderCell>
+                    <Table.HeaderCell singleLine>Popust</Table.HeaderCell>
+                    <Table.HeaderCell singleLine>
+                      Cijena s popustom
+                    </Table.HeaderCell>
+                    <Table.HeaderCell singleLine>Ukupno</Table.HeaderCell>
                   </Table.Row>
                 </Table.Header>
 

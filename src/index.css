@@ -10,10 +10,12 @@ th {
   text-transform: uppercase !important;
   font-weight: 500 !important;
   color: #90f !important;
+  font-size: 10px;
 }
 
 td {
   font-weight: 400 !important;
+  font-size: 11px;
 }
 
 .main {

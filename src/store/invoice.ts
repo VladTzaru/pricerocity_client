@@ -39,10 +39,11 @@ export const useInvoice = create<InvoiceStoreType>((set, get) => ({
   },
 
   addNewInvoiceToDB: async (invoice) => {
+    const { _id, ...rest } = invoice;
     try {
       await axios.post<InvoiceR1>(
         `${process.env.REACT_APP_API}/invoice/new`,
-        invoice,
+        rest,
         {
           headers: {
             "Content-Type": "application/json",

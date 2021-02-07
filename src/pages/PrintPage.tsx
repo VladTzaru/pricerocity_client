@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import { Grid, Header, Table } from "semantic-ui-react";
+import { useHistory, useLocation } from "react-router-dom";
+import { Button, Grid, Header, Table } from "semantic-ui-react";
 import SideMenu from "../components/SideMenu";
 import {
   INVOICE_R1,
@@ -19,7 +19,8 @@ const selectBuyer = (name: string, list: Buyer[]): Buyer => {
 };
 
 const PrintPage = () => {
-  const { selectDraftedInvoice } = useInvoice();
+  const history = useHistory();
+  const { selectDraftedInvoice, addNewInvoiceToDB } = useInvoice();
   const { buyers } = useBuyer();
   const { pathname } = useLocation();
 
@@ -287,6 +288,25 @@ const PrintPage = () => {
           )}
         </Grid>
       </div>
+
+      {/* SAVE BUTTON */}
+      <Grid container centered>
+        <Grid.Row>
+          <Grid.Column textAlign='center' width={16}>
+            <Button
+              onClick={() => {
+                addNewInvoiceToDB(selectedInvoice);
+                history.push("/buyer");
+              }}
+              className='mb-2'
+              primary
+              size='massive'
+            >
+              Sačuvaj račun
+            </Button>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     </>
   );
 };
